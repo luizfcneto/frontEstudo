@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+	<head>
+		<title> Pratica 8 - Formulario </title>
+		<meta charset="utf-8">
+	</head>
+	
+	<body>
+		<h1> Formulário </h1>	
+		
+		<form action="/action_page.php" method="">
+			<fieldset>
+				<legend> <b>Formulário Estudo</b> </legend>
+				<p> Nome:  </p>
+				<input type="text" name="nome" value="" placeholder="digite seu nome"> <br>
+				<p> Email: </p>
+				<input type="email" name="email" value="" placeholder="digite seu email"> <br>
+				<p> Senha: </p>
+				<input type="password" name="senha" value="" placeholder="digite sua senha"> <br>
+				<p> Qual marca de carro você prefere? </p>
+			
+				<!-- DropDown List -->
+				<select name="marcaCarro">
+					<option value="Volvo"> Volvo </option>
+					<option value="Fiat" > Fiat </option>
+					<option value="Mercedez Benz"> Mercedez Benz </option>
+					<option value="Audi" selected> Audi </option>
+					<option value="Saab" > Saab </option>
+				</select>
+				
+				<br>
+				
+				<p> Informe Gênero: </p>
+
+				<input type="radio" name="genero" value="masculino"> Masculino <br> 
+				<input type="radio" name="genero" value="feminino">	Feminino <br>
+				<input type="radio" name="genero" value="outro" checked> Não to afim de responder <br>
+				<p> que tipo de transporte voce prefere usar? </p>
+				<input type="checkbox" name="veiculo1" value="bicicleta"> Bicicleta <br>
+				<input type="checkbox" name="veiculo2" value="carro"> Carro <br>
+				<input type="checkbox" name="veiculo3" value="onibus" checked> Onibus <br>		
+				<p> Informe a data do seu nascimento:  </p>
+				<input type="date" name="dataDeAniversario" value="" placeholder="Informe a data do seu aniversario"> 					
+				<br><br>
+				
+				<p> Informe seu telefone:  </p>
+				<input type="number" name="telefone" valor="telefone" placeholder="Informe seu telefone:">	
+				
+				<br>
+				
+				<textarea name="mensagem" rows="5" cols="30">Informe o que achou desse formulário...
+				</textarea> <br>
+			
+				<input type="submit" value="Enviar">
+			</fieldset>	
+			
+		</form>
+	
+
+	
+	</body>
+	
+</html>
