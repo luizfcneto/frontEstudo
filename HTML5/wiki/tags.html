@@ -2,17 +2,21 @@
 
 <html lang="pt-br">
 	<head>
-		<title> Tags - Wiki </title>
+		<title> Tags/Elementos - Wiki </title>
 		<meta charset="utf-8">
 	</head>
 
 
 	<body>
+		
 		<header>
-
+			<img src="../imagens/logo.png" alt="logo da Wiki" width="100" height="100">
 		</header>
+		
 		<h1> HTML - Wiki </h1>
-		<ul> <h2> Tags </h2>
+		<h2> Tags / Elementos </h2>
+		
+		<ul> 
 			<li id="comentario" title="Comentário">
 			 <strong> < !--(Comentário em HTML)-- ></strong> 
 			 <p> A tag de coméntário é usada para inserir comentários no seu código e não são exibidos nos browsers.</p>
@@ -20,31 +24,99 @@
 
 			<li id="doctype" title="indicador para o browser"> 
 				<strong> < !DOCTYPE > </strong> 
-				<p> DOCTYPE não é uma tag de HTML, é uma tag usada para indicar ao browser que tipo de documento é esse que irá ser lido, nesse exemplo HTML5 </p>
+				<p> DOCTYPE não é uma tag de HTML, é uma tag usada para indicar ao browser que tipo de documento que irá ser lido, nesse exemplo HTML5. </p>
 			</li>
 
-			<li> 
+			<li id="a" title="ancora para links"> 
 				<strong> < a > </strong> 
+				<p> Define um hiperlink, usado para linkar uma página para outra. 
+					
+					<ul> <b> Atributos: </b>
+						
+						<li id="href"> href 
+							<p> <i>Exemplo: href="https://github.com/luizfcneto" </i>
+							</p> 
+						</li> 
+						
+						<li> target
+							<ul> <b>valores dos atributos de target :</b>
+								
+								<li> _blank  = abre o link clicado em uma aba ou janela diferente.</li>
+								
+								<li> _parent = abre o link clicado em uma janela com mesmo parentesco.  </li>
+								
+								<li> _self = abre o link clicado na aba atual. </li>
+								
+								<li> _top = abre o link clicado em todo corpo da janela.</li>
+							</ul>
+						</li>
+					</ul>		
+				</p>
 
 			</li>
 
-			<li> 
-				<strong> < h1 > ~ < h6> </strong> 
+			<li id="h1" title="Títulos"> 
+				<strong> < h1 > ~ < h6> </strong> <p> </p>
 			</li>
 
 
 
 			
-			<li> <strong>  </strong> </li>
-			<li> <strong> </strong> </li>
-			<li> <strong> </strong> </li>
-			<li> <strong> </strong> </li>
-			<li> <strong> </strong> </li>
-			<li> <strong> </strong> </li>
-			<li> <strong> </strong> </li>
-			<li> <strong> </strong> </li>
-			<li> <strong> </strong> </li>
-			<li> <strong> </strong> </li>
+			<li id="br" title="Pula a linha"> <strong> < br >  </strong>  <p> Pula a linha. </p> </li>
+			
+			<li id="hr" title="Traça uma linha"> <strong> < hr > </strong> <p> Quebra de seção </p> </li>
+			
+			<li> <strong> < pre > </strong> <p> Segue a 
+			definição pre formatada do texto (que está exatamente escrita no código). </p> 
+			<p> Entrando em <b>desuso</b>, por não ter controle de qual display o usuário irá utilizar, a pre formatação pode deixar a página com barra lateral. 
+			</p>
+			</li>
+			
+			<li id="blockquote" title="Citacao"> <strong> < blockquote > </strong> <p> Essa tag especifica que a seção(contida nela) é uma citação de alguém ou algum lugar  </p> </li>
+				
+				<ul> <b> Atributos da tag(elemento) blockquote : </b>
+					<li id=cite title="contem um link">
+						cite <p> <i> Exemplo: cite="href="http://www.citador.pt/frases/citacoes/temas" </i> </p>
+					</li>
+				</ul>
+			
+			<hr>
+			
+			<h3> Formatação de texto </h3>
+			
+			<li> 
+				<strong> < b > </strong> 
+				<p> </p>
+			</li>
+			<li> 
+				<strong> < strong > </strong> 
+				<p> </p>
+			</li>
+			<li> 
+				<strong> < p > </strong> 
+				<p> </p>
+			</li>
+			<li> 
+				<strong> < i > </strong> 
+				<p> </p>
+			</li>
+			<li> 
+				<strong> < s > </strong> 
+				<p> </p>
+
+			</li>
+			<li> 
+				<strong> < sub > </strong> 
+				<p> </p>
+			</li>
+			<li> 
+				<strong> < sup > </strong> 
+				<p> </p>
+			</li>
+			<li> 
+				<strong> < u > </strong> 
+				<p> </p>
+			</li>
 
 			
 		</ul>
