@@ -1,0 +1,169 @@
+> Definições:
+	seletor: h1
+
+	[color: propriedade
+	blue: valor]	-> Declaração
+	
+	h1{
+		color:blue;
+	}
+
+	>Seletor: Aponta para um elemento que deseja formatar
+	
+	>Cada declaração possui uma propriedada a ser alterada e o valor desejado
+	
+> Formas de inserção do CSS
+	1. Nos rótulos (tags) do HTML (inline style)
+	2. No cabeçalho (head) do documento HTML (Internal Style Sheet)
+	3. Em um arquivo externo (External Style Sheet) -> Mais apropriado
+	Exemplo:
+		<!DOCTYPE html>
+		<html>
+			<head>
+				
+			<head>	
+			
+			
+		</html>
+
+		
+
+> Comentários em CSS:
+	/*-------------------------*/
+	/*---Define o padrão-------*/
+	/*-------------------------*/
+
+> Seletores
+	> São usados para localizar elementos HTML
+	Exemplos:
+		> nome de elemento
+			p{}
+		> id
+			#p{}
+		> class
+			.p{}
+		> atributo
+			[class^="test"]{}	-> Inicio do Atributo
+			[class$="test"]{}	-> Fim do arquivo
+			[Class*="test"]{}	-> em qualquer parte do atributo
+
+	Você pode referenciar mais de dois setores ao mesmo tempo para estilizar
+	Exemplo:
+		Elemento + classe
+		p.center {
+			text-align: center
+		}
+
+	Mais de uma Classe
+	Exemplo:
+		p.center{
+			text-align: center;
+			color: blue;
+		}
+		p.large{
+			font-size: 200%;
+		}
+
+		Codigo do HTML:
+		...
+		<h1 class="center"> Cabeçalho não formatado </h1>
+		<p class="center"> Paragrafo azul e apenas centralizado. </p>
+		<p class="large"> Paragrafo com letras maiores. </p>
+		<p class="center large"> Paragrafo azul, centralizado e com letras maiores. </p>
+		...
+
+	Agrupar Elementos
+		Exemplo:
+			h1, p{
+				text-align: center;
+				color: blue;
+			}
+		
+
+> CSS Cores:
+	Antigamente: Vermelho, Azul, Amarelo (RGB)
+	Exemplo:
+		rgb(255,0,0) Red
+		rgb(0,255,0) Green
+		rgb(0,0,255) Blue
+
+	Atualmente: Vermelho, Verde, Azul  e Alfa (RGBD)
+		Alfa: especifica a opacidade da cor. 0 <= Alfa <= 1
+		rgbd(255,0,0,0) Red	->#FF0000
+		rgbd(0,255,0,0) Green	->#00FF00
+		rgbd(0,0,255,0) Blue	->#0000FF
+> HSL
+	> Formato 
+		hsl(hue,saturation, lightness)
+		Hue(Cor, matriz) é o grau da cor de 0 a 360, onde 0 é vermelho, 120 é verde, e 240 é azul
+		Saturation (saturação) é um valor percentual que corresponde a itensidade da cor, onde 0% corresponde a uma cor cinza, 50% corresponde a cor metade cinza e 100% corresponde a cor pura
+		Lightness (luminosidade) é também um percentual correspondente a quantidade de luz na cor, onde 0% é sem luz (preto), 50% é luminosidade média e 100% é bem luminoso(branco)
+	
+> background
+	background-color: red;	-> background pode ser cor
+	background-image: url("unirio.png");	-> pode ser imagem(unica)
+	background-repeat: no-repeat;		-> repete as imagens
+	background-repeat: repeat-x;	-> a imagem é repetida apenas horizontalmente e y verticalmente
+	background-position: 		-> definie a posição da imagem.
+	background-attachment:		-> fixa a imagem na página(não rola junto com o texto).
+
+
+> Bordas
+	a propriedade border-style pode ser:
+	border-sytle: double;
+	border-style: solid;	
+
+	> dotted
+	> dashed
+	> solid
+	> double
+	> groove
+	> ridge
+	> inset
+	> outset
+	> none
+	> hidden
+	
+	border-width: define a largura das bordas (1 a 4 valores)
+		>> border-width: 15px; -> 15 para todos
+		>> border-width: 2px, 10px, 4px, 20px;
+
+	border-color: cor das bordas (1 a 4 valores)
+		>> border-color: red;
+	
+	border-radius: arredonda as pontas da borda (1 a 4 valores)
+		>> border-radius: 20px;	
+
+	*sentido horario: superior, direita, inferior, esquerda
+	*sem valor: sentido anti-horario
+	*Um unico valor: todas as bordas
+
+	>border: Define valores para todos os lados da borda
+		
+	p {
+		border: 5px solid red;
+	}
+	
+	*border-top, border-top-color, border-top-style, border-top-width: define as propriedades ao lado superior
+	 o mesmo vale para border-right / border-bottom / border-left
+
+> Margem
+	é todo espaço em volta de um elemento
+	> propriedades:
+		>> margin
+		>> margin-top
+		>> margin-right
+		>> margin-bottom
+		>> margin-left
+	
+	Obs: 
+		>width: define a largura do elemento
+		>auto: centraliza a margem horizontalmente
+
+> padding
+	> Definição: distancia do conteudo até o limite da "div" (top, right, bottom, left)
+	
+	> Propriedades:
+		* padding
+		
+		* padding-top
