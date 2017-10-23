@@ -1,0 +1,24 @@
+/*
+	Pratica 4 html
+	Autor: Luiz Fernando (luizfcneto);
+	Email: luizfcneto123@gmail.com;
+	
+*/
+
+h1{
+	text-align: center;
+}
+
+body{
+	background-color: #DCDCDC;
+}
+
+p{
+	text-align: center;
+}
+
+img{
+	
+	height: 512px;
+	width: 460px;
+}

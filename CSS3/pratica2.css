@@ -1,0 +1,28 @@
+/*
+	pratica 2 html
+	Autor: Luiz Fernando (luizfcneto);
+	Email: luizfcneto123@gmail.com;	
+	text-align: center;
+	margin-left: 25px;
+	background-color: red;
+*/
+
+h1{
+	text-align: center;	
+	background-color: blue;
+}
+
+h2{
+	margin-left: 20px;
+	background-color: red;
+}
+
+h3{
+	margin-left: 40px;
+	background-color: green;
+}
+
+p{
+	text-align: center;
+	background-color: purple;
+}
