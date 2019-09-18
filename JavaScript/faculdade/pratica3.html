@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+  <head>
+    <title> Pratica 3 - JavaScript </title>
+    <meta charset="utf-8">
+    <!-- Para implementar javaScript em HTML em qualquer lugar deve-se criar dentro da tag <script> -->
+    <script>
+
+    //Variaveis em JavaScript não tem tipagem, são todas "var", podem ser bool, string, integer e float
+    var acessa = false;
+
+      //Para criar funções em javaScript escreve-se "function" + "nome da funcao (parametros)"
+      function acende(){
+        if(acessa == false) {
+            document.getElementById('foto').src="imagens/acessa.jpg";
+            acessa = true;
+        }else {
+            document.getElementById('foto').src="imagens/apagada.jpg";
+            acessa = false;
+        }
+      }
+
+      function quebra(){
+        //alterando imagem na página
+        document.getElementById('foto').src="imagens/quebrada.jpg";
+      }
+
+    </script>
+
+  </head>
+
+  <body>
+    <h1> Arraste o mouse na lampada </h1>
+    <!-- quando mouse passar em cima chama a função acende(), quando a imagem é clicada chama a função quebra() -->
+    <img id="foto" onmouseover="acende()" onclick="quebra()" src="imagens/apagada.jpg" alt="lampada apagada" style="width:150px">
+    <h2> Agora clique na imagem </h2>
+
+  </body>
+
+</html>
