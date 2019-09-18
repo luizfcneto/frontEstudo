@@ -1,0 +1,25 @@
+1- Preparar estruturação da página html
+
+
+2- adicionar links de estilização ( css ) com bootstrap e próprias
+
+3- adicionar scripts de javascript ( do bootstrap e próprias ) 
+
+4- Cabeçalho com links:
+    Home,
+    minhas tatuagens;
+    tattoos;
+    Contato;
+    Loja;
+
+5- Colocar input de pesquisa na navegação no Cabeçalho
+
+6- colocar um botão para logar na navegação do Cabeçalho
+
+7- adicionar imagens do slide
+    - setas esquerda/direita
+    - imagens do conteudo do slide
+    - criar codigo js para manipular as fotos na exibição
+    - criar estilização do css para manter mesmos aspectos para as imagens do slide
+
+8- 
