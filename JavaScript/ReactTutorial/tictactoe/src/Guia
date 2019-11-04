@@ -1,0 +1,13 @@
+Para adicionarmos as dependencias do react apenas para este index.html
+adicionamos scripts de cdns ( distribuição de conteúdo ) para utilizarmos suas funcionalidades
+esses scripts podem ser substituidos por comandos de gerenciadores de pacotes como "npm" eu acho.
+
+os scripts cdns não são uma boa prática, pois não é eficiente, e com dificil manutenção;
+
+comandos para criar o projeto react:
+npx create-react-app projeto-react
+cd projeto-react
+npm start
+
+
+
