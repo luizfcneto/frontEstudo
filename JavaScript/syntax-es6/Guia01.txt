@@ -1,0 +1,42 @@
+Guia de mudanças e versoes feitas na linguagem javascript
+começo do curso ( Avancado JS, Projeto 1 - DOM ..., Sintaxe Basica )
+foram feitos em ES5
+
+A partir de agora, iremos utilizar o ES6 e as versoes atuais
+
+ES6/ES2015 
+ES7/ES2016
+ES8/ES2017
+
+Todos os browsers modernos tem suporte 
+
+Nao tem suporte nos browsers antigos ( meio vago, quais que não tem suporte? )
+
+Conseguem usar melhores features in produção com transpiling e polyfiling ( convertendo para ES5 )
+
+ES6: Novas Features ( Características ) que iremos utilizar e estudar para os próximos capítulos:
+
+ - Declarações de Variaveis:
+    - let
+    - const
+
+ - Blocks and IIFEs 
+
+ - Strings
+
+ - Arrow Functions
+
+ - Desrtucturing
+
+ - The Spread Operator
+
+ - Rest and Default Parameters
+
+ - Maps
+
+ - Classes e subclasses
+
+ - Promisses
+
+ - Native Modules
+ 

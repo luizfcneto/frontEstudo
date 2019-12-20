@@ -1,0 +1,50 @@
+Destructuring -> desestruturação
+
+Serve para "quebrarmos" um objeto e atribuir esses valores desse objeto "quebrados" em variaveis singulares para manipulação
+
+em ES5 para desestruturarmos um vetor tinhamos que atribuir cada variável para uma posição do vetor respectivamente dessa forma:
+//array com tres variaveis
+var array = [ variavel1, variavel2, variavel3 ];
+
+//desestruturando o array:
+var variavel1 = array[0];
+var variavel2 = array[1];
+var variavel3 = array[2];
+
+
+em ES6: 
+
+    - array:
+    let array = [ variavel1, variavel2, variavel3 ];
+
+    1 forma:
+    const [ variavel1, variavel2, variavel3 ] = [ variavel1, variavel2, variavel3 ];
+
+
+    2 forma:
+    const [ variavel1, variavel2, variavel3 ] = array;
+
+    - em obj:
+    const obj = {
+        variavel1: conteudoVariavel1,
+        variavel2: conteudoVariavel2,
+        variavel3: conteudoVariavel3
+
+    };
+
+    const { variavel1, variavel2, variavel3 } = obj;
+    OBS: nome das constantes devem ter os mesmos nomes que os atributos que serão atribuidos respectivamente.
+
+    Caso queria modificar o nome das constantes:
+    const { variavel1: nomeNovo1, variavel2: nomeNovo2, variavel3: nomeNovo3 } = obj;
+
+
+
+
+
+
+
+
+
+para mais informações:
+https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Atribuicao_via_desestruturacao

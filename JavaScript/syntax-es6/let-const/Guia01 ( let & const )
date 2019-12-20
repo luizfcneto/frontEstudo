@@ -1,0 +1,140 @@
+/*
+    Variaveis let & const
+*/
+
+- Diferenças entre let, var e const:
+    -var tem escopo de função   
+        Ou seja, declarando um var em uma função, nós temos acesso a essa variável em todo o escopo da função.
+        
+    - com var, poderiamos tentar imprimir uma variavel antes de declara-la que o console não indicaria erro, apenas undefined.     
+
+
+    é functionScope
+
+        function declarandoVar(){
+            var teste;
+
+            if( condicao ){
+                console.log( teste );
+                teste = 15;
+                console.log( teste );
+            
+            } esle {
+                for( var i = 0; i < 3; i++ ){
+                    teste++;
+                }
+
+                teste = 23;
+                console.log( teste );
+            }
+            
+        }
+        console.log( teste );
+        
+        //saida: 
+        // undefined
+        // 15
+        // 16, 17, 18
+        // 23
+        // undefined
+
+
+    -let tem escopo de bloco de instrução
+        Ou seja, declarando um let em uma instrução, como:
+            While;
+            for;
+            if;
+            else;
+            ...
+
+            Ela existirá apenas dentro do bloco dessas instruções.
+            É alocado o espaço de memória para essa variavel let quando declarada em uma instrução
+            E quando o bloco dessa instrução fecha ( "}" ), o espaço reservado para a variavel let é desalocado ( free() );
+
+            é blockScope;
+            
+    - com let, se manipularmos uma variavel antes de declararmos com let, o console indicará um erro ( de que ela não foi declarada ainda ); 
+
+        function declarandoLet(){
+            console.log( teste );
+            let teste = 5;
+
+            for( let i = 0; i < 5; i++ ){
+                console.log( i );
+            }
+
+            console.log( i );
+            console.log( teste );
+
+            if( condicao ){
+                let teste2 = 6;
+                console.log( teste2 );
+            
+            }else{
+                console.log( teste2 );
+            }
+
+        }
+        console.log( teste );
+        //saida:
+        // erro ( teste não declarado );
+        // 0, 1, 2, 3, 4
+        // erro( i, não declarado );
+        // 5
+        // 6
+        // erro ( i, não declarado );
+        // erro ( teste2, não declarado );
+        // erro ( teste, não declarado );
+
+    - const ela atende ao escopo da função, assim como var, porém
+        Ao ser declarado uma constante, não podemos modificar seu valor/conteudo
+        const = constante.
+        Se tentarmos alterar seu conteúdo, o javascript irá lancar um erro dizendo que não é possivel 
+        atribuir outro valor a essa constante.
+
+        é blockScope igual let.
+
+        não é possivel declarar uma constante e depois atribuir um valor a ela em outra linha do código.
+        sempre que declara-la deve atribuir o seu valor.
+
+
+        console.log( testeConstante );
+        function declarandoConst(){
+            const testeConstante = 15;
+
+            for( let i = 0; i < 4; i++ ){
+                testeConstante++;
+                console.log( testeConstante );
+            }
+
+            if( testeConstante == 15 ){
+                console.log( "Entrou no if" );
+            
+            }else{
+                console.log( "Entrou no else" );
+            }
+
+        }
+        console.log( testeConstante );
+
+        //Saida:
+        // erro ( variavel não declarada );   
+        // erro, 15, erro, 15, erro, 15
+        // entrou no if;
+        // erro ( variável não declarada );
+
+
+        Para mais informações:
+        https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var
+
+        https://www.w3schools.com/js/js_let.asp
+
+        https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/let
+
+
+        https://www.w3schools.com/js/js_const.asp
+
+        https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/const
+
+
+        https://www.alura.com.br/artigos/entenda-diferenca-entre-var-let-e-const-no-javascript

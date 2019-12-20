@@ -1,0 +1,60 @@
+Arrow Functions
+
+Uma forma mais sucinta, de escrever uma função ( callback ):
+
+sintaxe:
+    ES5 - funcao callbalck:
+    var comunicationStarter = function( nome ) {
+        return "Olá, " +  nome;
+    }    
+
+    a variavel comunicationStarter retorna uma função com parametro "nome" e retorna ( com palavra chave return ) "Olá, " + nome;
+
+    _________________________________________________________________________________________________________________________________________
+
+    ES6 - arrow function: Com nenhum parametro:
+    let cS = () => "Hello World!";
+
+    _________________________________________________________________________________________________________________________________________
+
+    ES6 - arrow function: Um parametro apenas: nome
+    let comunicationStarter = ( nome ) => "Olá, " + nome;
+
+    a variavel comunicationStarter retorna uma arrow function com o parametro "nome" e retorna ( depois da seta ) "Olá, " + nome;
+
+    _________________________________________________________________________________________________________________________________________
+
+    ES6 - arrow function: com mais de um parametro: elemento, index
+    let invocaFuncao = ( elemento, index ) => {
+        ... código
+        return "( " + elemento + ", " + index + " )"; 
+    }
+
+
+
+
+o diferencial de uma arrow function:
+
+Arrow functions não podem ser funções Construtoras e nem o uso da palavra New(), portanto
+
+Arrow Functions não tem a propriedade prototype ( pelo motivo acima ), logo não possui a própria palavra chave this.
+
+A palavra chave this de uma arrow function é associado  
+
+
+Quando criamos uma arrow function ela herda o contexto aonde o this é do objeto que a implementa
+
+quando não utilizamos arrow function, o this, se referencia ao objeto pai ( window ) que está invocando esta função callback
+
+
+
+
+
+Ver mais em:
+https://www.w3schools.com/js/js_arrow_function.asp
+
+https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+
+https://hacks.mozilla.org/2015/06/es6-in-depth-arrow-functions/
+
+https://www.geeksforgeeks.org/arrow-functions-in-javascript/
