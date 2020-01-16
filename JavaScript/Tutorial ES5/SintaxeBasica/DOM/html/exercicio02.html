@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <title> W3Resource - EXERCICES </title>
+        <meta charset="utf-8">
+
+        <!-- Bootstrap grid CSS-->
+        <link href="../../../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1> Exercicio 02 - W3Resource - DOM Mannipulation </h1>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2> Captar os valores dos campos primeiro nome e ultimo nome no formulario a seguir:  </h2>
+                </div>
+
+                <div class="col-sm-12">
+                    <!-- Sempre que clico em submit no botão enviar a página html é recarregada, para que isso não aconteça é necessario por esse "return false" na função -->
+                    <form class="form-group" id="form" onsubmit="getFormValue2(); return false">
+                        <input type="text" placeholder="First Name" value="" name="first-name" id="firstName" />
+                        <input type="text" placeholder="Last Name" value="" name="last-name" id="lastName" /> 
+                        <input type="submit" class="btn btn-primary" value="Enviar"/>
+                    </form> 
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <p> <b> Classificação deste Exercício: </b></p>
+                    <ul>
+                        <li> DOM Mannipulation </li>
+                        <li> HTML inputText value </li>
+                        <li> HTML DOM input Object </li>
+                        <li> JS inputText HTML propiedade value </li>
+                        <li> JS form elements collection </li> 
+                    </ul> 
+                </div>
+            </div>
+        </div>
+
+        <script src="../js/exercicio02.js"></script>
+
+    </body>
+
+</html>
