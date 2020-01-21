@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <title> W3Resource - EXERCICES </title>
+        <meta charset="utf-8">
+
+        <!-- Bootstrap grid CSS-->
+        <link href="../../../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1> Exercicio 10 - W3Resource - DOM Mannipulation </h1>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2> Preencha o formulário fornecendo o valor do raio e veja o volume da esfera correspondente. </h2>
+                </div>
+
+                <div class="col-sm-12">
+                    <form class="form-group" id="myForm">
+                        <label> <p> Raio: (metros) </p> 
+                            <input id="raio" type="number" name="raio" placeholder="Informe o Raio" value=""/>
+                        </label>
+
+                        <label> <p> Volume: (metros^3) </p> 
+                            <input id="volume" type="number" name="volume" value="" />
+                        </label>
+                        <br>
+
+                        <input class="btn btn-primary" type="button" onclick="calculaVolume()" value="Calcular Volume"/>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <p> <b> Classificação deste Exercício: </b></p>
+                    <ul>
+                        <li> DOM Mannipulation </li>
+                        <li> document.getElementsByName </li>
+                        <li> document.getElementById </li>
+                        <li> document.value </li>
+                        <li> Math.PI </li>
+                        <li> Math.toFixed </li>
+                    </ul> 
+                </div>
+            </div>
+        </div>
+
+        <script src="../js/exercicio10.js"></script>
+
+    </body>
+
+</html>
