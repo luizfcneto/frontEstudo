@@ -1,0 +1,36 @@
+- Aprendendo a concatenação de variáveis:
+    - para concatenar variáveis, utiliza-se o caractere " + " (mais), para juntar variáveis.
+    - Ao concatenar duas variáveis, elas são "transformadas" para o tipo string.
+    - Exemplo:
+        console.log( primeiroNome + " " + ultimoNome + " idade: " + idade );
+        a variavel idade é do tipo inteiro, mas como foi concatenado, ela é transformada para o tipo 
+        string ao utilizar o método console.log();
+        Porém, a variavel em si, não sofre alteração de tipo. 
+        A variavel após a utilização do método console.log() continua sendo do tipo inteiro.
+        esse processo de alterar o tipo para string à variavel que será utilizada na concatenação, 
+        durante um método é chamada de coerção.
+                
+- Aprendendo a usar o método alert():
+    - Esse método cria um pop-up com o conteúdo escrito, do tipo string
+    - O pop-up carrega antes que o conteúdo de html da página seja carregado.  
+    - Exemplo:
+        alert("Abriu um pop-up no seu navegador, clique em ok para sair.");
+
+- Aprendendo a atribuir valores de um prompt():
+    - Esse método cria um pop-up com um conteúdo escrito, do tipo string;
+    - Além disso, ele permite entrada( input ) de valores via teclado pelo usuário para digitar no pop-up;
+    - Entrada essa que deve ser armazenada em uma variável.
+    - O pop-up carrega antes que o conteúdo de html da página seja carregado. 
+    - Exemplo:
+        var entradaPrompt = prompt( "Informe a sua idade:" );
+    
+    - entradaPrompt atribuirá o valor digitado e enviado pelo usuário no pop-up;
+
+- OBS: método: console.log()
+    - console.log( variavel1, variavel2, ..., variaveln );  //é possível printar n variaveis dentro do 
+    método console.log, apenas separando-as com virgulas.
+    
+    Glossário:
+console.log("string");
+alert("string");
+prompt("String");

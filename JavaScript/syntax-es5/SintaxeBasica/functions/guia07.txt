@@ -1,0 +1,113 @@
+Funções:
+    - Sintaxe :
+        function nomeFuncao( parametro1, parametro2, parametro3, ..., parametroN ){
+            //bloco de instrução da função
+        }
+
+        OBS: Parametro = argumento, funções podem ter n argumentos.
+
+    - Função com retorno:
+        function nomeFuncao( parametro ){
+            var variavel = calculo com parametro;
+            return variavel;
+        }
+
+        - Exemplo:
+            function calculaIdade( anoNascimento ){
+                return 2019 - anoNascimento;
+            }
+
+        OBS: Ao chamar uma função com retorno, uma variável deve atribuir o resultado que a expressão da função retornou.
+        Exemplo para chamar a função calculaIdade() acima:
+            var idade = calculaIdade( anoNascimento );
+
+        Note: a variável idade irá atribuir o retorno da função calculaIdade(), que será "2019 - anoNascimento".
+
+
+    - Função sem retorno:
+        function nomeFuncao( parametro1, parametro2, ..., parametroN ){
+            //executa código
+        }
+
+        - Exemplo:
+            function mostraSoma( numero1, numero2 ){
+                console.log( numero1 + numero2 );
+            }   
+        
+        - Como fazemos para utilizar essa função, visto que não há retorno?
+        simplesmente chamando no script:
+        Exemplo:
+            ...
+            mostraSoma( 15, 20 );
+            //resultado: irá imprimir no console a soma de 15 e 20.
+
+    - Exepressões com funções:
+        - sintaxe:
+            var nomeFuncao = function( parametro1, parametro2, ..., parametroN ){
+                //codigo da função. Pode ter retorno, ou não.
+            }
+
+            Exemplo 1:
+                var calculaIdade = function( anoNascimento ){
+                    return 2019 - anoNascimento;
+                }
+            
+
+            Exemplo 2:
+                var mostraSoma = function ( numero1, numero2 ){
+                    console.log( numero1 + numero2 );
+                }
+
+    - Funções recursivas:
+        sintaxe:
+            function nomeFuncao( parametro ){
+                if ( condicaoDeParada ){
+                    return 1;
+                
+                }else{
+                    numeFuncao( parametro - 1);
+                }
+            }
+
+        OBJETIVO: Objetivo da função recursiva é que para alguns algoritmos a função recursiva acaba sendo mais eficiente. 
+            Com um custo de complexidade ( para execução ) mais baixo do que uma função interativa ( todas explicadas anteriormente a função recursiva ).
+            a complexidade depende diretamente pela quantidade de chamadas que a função fará a si mesma.
+
+            Como fazer uma função recursiva corretamente?
+            1- Identificar a condição de parada da função para ela não ser executada infinitamente.
+            2- definir as condições de parada dentro das condicionais if e else para realizar as operações matemáticas adequadamente
+            3- lembrar de chamar corretamente uma das condições a mesma função de forma recursiva.
+
+            Exemplo: Função recursiva para calcular a potência de um numero:
+                function calculaPotencia( numero, expoente ){
+                    if ( expoente == 1 ){
+                        return 1 * numero; 
+
+                    }else {
+                        return numero * calculaPotencia( numero, expoente - 1 );
+                    
+                    }
+                }
+            
+            - Compilando:
+                entradas 1: numero = 2, expoente = 3;
+                if ( expoente == 1 )? -> NÃO!
+                return 2 * ( 2, 2 ).        -> empilha 2 * ( 2, 2 ).        [ 2 * ( 2, 2 ) ].
+                
+                entradas 2: numero = 2, expoente = 2;
+                if ( expoente == 1 )? -> NÃO!
+                return 2 * ( 2, 1 ).        -> empilha 2 * ( 2, 1 ).        [ 2 * ( 2, 1 ) ].
+
+                entradas 3: numero = 2, expoente = 1;
+                if ( expoente == 1 )? -> SIM
+                    retorna: 1 * 2  = 2,    então desempilha as contas:     CalculaPotencia: ( 2, 1 ) = 1 * 2;
+                                                                            CalculaPotencia: ( 2, 2 ) = 2 * ( 1 * 2 ) = 4;
+                                                                            CalculaPotencia: ( 2, 3 ) = 2 * ( 2 * ( 1 * 2 ) ) = 8;
+                resultado = 8.
+                
+
+                desenhando a pilha:
+
+                [ 1 * 2 ]                           
+                [ 2 * ( CalculaPotencia( 2, 1 ) ) ] 
+                [ 2 * ( CalculaPotencia( 2, 2 ) ) ]

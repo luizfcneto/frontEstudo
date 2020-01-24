@@ -1,0 +1,43 @@
+Como utilizar o script de javascript?
+
+Como visto anteriormente, javascript é um dos pilares do desenvolvimento web,
+com isso, para utilizar javascript, devemos ter um arquivo html.
+
+Onde utilizar o javascript, onde inseri-lo no código html?
+Incorporamos o script de javascript no final do código html, mais precisamente,
+no final da tag </body>.
+
+É inserido no final da body, pois o interpretador do browser precisa ler todo o arquivo
+html antes de executar o código do javascript.
+Aprofundaremos esse assunto futuramente.
+
+Existem duas formas distintas de utilizar o script no html:
+    1- Codificando o script diretamente no código html, através da 
+    tag. Não muito recomendado 
+    <script> 
+        //codigo javascript aqui dentro 
+    
+    </script>
+
+    Problemas:
+        Mistura de código html com javascript;
+        Arquivo muito extenso;
+        Utilizado dessa forma não pode ser reutilizado em outros arquivos .html
+
+    2- linkando um arquivo externo do formato javascript ( "arquivo".js )
+    no arquivo html.
+    <script  src="caminho/"arquivo".js"> </script>
+
+
+Abrindo console no browser:
+1- Google Chrome:
+    pode ser:
+    - Apertando com botão direito do mouse no navegor,
+    - Inspecionar elemento;
+    - Clicar aba: console.
+
+    pode ser: 
+    - ctrl + shift + i;
+
+Métodos utilizados nessa aula + glossário:
+console.log('Texto');   -> printa no console a string: Texto

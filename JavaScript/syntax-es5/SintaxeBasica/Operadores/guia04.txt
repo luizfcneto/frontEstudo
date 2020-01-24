@@ -1,0 +1,83 @@
+- Operadores Matemáticos:
+    - Os operadores matemáticos são aqueles que utilizamos na matemática( aritméticos ) e possuem o 
+    mesmo significado:
+        - dado var a, b;
+
+        - soma: 
+            (i) a + b;      // retorna a soma de a com b;
+            (ii) a = a + b; // retorna e atribui em a, a soma de a com b;
+            (iii) a += 1;   // retorna a soma de a com 1;
+            (iv) a++;       // retorna a soma de a com 1;
+
+        - subtração:
+            (i) a - b;      // retorna a subtração de a com b;
+            (ii) a = a - b; // retorna e atribui em a, a subtração de a com b;
+            (iii) a -= 1;   // retorna a subtração de a com 1;
+            (iv) a--;       // retorna a subtração de a com 1;
+
+        - multiplicação:
+            (i) a * b;      // retorna o produto de a com b;
+            (ii) a = a * b; // retorna e atribui em a, o produto de a com b;
+            (iii) a *= 2;   // retorna e atribui em a, o produto de a com 2;
+
+        - exponenciação:
+            (i) a**2;    // retorna produto de a por a = a^2;
+            (ii) a = a**3   // retorna e atribui em a, o resultado da exponenciação de a por 3.
+
+        - divisão:
+            (i) a / b;      // retorna o quociente de a com b;
+            (ii) a = a / b; // retorna e atribui em a, o quociente de a com b;
+            (iii) a /= 1;   // retorna e atribui em a, o quociente de a com 2;
+
+            OBS: Vale lembrar que em javascript como não existe uma tipagem definida para inteiros e sim para variáveis numéricas,
+                Ao efetuar a divisão, o quociente será do tipo flutante/double se decimal/dizima.
+                Não é possivel captar a parte inteira da divisão, a nao ser que seja especificada:
+                Exemplo:
+                    var a = 58, b = 10;
+                    var resultado = a / b;  //nas linguagens que são fortemente tipadas ( java / c ): resultado = 5
+                    // resultado em javascript, em que a tipagem é dinamica: resultado = 5.8;
+                Para captar a parte inteira de uma divisão é necessário utilizar o método Math.trunc( a/b );
+                esse método trunc, da biblioteca Math, vai retornar a parte inteira da divisão entre a e b.
+
+                OBS2: Math.trunc(a/b) está disponível a partir do ES6.
+
+        - Módulo:
+            (i) a % b;      // retorna o módulo de a por b, ou seja, resto da divisão de a por b
+            (ii) a = a % b; // retorna e atribui em a, o módulo de a por b;
+            (iii) a %= 2;   // retorna e atribui em a, o módulo de a por 2;
+
+- Operadores Lógicos:
+    - São operações que realizamos entre variáveis que retornam valores booleanos, comprovando se resultado daquela operação é verdadeira ou falsa;
+        - ( maior, menor ):
+        - dado
+            var a = 10;
+            var b = 15;
+            var resultado;
+
+        - (i) resultado = a > b;    // resultado atribui valor falso;
+        - (ii) resultado = a < b;   // resultado atribui valor verdadeiro; 
+        - (iii) resultado = a == b; // resultado atribui valor falso;   
+
+        OBS:
+        Operador "==" verifica equivalência entre tipos primitivos iguais.
+        
+
+- Ordem de precedencia:
+    Ordem utilizada pelo compilador da linguagem que define ordem dos passos dos operadores.
+    - ( ) -> agrupamento, tem maior prioridade em execução
+    - /, *-> divisão e multiplicação possuem a mesma prioridade, porém precedencia de esquerda para direita.
+    - +, - tem mesma prioridade, ordem da esquerda para direita
+    
+
+    - =, ultima prioridade de precedencia é o operador de atribuição. precedencia de atribuição acontece da direita para a esquerda.
+
+
+    OBS: com isso, podemos fazer multiplas atribuições:
+        Exemplo:
+        var a, b;
+        a = b =  ( 15 + 6 * 2) / 2  // a não terá valor indefinido, pela ordem de precedencia, será calculado o valor de b, após isso como a precedencia de atribuição é realizada da direita para a esquerda, após a atribuição da variavel b, o valor de b será atribuido à variavel a.
+        //( 15 + 12 ) / 2 // 27 / 2 // b =  13.5 // a = b = 13.5
+
+    para informações mais detalhadas de ordem de precedencia:
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+            

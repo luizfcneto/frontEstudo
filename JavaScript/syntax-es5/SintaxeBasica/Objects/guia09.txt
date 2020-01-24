@@ -1,0 +1,77 @@
+Objetos:
+    - O que são?
+        São um espaço de memória alocado, como se fosse uma variável do tipo array/vetor, porém pode conter
+            outras variáveis ( atributos ) e funções ( métodos ), inclusive outros vetores, que podem armazenar 
+            varios tipos de variáveis
+
+    - Sintaxe: ( Existem duas formas de declarar um objeto )
+        1- 
+            var nomeObjeto = {
+                
+                //atributos:
+                atributo1: "Luiz Fernando",
+                atributo2: 1996,
+                atributo3: "Estudante de programação",
+                atributo4: [ 7.0, 5.9, 8.2, 9.3 ],
+                atributo5: true,
+                
+                //métodos: 
+                calculaIdade1: function( atributo2 ) {
+                    return 2019 - atributo2; 
+                }
+
+                calculaIdade2: function(){
+                    return 2019 - this.atributo2;
+                }
+
+                calculaIdade3: function( ){
+                    this.atributo6 = 2019 - this.atributo2;
+                }
+            };
+
+            OBS: palavra chave: this, referencia o atributo/método que está chamando o prórprio atributo do objeto.
+            Exemplo do método calculaIdade():
+                
+                1-  no método calculaIdade1(): 
+                    a função precisa do parâmetro atributo2 para ser chamada,
+                    e retorna a conta: 2019 - atributo2.
+
+
+                2- no método calculaIdade2():
+                    a função não precisa de parametros para ser chamada, e retorna
+                    a conta 2019 - this( que referencia ao proprio objeto ).atributo2, ou seja, 2019 - atributo2.
+                
+                3- no método calculaIdade3():
+                    a função não precisa de parametros para ser chamada, além disso não retorna nada, método de execução
+                    3.1: 
+                        criar um atributo novo para o objeto: atributo6
+                    
+                    3.2: 
+                        atribuir a esse atributo novo, atributo6, que é o atributo do próprio objeto, ( por que está com a palavra chave "this"+"." atributo6 )
+                        a conta 2019 - atributo2
+                        
+
+        2-  var nomeObjeto = new Object();
+
+            nomeObjeto.atributo1 = "Luiz Fernando";
+            nomeObjeto.atributo2 = 1996,
+            nomeObjeto.atributo3 = "Estudante de programação";
+            nomeObjeto.atributo4 =  [ 7.0, 5.9, 8.2, 9.3 ];
+            nomeObjeto.atributo5 = true;
+
+
+    - Como manipulamos os atributos do nomeObjeto?
+        forma 1: ( Para qualquer tipo de variável )
+            nomeObjeto.atributo1 = "Luiz";            
+
+        forma 2: ( Mais utilizado para variaveis que contenham String apenas )
+            nomeObjeto[ "atributo3" ] = "Programador Junior";
+
+    Obs: Quando nós temos mais de um "." (ponto), operador que define o objeto/método/atributo, que ele está chamando 
+        a ordem de precedencia é da esquerda para a direita
+            Ex: this.objeto.atributoDoObjeto
+        
+        Para mais informações:
+            https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+
+        

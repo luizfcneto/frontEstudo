@@ -1,0 +1,13 @@
+Conversão de tipos primitivos:
+    - string para int:
+        var x = parseInt( variavel, base de x );
+    
+    
+    - string para Number:
+        var x = Number( "variavel" );
+
+    referências:
+        - https://www.w3schools.com/jsref/jsref_parseint.asp
+        - https://gomakethings.com/converting-strings-to-numbers-with-vanilla-javascript/
+        - https://snowdream.github.io/javascript-style-guide/javascript-style-guide/br/type-coercion.html
+        

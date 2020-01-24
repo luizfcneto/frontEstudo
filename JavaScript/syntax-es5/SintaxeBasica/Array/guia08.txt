@@ -1,0 +1,104 @@
+Arrays:
+    - o que é?
+        É um tipo de variável composto, que armazena muitas outras variáveis:
+
+    - Cada variável armazenada dentro do array é chamada de elemento.
+    - Em um mesmo array podemos armazenar varios elementos de tipos variados.
+    - Array = vetor.
+        Estrutura de um vetor/array:
+        [   |   |   |   |   |   |   |   ]
+index:  [ 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 ]   
+    características desse array:
+    tamanho dele = 8.   vai de 0 até 7.
+    portanto o índice do ultimo elemento desse array é 7
+    array.lenght = 8. 
+
+    - Sintaxe:
+        1- Mais utilizada pelos desenvolvedores:
+
+            var nomes = [ "Luiz", "Fernando", "Neto" ];
+        //index/posicao:    0           1       2
+        
+        2- 
+            var nomes = new Array( "Luiz", "Fernando", "Neto" );
+        //index/posicao:             0          1         2
+
+
+    - Modificando Elementos do Array:
+        - modificando um elemento de uma posição específica:
+            - Por indice:
+                -Exemplo: Queremos modificar o elemento do indice 1 no array nomes:
+
+                var nomes = [ "Luiz", "Fernando", "Neto" ];
+            //index/posicao:    0           1       2
+
+                nomes[1] = "outroNome"; // elemento do indice 1 antigo: Fernando / Atual: "outroNome" 
+                // a partir desta afirmação a variavel nomes ficará assim:
+                nomes = [ "Luiz", "outroNome", "Neto" ];
+            
+            OBS:
+                o conteúdo do elemento de indice 1, da variável nomes, foi sobreposto por "outroNome"
+
+            - Por conteúdo:
+                Para isso devemos utilizar um método para encontrar o elemento que desejamos modificar no array.
+                método: indefOf("nome");    // Método explicado no tópico abaixo:
+                
+                - Exemplo:
+                    utilizando a variável nomes:
+                    deseja-se remover o elemento que contém o valor: "Neto"
+                    var indiceParaRemover = nomes.indexOf("Neto");
+                    nomes[ indiceParaRemover ] = "outroNome"; 
+    
+    - Adicionar elementos novos no final do array:
+        Para adicionar elementos novos no final do array:
+        utilizando a variável nomes:
+        
+        //nomes antes:  nomes = [ "Luiz", "Fernando", "Neto" ];
+        nomes[ nomes.lenght ] = "nomeNovo";
+        //nomes depois: nomes = [ "Luiz", "Fernando", "Neto", "nomeNovo" ];
+
+
+    - Variáveis do tipo Array, possuem métodos:
+        Métodos mais comuns das variáveis de arrays:
+            i) lenght():
+                sintaxe: nomes.lenght();
+                O que faz?
+                    retorna o tamanho da variável nomes. 
+                
+                explicação: retorna o numero do index do ultimo elemento presente no array da variavel nomes
+
+            ii) pop():
+                sintaxe: nomes.pop();
+                O que faz?
+                    Remove o ultimo elemento presente no array da variavel nomes.
+                    e Retorna esse ultimo elemento retirado.
+
+            iii) push( "elementoNovo" ):
+                sintaxe: nomes.push( "elementoNovo" ); 
+                O que faz?
+                    Insere "elementoNovo" no final do array. incrementando o tamanho do array.
+
+            iv) unshift( "elementoNovo" ):
+                nomes.unshift( "elementoNovo" ); 
+                O que faz?
+                    Insere "elementoNovo" no inicio do array. incrementando o tamanho do array "empurrando" o index dos elementos
+                    que estavam inseridos no array "nomes" anteriormente
+
+            v) shift():
+                sintaxe: nomes.shift();
+                O que faz?
+                    Remove o primeiro elemento do array nomes, corrigindo os index dos outros elementos do array.
+                    e Retorna esse elemento que foi retirado.
+
+            vi) indexOf("elemento");   
+                sintaxe: nomes.indexOf("elemento");
+                O que faz? 
+                    Procura pelo elemento "elemento" dentro da variável nomes ( array ),
+                    caso encontre o "elemento" no array, o método retornará o índice do "elemento" no array
+                    caso não encontre o "elemento" no array, o método retorna o valor -1. indicando que "elemento" não pertence à variável nomes ( Array );
+
+    Para mais informações de métodos específicos dos arrays:
+1- https://www.w3schools.com/js/js_array_methods.asp
+2- https://devdocs.io/javascript/global_objects/array
+3- https://www.geeksforgeeks.org/javascript-basic-array-methods/
+4- https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array

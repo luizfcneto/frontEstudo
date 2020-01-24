@@ -1,0 +1,33 @@
+-Switch-Case:
+    - Objetivo:
+        substituir extensos comandos de if-else;
+        deixando e forma mais susinta e clara cada caso específico
+    
+    - Work-flow:
+        1: Para o comando switch seja realizado, tem como pré-requisito utilizar uma variavel, para efetuar as comparações;
+        2: Essa variavel será comparada com as condições dos casos
+        3: Se essa comparação do caso for verdadeiro, ela irá executar o código desse caso específico.
+        4: Se não encontrar nenhuma condição verdadeira, irá executar o código do caso default ( padrão )
+
+    - Sintaxe:
+        switch ( variavel ) {
+            caso condicao1:
+                //executa código 1
+                break;
+            
+            caso condicao2:
+                //executa código 2
+                break;
+            
+            caso condicao3:
+                //executa código 3
+                break;
+            
+            default:
+                //executa código padrão, em caso de nenhuma condição tenha sido aceita.
+        }
+
+    - Obs: 
+        Pergunta1: Para que serve o comando break?
+        Resposta1: Sem o comando break, o comando switch irá executar todos os casos abaixo do caso especifico que teve a condição aceita;
+            Caso encontre algum caso, não entra no caso default ( padrão ).

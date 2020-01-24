@@ -1,0 +1,28 @@
+Porque JavaScript?
+
+Javascript é uma das linguagens base para um desenvolvimento web;
+    Ela é responsável pelo comportamento e como serão as ações que os elementos da página web devem seguir. ( verbo/efeitos dinâmicos do conteúdo )
+    html: linguagem de marcação, para definição e estruturação dos elementos na página web ( substantivo/conteúdo )
+    css: linguagem de estilização, para estilizar e posicionar os elementos na página web ( adjetivo/apresentação do conteúdo )
+
+JavaScript é uma linguagem "leve":
+    O núcleo do javascript é leve em comparação com linguagens mais robustas e consolidadas no mercado;
+    É uma linguagem de alto nível, e pouco complexa;
+    É desenvolvida em C; 
+    Javascript pode ser compilada tanto client-side ( tradicionalmente front-end -> javascript, react, angular,),
+    quanto server-side ( back-end -> node.js ); 
+    Se tornou, a partir de novas atualizações dos browsers, muito mais rápida e eficiente.
+    É fracamente tipada;
+    É orientada a Objetos e Eventos;
+    É multiplataforma, podendo extender seus códigos de desenvolvimento web para aplicativos com algumas frameworks.
+
+JavaScript vem crescendo muito:
+    A comunidade que estuda javascript vem crescendo muito pelos pontos citados acima e isso gera:
+    Mais atualizações do núcleo da linguagem para ser aprimorado;
+    A linguagem vai ter mais bibliotecas, e frameworks ( uma comunidade mais engajada ); 
+
+Javascript Versões ( que irei estudar ):
+    ECMAscript 5 ( ES5 ); 
+    ECMAscript 6 ( ES6 );
+    ECMAscript 7 ( ES7 );
+    ECMAscript 8 ( ES8 ); 

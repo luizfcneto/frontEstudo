@@ -1,0 +1,93 @@
+Loops e Iterações 
+    - Para que servem?
+        Para fazer atividades repetitivas
+
+    - Existem duas formas de fazer:
+        - Quando sabemos o alcance/quantidade de vezes que a atividade será realizada
+        utilizamos a palavra chave: for ( para )
+        
+        - for:
+            sintaxe:
+                        1           2               4
+            for ( contador = 0; contador < 10; contador++ ){
+                //3 código a ser executado
+            }
+
+            1: contador que será responsável pela iteração: definimos o inicio da iteração 
+            2: limite do contador, operação lógica que verifica se o código deve ser finalizado, ou dar prosseguimento
+            3: Caso 2 seja veradeiro, executa o código
+            4: incrementa o valor do contador ( iteração/repetição ).
+        
+            OBS: Ao utilizar o comando for, podemos utilizar o comando "continue"
+            - continue:
+                o continue faz com que dado uma condição lógica verdadeira, 
+                o interpretador pare a execução do código a partir daquela linha em que 
+                está o continue ( 3 ) no código e passe para o passo 4. Incrementando a iteração 
+
+
+
+        - Quando não sabemos a quantidade de vezes que a atividade será executada.
+        utilizamos a palavra chave: while ( enquanto )
+
+        - while:
+            sintaxe:
+                        1
+            while ( contador > 0 ){
+                //2 código a ser executado
+      
+            }       
+            
+            1: operação lógica que verifica condição de parada
+            2: código a ser executado repetidas vezes, caso 1 seja verdadeiro.
+                Caso 1 seja falso, o interpretador finaliza execução do comando while.
+            
+            OBS: Como definimos a parada?
+                Para isso devemos no código a ser executado, conseguir atualizar ou modificar
+                a condição de parada 1 para que o código pare de ser executado.
+        
+            OBS2: Ao utilizarmos o comando while, podemos utilizar uma outra palavra chave:
+                break;
+                que trunca a execução do código do loop while e sai do bloco de instrução do mesmo,
+                forçando a parada do loop.
+                diferente do continue, o break não continua a iteração, ele é completamente iterrompido.
+
+            Existe uma outra sintaxe:
+            do{
+                //1 Executa código
+
+            }while ( condicao de parada );  
+                            2
+
+            1: Executa código;
+            2: Verifica condição de parada do loop; 
+
+Glossário:
+Ao manipular um elemento que não pertence ao tamanho do vetor, o interpretador me retorna dizendo que variável é indefinida.
+
+Para "imprimir"/manipular um elemento do vetor que seja de um tipo específico( quando nele possuem tipos variados )
+precisaresmos utilizar a palavra chave: continue e o método/operador "typeof("variavel")" que retorna o tipo da variavel .
+Ou seja, devemos utilizar o for:
+Exemplo:
+sendo vetor[] = { "batata", 50, "banana", 12, "carro", "fruta", 13 }
+for ( var i = 0; i < vetor.length; i++ ){
+    if ( typeof( vetor[ i ] !== "string" ) ) continue;
+    
+    console.log( vetor[ i ] );
+}
+
+Para mais informações sobre o typeof:
+https://www.w3schools.com/js/js_datatypes.asp
+https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/typeof
+
+Para mais informações sobre os loops:
+for:
+https://www.w3schools.com/js/js_loop_for.asp
+
+while:
+https://www.w3schools.com/js/js_loop_while.asp
+
+break:
+https://www.w3schools.com/js/js_break.asp
+
+
+https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Lacos_e_iteracoes#for_statement

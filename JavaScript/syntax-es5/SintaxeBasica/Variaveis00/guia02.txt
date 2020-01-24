@@ -1,0 +1,39 @@
+Como declarar uma variavel em javascript?
+
+1- utilizar a palavra chave "var";      //não obrigatório
+2- escolher o nome da variavel;
+3- utilizar o caractere "=" para atribuir um valor a variável;
+4- valor que deseja atribuir aquela variável.
+
+var nomeVariavel = "valor";
+(1)     (2)     (3)   (4)
+
+Como diferenciar que tipo de valor cada variável vai armazenar?
+    Depende de como será atribuido na variável ( Tipagem dinâmica ):
+    Exemplo String:
+        var nome1 = 'string';   //utilizando aspas simples.
+        var nome1 = "string";   //utilizando aspas duplas;
+
+        ***Mais informações no Variaveis.txt
+
+    Exemplo de atribuição de um número ( inteiro/ float ou double ), tipo Numerico:
+        var nome2 = -18;     //sem utilizar aspas simples ou duplas, apenas o numero.
+        var nome2 = 15.6    //valor corresponde a um numero do tipo float ou double.
+
+    Exemplo Booleano ( V/F ):
+        var nome3 = true;
+        var nome3 = false;
+
+    Exemplo - Indefinido:
+                var nome4;      // Sem valor atribuido, só é feita a reserva de memória com aquele nome de referência, pode conter lixo de memória de conteúdo, ou simplesmente undefined;
+
+    Exemplo - Null:         
+                var nome5 = null;       //Valor de nome5 será nulo especificamente.
+
+Glossário:
+console.log ( variavel );       //printa o conteúdo da variavel no console do browser
+var nome = "conteudo"       //declara e atribui um valor "conteudo" (string) que será referenciado pelo nome da variavel que é "nome"
+
+
+Glossário Erro:
+Uncaught SyntaxError: Invalid or unexpected token   //nomenclatura de variavel errada.

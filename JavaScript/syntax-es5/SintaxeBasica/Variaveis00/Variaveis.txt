@@ -1,0 +1,65 @@
+        Variáveis e seus conceitos:
+O que é variável:
+    Variável é como um container, 
+    um armazém em que podemos armazenar um valor, 
+    de qualquer tipo ( javascript é fracamento tipada ).
+
+Como diferir que tipo de valor está sendo armazenado na variável?
+        Isso depende da forma de como é atribuido o valor para a variável ( tipagem dinâmica ):
+        Tipos primitivos: String/inteiros/floats/booleanos/indefinidos/nulos;
+        Exemplo - String:
+                var nome1 = "String";
+                ou 
+                var nome1 = 'String';
+
+                Podem conter letras, numeros, simbolos, pontuação, e até emojis;
+                Se desejar utilizar a pontuação de aspas dentro da string: 
+                é necessário utilizar aspas opostas na declaração e outra para pontuação:
+                        Exemplo:
+                                var nome1 = 'Texto retirado de "alguém" ';
+                                var nome1 = "Texto retirado de 'alguém' ";
+
+                Outra forma de utilizar a pontuação de aspas dentro da string:
+                Utilizar o caractere "\"+"aspas" backslash + aspas, para definir que a partir do "\",
+                virá um caractere especial ( utilização avançada ):
+                        Exemplo:
+                                var nome1 = "Texto retirado de \"alguém\" ";
+                                var nome1 = "Texto retirado de \'alguém\' ";
+
+        Exemplo - Inteiro/numeros com ponto flutuante:
+                var nome2 = 10;         // 10 é um inteiro;
+                var nome2 = 15.2        // 15.2 é um ponto flutuante ( double/float );
+        
+        Exemplo - Booleano ( V/F );
+                var nome3 = true;
+                var nome3 = false;
+
+        Exemplo - Indefinido:
+                var nome4;      // Sem valor atribuido, só é feita a reserva de memória com aquele nome de referência, pode conter lixo de memória de conteúdo, ou simplesmente undefined;
+
+        Exemplo - Null:         
+                var nome5 = null;       //Valor de nome5 será nulo especificamente.
+
+
+Nomenclaturas dos nomes das variáveis:
+Não podem começar com:
+        números;
+        palavras chaves do javascript.
+
+nomenclatura do Javascript é camelCase:
+        var meuTeste;
+        var meuteste;
+        var MeuTeste;
+
+        todas as variáveis acima representam variáveis diferentes, pois possuem nomenclaturas diferentes.
+
+
+para mais informações: https://www.javascript.com/learn/strings
+
+Glossário:
+console.log ( variavel );       //printa o conteúdo da variavel no console do browser
+var nome = "conteudo"       //declara e atribui um valor "conteudo" (string) que será referenciado pelo nome da variavel que é "nome"
+
+
+Glossário Erro:
+Uncaught SyntaxError: Invalid or unexpected token - nomenclatura de variavel errada.

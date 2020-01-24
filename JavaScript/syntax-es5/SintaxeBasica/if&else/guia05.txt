@@ -1,0 +1,99 @@
+Comandos If e Else:
+    - Objetivos: servem para definir um trecho de código que deve ser executado, 
+    se uma condição for aceita;
+    
+    - If ( se ):
+        - sintaxe:
+            if ( condicao logica ){
+                //Bloco de instrução a ser utilizado, caso condição logica seja verdadeira
+            }
+
+    - elseif ( senão, se ):
+        - sintaxe:
+            elseif ( outra condicao logica ){
+                //Bloco de instrução a ser utilizado, caso outra condição logica seja verdadeira
+
+            }
+
+    - else ( senão ):
+        - sintaxe:
+            else{
+                //Bloco de instrução a ser utilizado, caso nenhuma das condições lógicas anteriores tenham sido verdadeiras;
+            }
+
+    - Exemplo:
+        if ( x === y ){
+            //executa código 1:
+
+        } else if ( x < y ){
+            //executa código 2:
+        
+        } else {
+            //executa código 3:
+        }
+
+    - Operadores ternarios:
+        condição ? expressão1 : expressão2
+        
+        é exatamente igual a:
+        if ( condição ){
+            expressão1;
+    
+        } else {
+            expressão2;
+        }
+        mais informações em : 
+        https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Operador_Condicional
+
+    - Mais informações sobre operadores lógicos:
+        and == ( && )
+        or  == ( || )
+        not == ( ! ) 
+
+        https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Operadores_Logicos
+
+    - OBS:
+        - operador lógico "===" 
+        (i): "=" -> representa atribuição
+        (ii): "==" -> verifica uma comparação entre resultado de valores somente, podendo ser de tipos diferentes
+        (iii): "===" -> faz comparação entre valores dos objetos e seus tipos [ igualdade estrita ]
+
+        - nesse exemplo: ( x === y )    //lê-se comparação entre o valor do objeto x, e o valor do objeto y.
+            retorna verdadeiro, caso x e y sejão do mesmo tipo e de valores iguais, exatamente iguais
+
+        para ficar mais claro:
+        https://pt.stackoverflow.com/questions/7/qual-a-diferen%C3%A7a-entre-os-operadores-e-em-javascript
+
+        e olhar script ifelse.js
+        
+        Na comparação: ( x === y ):
+            - Se Type(x) é diferente de Type(y), retorna false.
+            - Se Type(x) é Undefined, retorna true.
+            - Se Type(x) é Null, retorna true.
+            - Se Type(x) é Number, então
+            - Se x é NaN, retorna false.
+            - Se y é NaN, retorna false.
+            - Se x é do mesmo valor numérico que y, retorna true.
+            - Se x é +0 e y é -0, return true.
+            - Se x é -0 e y é +0, retorna true.
+            - Retorna false.
+            - Se Type(x) é String, retorna true se x e y são exatamente a mesma sequência de caracteres (mesmo tamanho e mesmos caracteres nas posições correspondentes); caso contrário, retorna false.
+            - Se Type(x) é Boolean, retorna true se x e y são ambos true ou ambos false; caso contrário, retorna false.
+            - Retorna true se x e y referem-se ao mesmo objeto. Caso contrário, retorna false.
+
+        Como o javascript é fracamente tipada e faz a conversão automatica de tipos, o perador "==" usa essa conversação nas duas pontas da comparação.
+        já o "===" exige que os dois termos da comparação sejam do mesmo tipo, além de terem o mesmo valor. 
+        Exemplo:
+            - "1" == 1; // true, mesmo com tipos diferentes
+            - "1" === 1; // false, justamente devido aos tipos diferentes
+
+
+        referência:
+        http://www.ecma-international.org/ecma-262/5.1/#sec-11.9.3
+
+        - Operadores Lógicos com valores Falsos
+            - Undefined;
+            - null;
+            - 0;
+            - '';
+            - NaN; 
