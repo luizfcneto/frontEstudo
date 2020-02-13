@@ -52,16 +52,33 @@ let UserInterfaceController = ( function(){
     return{
 
         // // Método para captar dados formulario:
-        // captaFormulario(){
-        //     console.log( "Captou novos dados: " );
-        //     this.addInputType = document.querySelector( ".add__type" ).value;
-        //     this.addInputDescription = document.querySelector( ".add__description" ).value;
-        //     this.addInputValue = document.querySelector( ".add__value" ).value;
+        captaFormulario(){
+            console.log( "Captou novos dados: " );
+            this.addInputType = document.querySelector( ".add__type" ).value;
+            this.addInputDescription = document.querySelector( ".add__description" ).value;
+            this.addInputValue = document.querySelector( ".add__value" ).value;
         
-        //     // console.log( this.addInputType );
-        //     // console.log( this.addInputDescription );
-        //     // console.log( this.addInputValue );
-        // },
+            // console.log( this.addInputType );
+            // console.log( this.addInputDescription );
+            // console.log( this.addInputValue );
+        },
+
+        // TODO
+        insereDivLista( classeName, obj ){
+        
+            // Criar um elemento html div 1 novo
+
+            // Adicionar atributos nesse elemento html( class="item clearfix" id="income-0" )
+
+            // Criar mais um elemento html div 2 novo
+
+            // Adicionar atributos nesse elemento html( class="item__description" )
+                // Atribuir valor dessa div com obj.descricao[ obj.descricao.length - 1 ]
+            
+            // Criar mais um elemento html div 3 novo
+
+            // Adicionar atributos nesse elemenot html ( c)
+        },
 
         getType(){
             return this.addInputType;
@@ -120,31 +137,24 @@ let DataController = ( function( ){
     let rendimentos = {
         descricao: [],
         valores: [],
-        totalRendimentos: 0
+        total: 0
     }
 
     let despesas = {
         descricao: [],
         valores: [],
-        totalDespesas: 0,
-
-        // Método que calcula a porcentagem de um valor comparado com o rendimento total
-        calculaPorcentagem( valor ){
-            return Math.trunc( ( valor / rendimentos.total ) * 100 );  
-        }
-
+        porcentagens: [],
+        total: 0,
+        totalPorcentagem: 0,
     }
 
-    // Função para calcular soma total de um vetor de numeros
-    function calculaSomaTotal( arrValor ){
-        let ans = 0;
-        for( let i = 0; i < arrValor.length; i++ ){
-            
-            // Array de strings
-            ans += parseFloat( arrValor[i] );
+    // Função que atualiza soma total do objeto : rendimentos ou despesas
+    function atualizaSomaTotal( arrValor, obj ){
+        return obj.total + parseFloat( arrValor[ arrValor.length - 1 ] );
+    }
 
-        }
-        return ans;
+    function atualizaPorcentagem( elemento ){
+        return ( elemento / rendimentos.total ).toFixed( 2 ) * 100;
     }
 
     // Métodos públicos de DataController
@@ -155,10 +165,29 @@ let DataController = ( function( ){
             arr.push( elemento );
 
             if( arr === rendimentos.valores ){
-                rendimentos.totalRendimentos = calculaSomaTotal( arr );
+                rendimentos.total = atualizaSomaTotal( arr, rendimentos );
+                
+                // Atualiza todos os elementos de porcentagem das despesas.
+                for( let i = 0; i < despesas.porcentagens.length; i++ ){
+                    despesas.porcentagens[i] = atualizaPorcentagem( despesas.valores[i] );
+                }
+
+                // Atualizo a porcentagem da despesa total
+                despesas.totalPorcentagem = atualizaPorcentagem( despesas.total ); 
+                
+                console.log( rendimentos, despesas );
 
             }else if( arr === despesas.valores ){  
-                despesas.totalDespesas = calculaSomaTotal( arr );
+                despesas.total = atualizaSomaTotal( arr, despesas );
+
+                // Atualiza porcentagem do ultimo elemento inserido, e adiciona no vetor de porcentagens
+                despesas.porcentagens.push( atualizaPorcentagem( elemento ) );
+                
+                // Atualiza porcentagem total de despesas
+                despesas.totalPorcentagem = atualizaPorcentagem( despesas.total );
+
+                console.log( rendimentos, despesas );
+
             }
             
         },
@@ -224,8 +253,8 @@ let InitController = ( function(){
             // Adicionando descrição no array de descrições de rendimentos
             DataController.insereNovoElemento( description, rendimentos.descricao );
 
-            console.log( rendimentos );
-
+            // Inserir elemento novo na lista de exibição de rendimentos
+            UserInterfaceController.insereDivLista( "income__list", rendimentos );
 
         }else if( type === "despesa" || type === "-" ){
             console.log( "Despesa Nova: " + value );
@@ -238,11 +267,13 @@ let InitController = ( function(){
             
             // Adicionando descrição no array de descrições de despesas:
             DataController.insereNovoElemento( description, despesas.descricao );
-            console.log( despesas );
-            
+
+            // Inserir elemento novo na lista de exibição de despesas
+            UserInterfaceController.insereDivLista( "expenses__list", despesas );
         }
 
     });
+
     
 })( UserInterfaceController, DataController );
 
