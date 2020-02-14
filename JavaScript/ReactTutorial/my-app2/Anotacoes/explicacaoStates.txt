@@ -1,0 +1,7 @@
+states: 
+    É uma variável que representa o estado de um componente;
+
+    Esse estado é nada mais nada menos que um conjunto de variaveis encapsuladas e 
+    são genericamente fornecidas ao Componente como parametros/argumentos ao ser
+    declarado.
+
