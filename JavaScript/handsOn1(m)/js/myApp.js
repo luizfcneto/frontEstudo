@@ -22,21 +22,76 @@ let UserInterfaceController = ( function(){
     let addInputType;
     let addInputDescription;
     let addInputValue;
-    let buttonAddValue = document.querySelector( ".add__btn" );
+    const buttonAddValue = document.querySelector( ".add__btn" );
     
 
     // // Variaveis Budget
-    let totalResultBugdet = document.getElementsByClassName( "budget__value" );
-    let totalIncomeBudget = document.getElementsByClassName( "budget__income" );
-    let totalExpensesBudget = document.getElementsByClassName( "budget__expenses" );
+    const totalResultBugdet = document.getElementsByClassName( "budget__value" );
+    const totalIncomeBudget = document.getElementsByClassName( "budget__income" );
+    const totalExpensesBudget = document.getElementsByClassName( "budget__expenses" );
 
     // // Raiz da lista de rendimentos e despesas
-    let divIncomesList = document.getElementsByClassName( "income__list" );
-    let divExpensesList = document.getElementsByClassName( "expenses_list" );
+    const divIncomesList = document.getElementById( "income__list" );
+    const divExpensesList = document.getElementById( "expenses__list" );
 
     // Botão de remover um item de alguma das listas acima
-    let buttonRemove = document.querySelector( ".item__delete--btn" ); 
+    const buttonRemove = document.querySelector( ".item__delete--btn" ); 
 
+
+    function setIdAttribute( className ){
+        let id = ""
+        if( className === "income__list" ){
+            id += "income-";
+            id = id + divIncomesList.children.length;
+            return id;
+
+        }else if( className === "expenses__list" ){
+            id += "expenses-";
+            id = id + divExpensesList.children.length;
+            return id
+            
+        }else{
+            console.log( "DIV não encotrada -- setIdAttribute()" );
+            return null;
+        }
+    }
+
+    function appendAll( className, obj, div1, div2, div3, div4, div5, button, iButton ){
+
+        if( className === "income__list" ){
+            div1.appendChild( div2 );
+            div1.appendChild( div3 );
+            div3.appendChild( div4 );
+            div3.appendChild( div5 );
+            div5.appendChild( button );
+            button.appendChild( iButton );
+            
+            divIncomesList.appendChild( div1 );
+
+        }else if( className === "expenses__list" ){
+
+            
+            div1.appendChild( div2 );
+            div1.appendChild( div3 );
+            div3.appendChild( div4 );
+
+            let div6 = document.createElement( "div" );
+            div6.setAttribute( "class", "item__percentage" );
+            div6.textContent = obj.porcentagens[ obj.porcentagens.length - 1 ] + "%";
+            
+            div3.appendChild( div6 );
+            div3.appendChild( div5 );
+            div5.appendChild( button );
+            button.appendChild( iButton );
+
+            divExpensesList.appendChild( div1 );
+
+        }else{
+            console.log( "DIV não encontrada -- appendAll()" );
+            return null;
+        }
+
+    }
 
     // function captaFormulario(){
     //     addInputType = document.querySelector( ".add__type" );
@@ -64,20 +119,51 @@ let UserInterfaceController = ( function(){
         },
 
         // TODO
-        insereDivLista( classeName, obj ){
-        
+        insereDivLista( className, obj ){
+            
             // Criar um elemento html div 1 novo
+            let div1 = document.createElement( "div" );
 
             // Adicionar atributos nesse elemento html( class="item clearfix" id="income-0" )
+            div1.setAttribute( "class", "item clearfix" );
+
+            let id = "";
+            id = setIdAttribute( className );
 
             // Criar mais um elemento html div 2 novo
-
-            // Adicionar atributos nesse elemento html( class="item__description" )
-                // Atribuir valor dessa div com obj.descricao[ obj.descricao.length - 1 ]
+            let div2 = document.createElement( "div" );
             
-            // Criar mais um elemento html div 3 novo
+            // Adicionar atributos nesse elemento html( class="item__description" )
+            div2.setAttribute( "class", "item__description" );
 
-            // Adicionar atributos nesse elemenot html ( c)
+            // Atribuir valor dessa div com obj.descricao[ obj.descricao.length - 1 ]
+            div2.innerText = obj.descricao[ obj.descricao.length - 1 ];
+
+            // Criar mais um elemento html div 3 novo
+            let div3 = document.createElement( "div" );
+            div3.setAttribute( "class", "right clearfix" );
+
+            let div4 = document.createElement( "div" );
+            div4.setAttribute( "class", "item__value" );
+
+            if( className === "income__list" ){
+                div4.innerText = "+ " + obj.valores[ obj.valores.length - 1 ];
+            }else if( className === "expenses__list" ){
+                div4.innerText = "- " + obj.valores[ obj.valores.length - 1 ];
+            }
+    
+            let div5 = document.createElement( "div" );
+            div5.setAttribute( "class", "item__delete" );
+
+            let button = document.createElement( "button" );
+            button.setAttribute( "class", "item__delete--btn" );
+
+            let iButton = document.createElement( "i" );
+            iButton.setAttribute( "class", "ion-ios-close-outline" );
+
+            appendAll( className, obj, div1, div2, div3, div4, div5, button, iButton );
+
+        
         },
 
         getType(){
@@ -154,7 +240,7 @@ let DataController = ( function( ){
     }
 
     function atualizaPorcentagem( elemento ){
-        return ( elemento / rendimentos.total ).toFixed( 2 ) * 100;
+        return Math.round( ( elemento / rendimentos.total ) * 100 );
     }
 
     // Métodos públicos de DataController
