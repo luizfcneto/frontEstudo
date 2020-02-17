@@ -1,0 +1,218 @@
+states: 
+    É uma variável ( objeto ) que representa o estado de um componente;
+
+    Esse estado é nada mais nada menos que um conjunto de variaveis encapsuladas e privadas;
+    são declaradas/fornecidas ao Componente.
+
+State e LifeCycle:
+Considerando um exemplo de um relógio nós apenas aprendemos uma forma de atualizar a interface do usuario ( UI ).
+Nós chamamos o ReactDOM.render() para modificar a saida renderizada:
+//ES5
+function tick(){
+    const element = (
+        <div>
+            <h1> Hello, World </h1>
+            <h2> It is { new Date().toLocaleTimeString() } </h2>
+        </div>
+    );
+}
+
+
+    ReactDOM.render(
+        element,
+        document.getElementById( "root" )
+    );
+}
+
+setInterval( tick, 1000 );
+
+
+Aqui nós iremos aprender como nós iremos fazer o Componente Clock verdadeiramente reutilizavel e encapsulado.
+Ele configurará seu proprio timer e atualizará a cada segundo.
+
+Primeiramente vamos começar a encapsular como o Clock aparenta:
+//ES5
+function Clock( props ){
+    return (
+        <div>   
+            <h1> Hello, World </h1>
+            <h2> It is { props.date.toLocaleTimeString() } </h2>
+        </div>
+    );
+
+}
+
+function tick(){
+    ReactDOM.render(
+        <Clock date={ new Date() } />,
+        document.getElementById( "root" )
+    );
+}
+
+setInterval( tick, 1000 );
+
+Contudo, ainda falta um requisito crucial: O fato de Clock setar um timer e atualizar a interface do usuario ( UI )
+todo segundo deve ser uma implementação caracteristica de Clock.
+
+Idealmente nós queremos declarar Clock uma vez e fazer com que ele mesmo se atualize, ficando dessa forma:
+
+ReactDOM.render(
+    <Clock />,
+    document.getElementById( "root" )
+);
+
+Para implementar isso, nós devemos adicionar "state" ( Estado ) ao componente de Clock.
+
+State é similar a props, mas é privado e completamente controlado pelo Componente.
+
+____________________________________________________________CONVERTENDO FUNÇÃO PARA CLASS____________________________________________________________
+Nós podemos converter uma função componente de Clock para class em 5 passos:
+    1- Criar uma classe ( formato ES6 ), com o mesmo nome, que extenda React.Component;
+
+    2- Adicionar um único método vazio chamado render()
+
+    3- Mover o corpo da função para dentro do método render()
+
+    4- Renomear props para this.props dentro do corpo de render()
+
+    5- Deletar a declaração da função que não será mais utilizada. 
+
+Ficando dessa forma:
+
+class Clock extends React.Component{
+    render(){
+        <div>
+            <h1> Hello, World </h1>
+            <h2> It is { this.props.toLocaleTimeString() } </h2>
+        </div>        
+    }    
+}
+
+O método render() será chamado cada vez que uma atualização no Componente acontecer, mas toda vez que nós renderizamos <Clock /> no mesmo nó DOM,
+somente uma instancia de Clock será usada.
+
+____________________________________________________________ADICIONANDO STATE LOCAL PARA A CLASSE____________________________________________________________
+
+1. Criamos um método de construtor da Classe do Componente Clock
+2. Modificamos a referencia do this.date.toLocaleTimeString() no método retorne para referenciar pelo state.
+
+class Clock extends React.Component{
+    
+    // [1] -> OBS: Classes de Componentes devem sempre chamar o método construtor com props
+    constructor( props ){
+        super( props );
+        this.state = { date: new Date() };
+    }
+
+
+    render(){
+        return(
+            <div>
+                <h1> Hello, World </h1>
+                
+                // [2]
+                <h2> It is { this.state.date.toLocaleTimeString() } </h2>
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(
+    <Clock />,
+    document.getElementById( "root" );
+)
+
+____________________________________________________________ADICIONANDO METODOS DE CICLO DE VIDA NA CLASSE____________________________________________________________
+Em aplicações com muitos componentes, é muito importante se livrar de recursos pegos pelos componentes quando eles forem destruidos.
+
+Nós queremos configurar um timer sempre que o Componente Clock é renderizado pelo DOM pela primeira vez. Isso é chamado de "mounting" ( montagem ) no React.
+
+Nós também queremos limar o timer sempre que o DOM produzido pelo Componente Clock é removido. Isso é chamado de "unmounting" ( Desmontagem ) no React.
+
+Nós devemos declarar métodos especiais em Classes de Componentes para executar algum código quando ele monta ou desmonta:
+
+class Clock extends React.Component{
+    constructor( props ){
+        super( props );
+        this.state = { date: new Date() };
+    }
+
+    componentDidMount(){
+
+    }
+
+    componentWillUnMount(){
+
+    }
+
+    render(){
+        return(
+            <div> 
+                <h1> Hello, World </h1>
+                <h2> It is { this.state.date.toLocaleTimeString() } </h2>
+            </div>
+        );
+    }
+}
+
+Esses métodos são chamados de métodos de ciclo de vida ( lifecycle methods )
+
+O método componentDidMount() executa depois que a saida do componente foi renderizada pelo DOM. Esse é um ótimo lugar para configurar o timer:
+
+componentDidMount(){
+    this.timerID = setInterval( () => this.tick(), 1000 );
+}
+
+Note que nós salvamos o timer ID diretamente no this ( this.timerId );
+Enquanto o this.props é configurado pelo próprio React e this.state tem um significado especial, nós somos licres para adicionar campos adicionais
+na classe manualmente se necessitarmos armazenar algo que não participe do fluxo de dados ( data flow ) como o timerID.
+
+
+Vamos derrubar o temporizador ( timer ) no método de lifecycle componentWillUnMount():
+componentWillUnMount(){
+    clearInterval( this.timerID );
+}
+
+Finalmente, podemos implementar o método chamado tick() que será executado pelo Componente Clock a cada segundo 
+
+Usamos o this.setState() para agendar a atualização para o state local do Componente
+
+No final teremos isso:
+class Clock extends React.Component{
+
+    constructor( props ){
+        super( props );
+        this.state = { date: new Date() };
+    }
+
+    componentDidMount(){
+        this.timerID = setInterval( () => this.click, 1000 );
+    }
+
+    componentWillUnMount(){
+        clearInterval( this.timerID );
+    }
+
+    tick(){
+        this.setState( {
+            date: new Date()
+        } );
+    }
+
+    render(){
+        return(
+            <div> 
+                <h1> Hello, World </h1>
+                <h2> It is { this.state.date.toLocaleTimeString() } </h2>
+            </div>
+        )
+    }
+}
+
+ReactDOM.render(
+    <Clock/>,
+    document.getElementById( "root" )
+);
+
+
+Referencia: https://reactjs.org/docs/state-and-lifecycle.html
