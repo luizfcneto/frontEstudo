@@ -214,5 +214,144 @@ ReactDOM.render(
     document.getElementById( "root" )
 );
 
+Resumo da ordem de chamada dos métodos:
+    1- Quando <Clock /> é passado para o ReactDOM.render(), o React chama o construtor do componente Clock;
+        Como ele precisa exibir a hora corrente, ele inicializa this.state ( estado ) com um objeto incluindo a hora atual;
+        Nós iremos futuramente atualizar esse state ( estado )
+
+    2- React chama o método render do componente Clock. É dessa forma que o React sabe o que deve ser exibido na tela;
+        React atualiza o DOM para corresponder com a saida do render do componente Clock
+    
+    3- Quando a saida do componente Clock é inserida no DOM, React chama o método de lifecycle ( ciclo de vida ) componentDidMount();
+        Dentro dele o componente Clock pede ao browser para configurar um timer para chamar o método tick() a cada segundo.
+
+    4- A cada segundo o Browser chama o método tick(). Dentro dele, o componente Clock agenda uma atualização da interface do Usuario ( UI )
+        chamando o método setState() com um objeto contendo a hora corrente. Graças à chamada ao método setState(), React sabe que o 
+        estado foi alterado, e chama novamente o método render() para atualizar o que deve ser exibido na tela. Essa hora, o this.state.date
+        no método render() será diferente, então a saida de render será um tempo atualizado. Assim, o React atualiza o DOM adequadamente.
+
+    5- Se o component Clock é sempre removido do DOM, React chama o método lifecycle ( ciclo de vida ) componentWillUnmount() então o 
+        timer é parado.
+
+
+____________________________________________________________USANDO STATE ADEQUADAMENTE____________________________________________________________
+Coisas que devemos saber sobre o setState():
+    - Não modifique o state diretamente:
+    ex: 
+        this.state.comment = "Hello";
+
+    - Utilize o método setState() sempre que for altera-lo:
+    ex:
+        this.setState( {
+            comment: "Hello"
+        } );
+
+    OBS: O Unico lugar onde voce deve atribuir state é no método construtor do Componente
+
+
+____________________________________________________________ATUALIZACAO DO STATE DEVE SER ASSINCRONO____________________________________________________________
+React pode agrupar multiplas chamadas ao setState() em uma única atualização por desempenho
+
+Pelo fato do this.props e this.state serem atualizados assincronamente, nós não devemos confiar em seus valores para calcular o próximo estado.
+
+exemplo: este código irá falhar para atualizar o contador
+this.setState( {
+    contador: this.state.contador + this.props.increment,
+} );
+
+Para ajeitar isso, usamos uma segunda forma de setState() que aceita uma função ao invés de um objeto. Então a função irá receber como parametro
+o state e o props, para que contador seja efetivamente atualizado:
+
+//com arrow function:
+this.setState( ( state, props ) => ( {
+    contador: state.contador + props.increment
+} ) );
+
+//sem arrow function:
+this.setState( function( state, props ) {
+    return {
+        contador: state.counter + props.increment
+    };
+} );
+
+____________________________________________________________ATUALIZAÇÃO DO STATES É MESCLADA ( MERGED )____________________________________________________________ 
+Quando nós chamamos setState(), React mescla( merge ) o objeto que fornecemos como um estado corrente.
+
+Exemplo: 
+constructor( props ){
+    super( props );
+    this.state = {
+        posts: [],
+        comments: []
+    };
+}
+
+Então podemos atualiza-los indenpendentemente com chamadas separadas de setState():
+componentDidMount(){
+    fetchPosts().then( response => {
+        this.setState( {
+            posts: response.posts;
+        } );
+    } );
+
+    fetchComments().then( response => {
+        this.setState( {
+            comments: response.comments;
+        } );
+    } );
+
+}
+
+A mesclagem ( o Merging ) é superficial, então this.setState( { comments } ) deixa this.state.post intacto, mas altera completamente this.state.comments;
+
+____________________________________________________________DADOS FLUEM PARA BAIXO____________________________________________________________
+Nenhum componente pai ou filho conseguem saber se um certo componente possui estado ( state ) ou não, e eles não se importam também se ele é definido
+em formato de classe ou função
+
+Isso é o porque do state é sempre chamado de local ou encapsulado. Ele não é acessível a outro componente além do próprio em que é definido.
+
+O componente pode escolher passar seu state ( estados ) para componentes filhos como um props
+exemplo:
+<h2> It is { this.state.date.toLocaleTimeString() }. </h2>
+
+Isso também funciona para componentes definidos por usuarios ( user-defined ):
+<FormattedDate date={ this.state.date } />
+
+O componente FormattedDate deverá receber o date como um props e não saberá de onde ele veio, se veio de state ( estado ) do Componente Clock, 
+ou se veio do props de Clock, ou se foi digitado manualmente:
+function FormattedDate( props ){
+    return <h2> It is { props.date.toLocaleTimeString() }. </h2> 
+}
+
+Isso é commumente chamado de "Top-down" ( descendente ) ou fluxo de dados "unidirecional" ( unidirectional data flow ). Qualquer state sempre pertence a algum 
+um Componente especifico, e qualquer dado ou interface do usuario ( UI ) derivada desse state podem afetar apenas componentes abaixo/subordinados/filhos 
+a eles na arvore.
+
+Se voce imaginar uma arvore de componentes como uma cascata de props, o state de cada Componente é como uma fonte de agua adicional que se junta/une
+em algum ponto arbitrário mas continua seguindo o fluxo da água para baixo;
+
+Para mostrar que todos os componentes são completamente isolados, nós podemos criar um Componente App que renderiza três componentes Clock:
+
+function App(){
+    return(
+        <div>
+            <Clock />
+            <Clock />
+            <Clock />
+        </div>
+    );
+}
+
+ReactDOM.render(){
+    <App />,
+    document.getElementById( "root" );
+}
+
+Cada Componente Clock é configurado pelo seu próprio timer e atualiza de forma independente.
+
+Em aplicações React, seja o Componente com state ou sem é considerado uma implementação detalhada do Componente
+e pode ser alterado a todo tempo. Nós podemos utilizar componentes sem state dentro de Componentes com state e vice e versa.
+
+
 
 Referencia: https://reactjs.org/docs/state-and-lifecycle.html
