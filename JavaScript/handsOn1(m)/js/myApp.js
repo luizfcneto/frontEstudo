@@ -26,9 +26,10 @@ let UserInterfaceController = ( function(){
     
 
     // // Variaveis Budget
-    const totalResultBugdet = document.getElementsByClassName( "budget__value" );
-    const totalIncomeBudget = document.getElementsByClassName( "budget__income" );
-    const totalExpensesBudget = document.getElementsByClassName( "budget__expenses" );
+    let totalResultBugdet = document.querySelector( ".budget__value" );
+    let totalIncomeBudget = document.querySelector( ".budget__income--value" );
+    let totalExpensesBudget = document.querySelector( ".budget__expenses--value" );
+    let totalPorcentagemEPR = document.querySelector( ".budget__expenses--percentage" );
 
     // // Raiz da lista de rendimentos e despesas
     const divIncomesList = document.getElementById( "income__list" );
@@ -36,7 +37,6 @@ let UserInterfaceController = ( function(){
 
     // Botão de remover um item de alguma das listas acima
     const buttonRemove = document.querySelector( ".item__delete--btn" ); 
-
 
     function setIdAttribute( className ){
         let id = ""
@@ -69,7 +69,6 @@ let UserInterfaceController = ( function(){
             divIncomesList.appendChild( div1 );
 
         }else if( className === "expenses__list" ){
-
             
             div1.appendChild( div2 );
             div1.appendChild( div3 );
@@ -91,6 +90,28 @@ let UserInterfaceController = ( function(){
             return null;
         }
 
+    }
+
+    function setTotal( rendimentos, despesas ){
+        
+        if( despesas.total === 0 ){
+            totalExpensesBudget.innerHTML = despesas.total
+        }else{
+            totalExpensesBudget.innerHTML = "- " + despesas.total;
+        }
+        
+        
+        totalIncomeBudget.innerHTML = "+ " + rendimentos.total;
+
+        totalPorcentagemEPR.innerHTML = despesas.totalPorcentagem + "%";
+
+        if( rendimentos.total - despesas.total > 0 ){
+            totalResultBugdet.innerHTML = "+ " + ( rendimentos.total - despesas.total );   
+        }else{
+            totalResultBugdet.innerHTML = ( rendimentos.total - despesas.total ).toString();   
+        }
+         
+        
     }
 
     // function captaFormulario(){
@@ -163,7 +184,10 @@ let UserInterfaceController = ( function(){
 
             appendAll( className, obj, div1, div2, div3, div4, div5, button, iButton );
 
-        
+        },
+
+        atualizaTotal( rendimentos, despesas ){
+            setTotal( rendimentos, despesas );
         },
 
         getType(){
@@ -179,8 +203,6 @@ let UserInterfaceController = ( function(){
         },
 
     } 
-
-
 
 })();
 
@@ -342,6 +364,11 @@ let InitController = ( function(){
             // Inserir elemento novo na lista de exibição de rendimentos
             UserInterfaceController.insereDivLista( "income__list", rendimentos );
 
+            // Atualiza Total
+            let despesas = DataController.getDespesas();
+            UserInterfaceController.atualizaTotal( rendimentos, despesas );
+
+
         }else if( type === "despesa" || type === "-" ){
             console.log( "Despesa Nova: " + value );
 
@@ -356,6 +383,11 @@ let InitController = ( function(){
 
             // Inserir elemento novo na lista de exibição de despesas
             UserInterfaceController.insereDivLista( "expenses__list", despesas );
+
+            // Atualiza Total
+            let rendimentos = DataController.getRendimentos();
+            UserInterfaceController.atualizaTotal( rendimentos, despesas );
+
         }
 
     });
