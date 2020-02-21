@@ -352,6 +352,42 @@ Cada Componente Clock é configurado pelo seu próprio timer e atualiza de forma
 Em aplicações React, seja o Componente com state ou sem é considerado uma implementação detalhada do Componente
 e pode ser alterado a todo tempo. Nós podemos utilizar componentes sem state dentro de Componentes com state e vice e versa.
 
+____________________________________________________________EXEMPLO SETSTATE____________________________________________________________
+Classe:
+
+class Componente extends React.Component{
+    constructor( props ){
+        super ( props );
+        this.state : { numero: 0 }
+    }
+
+    incrementaNumero = () => {
+        // Forma de uso do setState( objeto )
+        this.setState( { 
+            numero: this.state.numero + 1 
+        } );
+    }
+
+    render(){
+
+        return (
+            <div>
+                <h2> { this.state.numero } </h2>
+                <button onClick={ this.incrementaNumero }> Incrementa </button>
+                <button onClick={ this.decrementaNumero }> Decrementa </button>
+
+                {/* Passando parametros na função callBack */}
+                <button onClick={ () => this.alteraNumero( 10 ) }> Incrementa 10 </button>
+                <button onClick={ () => this.alteraNumero( -10 ) }> Decrementa 10 </button>
+                
+            </div>
+        );
+    }
+
+
+}
+
+
 
 
 Referencia: https://reactjs.org/docs/state-and-lifecycle.html

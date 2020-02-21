@@ -5,6 +5,11 @@ Props:
     são genericamente fornecidas ao Componente como parametros/argumentos ao ser
     declarado. São "requisitos minimos para criar o componente, caso seja necessário para este", para mais informações leia o documento abaixo.
 
+    A variável Props é readOnly, ela não pode ser alterada pelo Componetente ou nenhum método
+    interno, isso gera um erro. Para altera-las devemos utilizar o conceito de state ( estado ).
+    Passar o valor de props atual para states e alterar o conteudo de states utilizando o método
+    setState(). Para mais informações leia anotações states-lifecycle.txt
+
 Components and Props:
 
 Componentes permitem separar a interface de usuário de forma independente em pedaços reutilizaveis, sendo cada Componente um pedaço isolado.
@@ -33,7 +38,9 @@ class Welcome extends React.Component{
 Os dois componentes acima são equivalentes pelo ponto de vista do React
 Classes possuem caracteristicas adicionais, falaremos mais futuramente.
 
-
+OBS: Função Componente/Componente Funcional são componentes sem estados ( states ).
+Sempre que tivermos um componente que não tenha estado, que somente utilizem props a melhor
+opção é utilizar função componente/ componente funcional
 ____________________________________________________________RENDERIZANDO um COMPONENTE____________________________________________________________
 Antes sabiamos que elementos React representam tags do DOM:
 const element = <div />;
