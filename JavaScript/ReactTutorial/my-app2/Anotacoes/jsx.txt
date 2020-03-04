@@ -1,3 +1,0 @@
-O que é JSX?
-    É um arquivo javascript que contém declarações HTML.
-    Essas marcações HTML são convertidas em Javascript quando são executados pelo método render
