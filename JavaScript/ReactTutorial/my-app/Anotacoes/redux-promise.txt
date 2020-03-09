@@ -1,5 +1,0 @@
-instalando a dependencia redux-promise:
-
-    npm i --save-dev redux-promise@0.5.3
-
-    
