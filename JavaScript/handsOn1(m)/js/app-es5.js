@@ -35,8 +35,8 @@ var UiController = ( function () {
             inputs.push( DOMElements.inputType.value );
             inputs.push( DOMElements.inputDescription.value );
             inputs.push( DOMElements.inputValue.value );
-            return inputs; 
-
+            return inputs;
+            
         }
 
     } 
@@ -102,6 +102,21 @@ var DataController = ( function() {
                 data.total.despesas++;
             }
 
+        },
+
+        validateData: function( arrayInputs ){
+            
+            // Descrição vazia
+            if( arrayInputs[1] === null || arrayInputs[1] === "" ){
+                return false;
+            
+            // Valor não existente, ou valor menor ou igual a zero
+            }else if( isNaN( parseInt( arrayInputs[2] ) ) === true || parseInt( arrayInputs[2] <= 0 ) ) {
+                return false;
+
+            }else {
+                return true;
+            }
         }
     }
 
@@ -118,10 +133,17 @@ var MainController = ( function( dtCtrl, uiCtrl ) {
     var setAddEventHandler = function() {
         
         inputs.btn.addEventListener( "click", function(){
-            // console.log( uiCtrl.inputListener() );
-            alert( "Entrada Adicionada" );
+                       
             var inputs = uiCtrl.inputListener();
-            dtCtrl.addData( inputs[0], inputs[1], inputs[2] );
+            
+            if( dtCtrl.validateData( inputs ) === true ){
+                dtCtrl.addData( inputs[0], inputs[1], inputs[2] );
+                console.log( "Adicionado com sucesso!" );
+                alert( "Entrada Adicionada" );
+            }else {
+                console.log( "Elemento novo não adicionado! Campos obrigatórios não válidos" );
+            }
+            
         });
 
     }
