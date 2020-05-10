@@ -330,12 +330,22 @@ let DataController = ( function( ){
 */
 let InitController = ( function(){
 
+    let elemento = 0;
+    let domRemButton = null;
+
+    function verificaElementoExistente(){
+        if( elemento === 0 ){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
     // Botão de clicar
     let domAddButton = document.querySelector( ".add__btn" );
     let type;
     let description;
     let value;
-    let domRemButton = document.querySelector( ".item__delete--btn" );
 
     // 1- Pegar valores do Formulário quando soltar o evento de clicar no botão ".add__btn"
     domAddButton.addEventListener( "click", function(){
@@ -368,6 +378,7 @@ let InitController = ( function(){
             let despesas = DataController.getDespesas();
             UserInterfaceController.atualizaTotal( rendimentos, despesas );
 
+            domRemButton = document.querySelector( ".item__delete--btn" );
 
         }else if( type === "despesa" || type === "-" ){
             console.log( "Despesa Nova: " + value );
@@ -388,11 +399,21 @@ let InitController = ( function(){
             let rendimentos = DataController.getRendimentos();
             UserInterfaceController.atualizaTotal( rendimentos, despesas );
 
+            domRemButton = document.querySelector( ".item__delete--btn" );
         }
 
     });
 
+    while( domRemButton !== null ){
+        domRemButton.addEventListener( "click", function(){
+            console.log( "Entrou aqui", domRemButton );
+        })
+        break;
+    }
     
+
+    
+
 })( UserInterfaceController, DataController );
 
 // let button = document.querySelector( ".add__btn" );
