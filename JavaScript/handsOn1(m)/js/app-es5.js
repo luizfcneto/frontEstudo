@@ -11,6 +11,10 @@
         - https://www.w3schools.com/js/tryit.asp?filename=tryjs_array_foreach
         - https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
 
+
+    Array.shift():
+        - https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array/shift
+        
 */
 
 
@@ -40,9 +44,9 @@ var UiController = ( function () {
     var rendimentoDOMElement = '<div class="item clearfix" id="income-%id%"> <div class="item__description"> %description% </div> <div class="right clearfix"> <div class="item__value"> %value%</div> <div class="item__delete"> <button class="item__delete--btn"> <i class="ion-ios-close-outline"> </i> </button> <div> </div> </div>';
 
     var refreshDisplayBudget = function( economiaTotal, despesaTotal, porcentagemDespesaTotal ) {
-        DOMElements.rendimentoTotal.textContent = economiaTotal;
-        DOMElements.despesaTotal.textContent = despesaTotal;
-        DOMElements.porcentagemDespesaTotal.textContent = porcentagemDespesaTotal;
+        DOMElements.rendimentoTotal.textContent = formatData( economiaTotal.toString() );
+        DOMElements.despesaTotal.textContent = formatData( despesaTotal.toString(), "despesa" );
+        DOMElements.porcentagemDespesaTotal.textContent = formatPercentage( porcentagemDespesaTotal );
     }
 
 
@@ -58,57 +62,93 @@ var UiController = ( function () {
         var listaDespesas = document.querySelectorAll( ".item__percentage" );
 
         for( var i = 0; i < despesas.length; i++ ){
-            listaDespesas[ i ].textContent = despesas[ i ].percentage;
+            listaDespesas[ i ].textContent = formatPercentage( despesas[ i ].percentage.toString() );
+        }
+    }
+
+    var putFrontSign = function ( string, sign ) {
+        return sign + " " + string;
+    }
+
+    
+
+    var decimalManipulation = function ( number ) {
+        if( isNaN( number ) || number === undefined ){
+            return ".00";
+        }
+
+        number = number.toString();
+        if( number.length ===  1 ){
+            return "." + number + "0";
+        
+        }else if( number.length >= 2 ) {
+            return "." + number[ 0 ] + number[ 1 ]; 
+        
+        }else{
+            console.log( "deu erro na função decimalManipulation() " );
+        }
+
+    }
+
+    var verifySign = function( arrayString ){
+        if( arrayString[ 0 ] === "-" ){
+            return "despesa"
+        }else{
+            return "rendimento";
         }
     }
 
     var formatData = function( element, type ) {
-        // element é o valor em string.
-        var answer = element.split( "." );
         
         // 1- Separando parte inteira de parte decimal.
         element = element.split( "." );
 
-        // 2 - Adicionando duas casas decimais caso elemento apenas possua parte inteira ( "00" );
-        if( element.length === 1 ){
-            element.push( ".00" );
-
-        }
-
-        if( parseInt( element[ 0 ] ) < 1000 ){
-            if( type === "rendimento" || parseFloat( element[ 0 ] ) > 0  ){
-                return "+ " + element[ 0 ] + "." + element[ 1 ]; 
+        // Verificando sinal de economia geral
+        if( type === undefined ){
+            type = verifySign( element[ 0 ].split( "" ) );
             
-            } else if( type === "despesa" || parseFloat( element[ 0 ] < 0 ) ){
-                return "- " + element[ 0 ] + "." + element[ 1 ];
-
+            if( type === "despesa" ){
+                var temp = element[ 0 ].split( "" );
+                temp.shift();
+                element[ 0 ] = temp.join("" );
             }
-            
         }
-        // 3 - Colocar virgulas para separar a parte inteira a cada mil 
-        var inicio = element[0].split( "" ).reverse();
-        var answer = [];
 
-        for( var i = 0; i < inicio.length; i++ ){
-            if( i !== 0 && i % 3 === 0 && i !== inicio.length - 1 ) {
+        
+        // 2 - Adicionando duas casas decimais caso elemento apenas possua parte inteira ( "00" );
+        element[ 1 ] = decimalManipulation( element[ 1 ] );        
+        
+        
+        // 3 - Colocar virgulas para separar a parte inteira a cada 3 posições
+        var answer = [];
+        var arrayNumber = element[ 0 ].split( "" ).reverse();
+
+        for( var i = 0; i < arrayNumber.length; i++  ){
+            answer.push( arrayNumber[ i ] );
+            if( ( i + 1 ) % 3 === 0 && i !== arrayNumber.length - 1 ){
                 answer.push( "," );
             }
-            answer.push( inicio[ i ] );
+
         }
-        answer = answer.reverse();
-        answer.push( element[1] );
-        answer = answer.join( "" );
+
+        answer =  answer.reverse().join( "" );
         
         if( type === "rendimento" ){
-            answer = "+ " + answer 
+            return putFrontSign( answer, "+" ) + element[ 1 ];
         
-            return answer;
         } 
-
+        
         if( type === "despesa" ){
-            answer = "- " + answer;
-            return answer;
+            return putFrontSign( answer, "-" ) + element[ 1 ];
+        
+        } else {
+            console.log( "tipo:", type, "Tipo não fornecido" );
         }
+
+    }
+
+    var formatPercentage = function ( element ) {
+        return element + "%";
     }
 
     // Métodos públicos
@@ -161,7 +201,7 @@ var UiController = ( function () {
                 elementoNovo = elementoNovo.replace( "%value%", formatData( data.listaDespesa[ data.listaDespesa.length - 1 ].value, "despesa" ) );
 
                 // Renomeando Porcentagem:
-                elementoNovo = elementoNovo.replace( "%percentage%", data.listaDespesa[ data.listaDespesa.length - 1 ].percentage );
+                elementoNovo = elementoNovo.replace( "%percentage%", formatPercentage( data.listaDespesa[ data.listaDespesa.length - 1 ].percentage.toString() ) );
                 
                 DOMElements.despesaList.insertAdjacentHTML( "beforeEnd", elementoNovo );
                 
@@ -199,7 +239,7 @@ var DataController = ( function() {
 
     // Método específico de Despesa para calcular porcentagem
     Despesa.prototype.calculatePercentage = function( totalRendimento ){
-        this.percentage = ( parseFloat( this.value ) / parseFloat( totalRendimento ) ).toFixed( 2 ) * 100;
+        this.percentage = Math.round( ( parseFloat( this.value ) / parseFloat( totalRendimento ) ).toFixed( 2 ) * 100 );
     }
 
     // Construtor de Rendimento
@@ -264,7 +304,7 @@ var DataController = ( function() {
                 return false;
             
             // Valor não existente, ou valor menor ou igual a zero
-            }else if( isNaN( parseInt( arrayInputs[2] ) ) === true || parseInt( arrayInputs[2] <= 0 ) ) {
+            }else if( isNaN( parseInt( arrayInputs[2] ) || parseInt( arrayInputs[2] === undefined ) ) === true || parseInt( arrayInputs[2] <= 0 ) ) {
                 return false;
 
             }else {
