@@ -2,41 +2,33 @@
     Variaveis let & const
 */
 
-- Diferenças entre let, var e const:
+- Caracteristicas entre let, var e const:
     -var tem escopo de função   
         Ou seja, declarando um var em uma função, nós temos acesso a essa variável em todo o escopo da função.
         
-    - com var, poderiamos tentar imprimir uma variavel antes de declara-la que o console não indicaria erro, apenas undefined.     
+    - com var, poderiamos tentar imprimir uma variavel antes de atribu-la um valor que o console não indicaria erro, apenas undefined. ( com o tipo de variável const não é possível, let sim ).     
 
 
-    é functionScope
+    var é functionScope
+        como a variavel1 foi declarada no bloco de instrução if dentro da função testeVar(),
+        ela é acessível por todo o escopo desta mesma função, ao fazermos console.log( da variavel1 )
+        não dá erro.
 
-        function declarandoVar(){
-            var teste;
+        function testeVar(){
 
-            if( condicao ){
-                console.log( teste );
-                teste = 15;
-                console.log( teste );
-            
-            } esle {
-                for( var i = 0; i < 3; i++ ){
-                    teste++;
-                }
+            if( condicao === true ){
+                console.log( variavel1 );
+                var variavel1 = "variavel tipo var";
 
-                teste = 23;
-                console.log( teste );
             }
+
+            console.log( variavel1 );
             
         }
-        console.log( teste );
         
         //saida: 
         // undefined
-        // 15
-        // 16, 17, 18
-        // 23
-        // undefined
+        // "variavel tipo var"
 
 
     -let tem escopo de bloco de instrução
@@ -55,73 +47,61 @@
             
     - com let, se manipularmos uma variavel antes de declararmos com let, o console indicará um erro ( de que ela não foi declarada ainda ); 
 
-        function declarandoLet(){
-            console.log( teste );
-            let teste = 5;
+        function funcaoTesteLet(){
+            if( true ){
+
+                // erro, não podemos manipular a variavel tipo let, antes de declará-la e atribui-la algum valor.
+                // console.log( testeLet2 );
+                let testeLet2 = "Variavel de escopo de bloco de instrução";
+                
+                //  Bloco de instrução if acessível para a variavel testeLet2
+                // console.log( testeLet2 );
+
+            }
+
+            // Erro, bloco de instrução inacessível para testeLet2, variável não definida nesse bloco de instrução
+            // console.log( testeLet2 );
+
+            // escopo desse bloco de instrução esse i = 20
+            let i = 20;
 
             for( let i = 0; i < 5; i++ ){
+                // i = 0, 1, 2, 3, 4; escopo desse bloco de instrução esse i varia de 0 até 4
                 console.log( i );
             }
 
+            // volta pro bloco de instrução anterior que i = 20, cada escopo de instrução i representa uma variavel diferente, mantendo assim o seu valor de acordo com seu escopo, mesmo que o nome da variavel seja a mesma.
             console.log( i );
-            console.log( teste );
-
-            if( condicao ){
-                let teste2 = 6;
-                console.log( teste2 );
-            
-            }else{
-                console.log( teste2 );
-            }
-
         }
-        console.log( teste );
-        //saida:
-        // erro ( teste não declarado );
-        // 0, 1, 2, 3, 4
-        // erro( i, não declarado );
-        // 5
-        // 6
-        // erro ( i, não declarado );
-        // erro ( teste2, não declarado );
-        // erro ( teste, não declarado );
+        
 
-    - const ela atende ao escopo da função, assim como var, porém
-        Ao ser declarado uma constante, não podemos modificar seu valor/conteudo
-        const = constante.
-        Se tentarmos alterar seu conteúdo, o javascript irá lancar um erro dizendo que não é possivel 
-        atribuir outro valor a essa constante.
+    - const:
+        Ela atende ao escopo da instrução, assim como let, porém
+        Ao ser declarado uma constante, não podemos modificar seu valor/conteudo, const = constante.
+        Se tentarmos alterar seu conteúdo, o javascript irá lancar um erro dizendo que não é possivel atribuir outro valor a essa constante.
 
         é blockScope igual let.
 
-        não é possivel declarar uma constante e depois atribuir um valor a ela em outra linha do código.
-        sempre que declara-la deve atribuir o seu valor.
+        não é possivel declarar uma constante e depois atribuir um valor a ela em outra linha do código. Sempre que declara-la deve atribuir o seu valor.
 
 
-        console.log( testeConstante );
-        function declarandoConst(){
-            const testeConstante = 15;
+        const testeConst = 13;
 
-            for( let i = 0; i < 4; i++ ){
-                testeConstante++;
-                console.log( testeConstante );
+        function funcaoTesteConst(){
+
+            // console.log( testeConst2 );
+            const testeConst2 = "Variavel const2";
+
+            if( true ){
+                const testeConst3 = "Variavel const3";
             }
-
-            if( testeConstante == 15 ){
-                console.log( "Entrou no if" );
             
-            }else{
-                console.log( "Entrou no else" );
-            }
-
+            // erro, variavel testeConst3 inacessível nesse bloco de instrução. 
+            // console.log( "testeConst3 ", testeConst3 );
         }
-        console.log( testeConstante );
 
-        //Saida:
-        // erro ( variavel não declarada );   
-        // erro, 15, erro, 15, erro, 15
-        // entrou no if;
-        // erro ( variável não declarada );
+        // Erro, variável testeConst2 inacessível neste bloco de instrução.
+        // console.log( "testeConst2 ", testeConst2 );
 
 
         Para mais informações:

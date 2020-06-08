@@ -1,0 +1,35 @@
+Sttrings: Template Literals
+
+ES5+ 
+Quando imprimimos ou manipulamos strings utilizamos "+" para concatenar variáveis e strings textuais
+ex:
+console.log( "Seu Armando tem " + qtdEstudios + " estudios de tatuagem" );
+_________________________________________________________________________________________________
+
+Template Literals ES6
+foi criado para que não precisassemos ficar quebrando o texto e concatenando com variaveis
+ex:
+console.log( `Seu Armando tem ${ qtdEstudios } estudios de tatuagem` ); 
+
+além de utilizarmos variáveis para acrescentar no texto, podemos executar diretamente as funções dentro das chaves, desde que ela retorne algum valor para ser inserido.
+
+ex:
+console.log( `${ primeiroNome } ${ ultimoNome } tem ${ calculaIdade( dataNascimento ) } anos.` );
+
+Novas funções de String adicionadas nessa versão:
+String.startsWith( "letras" ):
+    verifica se a string começa com a(s) letra(s) passada(s) como parametro, retorna verdadeiro ou falso.
+
+String.endsWith( "letras" ):
+    verifica se a string termina com a(s) letra(s) passada(s) como parametro, retorna verdadeiro ou falso
+
+String.includes( "letras" ):
+    verifica se existe as letras na string, retorna verdadeiro ou falso.
+
+
+String.repeat( numero ):
+    Repete a string "numero" vezes, de acordo com o numero passado como parametro.
+
+
+para mais informações: 
+https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/template_strings
