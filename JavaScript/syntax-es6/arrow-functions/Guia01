@@ -1,6 +1,6 @@
 Arrow Functions
 
-Uma forma mais sucinta, de escrever uma função ( callback ):
+Uma forma mais sucinta, de escrever uma função ( inclusive callback ):
 
 sintaxe:
     ES5 - funcao callbalck:
@@ -18,17 +18,32 @@ sintaxe:
     _________________________________________________________________________________________________________________________________________
 
     ES6 - arrow function: Um parametro apenas: nome
-    let comunicationStarter = ( nome ) => "Olá, " + nome;
+    let comunicationStarter = ( nome ) => `Olá, ${ nome }`
 
     a variavel comunicationStarter retorna uma arrow function com o parametro "nome" e retorna ( depois da seta ) "Olá, " + nome;
+
+    outra forma de escrever uma arrow function com apenas um parametro:
+    let comunicationStarter = nome => `Olá, ${ nome }`
 
     _________________________________________________________________________________________________________________________________________
 
     ES6 - arrow function: com mais de um parametro: elemento, index
-    let invocaFuncao = ( elemento, index ) => {
-        ... código
-        return "( " + elemento + ", " + index + " )"; 
-    }
+    let invocaFuncao = ( elemento, index ) => `( ${ elemento }, ${ index }` 
+    
+    OBS:
+    Caso a arrow function tenha um bloco de instrução de uma linha não há necessidade de colocar as chaves "{}" para retornar a função, basta escrever o retorno após a seta/arrow 
+    ex:
+        let funcaoArrow = ( element ) => element;
+    
+    // a funcaoArrow acima possui apenas uma linha de instrução de retorno, logo não precisa ter as chaves.
+
+    Caso tenha mais de uma linha de instrução do retorno da função, é obrigatório a presença das chaves "{}" e a palavra chave "return"
+    ex:
+        let funcaoArrow = element => {
+            return element;
+        }
+
+
 
 
 
@@ -39,14 +54,42 @@ Arrow functions não podem ser funções Construtoras e nem o uso da palavra New
 
 Arrow Functions não tem a propriedade prototype ( pelo motivo acima ), logo não possui a própria palavra chave this.
 
-A palavra chave this de uma arrow function é associado  
+A palavra chave this de uma arrow function é associado à função "anexa/pai" que a declarou ( referente ao campo lexico/ de onde está situada no código );
 
 
 Quando criamos uma arrow function ela herda o contexto aonde o this é do objeto que a implementa
 
 quando não utilizamos arrow function, o this, se referencia ao objeto pai ( window ) que está invocando esta função callback
 
+exemplo:
+var box5 = {
+    cor: "verde",
+    ordem: 1,
+    exibeAlerta: function(){
 
+        /* 
+            Precisavamos criar um atributo contendo o objeto ( this - abaixo, na variavel self ) 
+            a uma variavel  interna da função dessa forma a função ( exibeAlerta ) saberá, 
+            qual objeto estaria referenciando ao ser executado. 
+            Se não tivesse, ela não iria reconhecer os atributos do objeto utilizados nela, 
+            nesse caso ( this.cor e this.ordem ) do objeto box5. Iria apenas associar a palavra this na função callback que é associada ao objeto "window" e não ao objeto box5
+            
+            Relembrando:
+            somente em uma chamada de um método a palavra chave "this" aponta para o objeto.
+            Mas em uma chamada de uma função regular, ou seja, não atrelada a um objeto especifico
+            , a palavra chave "this" sempre irá apontar para o objeto global do javascript, 
+            nesse nosso caso, o browser, será o objeto window. a função callback do parametro da função "addEventListener" é uma função regular e não um método de um objeto específico.
+
+        */
+        var self = this;
+        document.querySelector(".green").addEventListener("click", function(){
+            alert( self.cor + " " + self.ordem );
+        })
+
+    }
+
+}
+box5.exibeAlerta();
 
 
 
