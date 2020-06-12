@@ -1,0 +1,21 @@
+.box{
+    width: 400px;
+    height: 40px;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#green {
+    background-color: green;
+    color: white
+}
+
+#blue {
+    background-color: blue;
+    color: white;
+}
+
+#red {
+    background-color: red;
+}

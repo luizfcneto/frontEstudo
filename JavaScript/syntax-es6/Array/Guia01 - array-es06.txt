@@ -1,0 +1,117 @@
+Array ES06:
+
+Novos métodos adicionados ao objeto Array:
+
+_____________________________________________________________________________________________________
+    - Array.from:
+        Para transformarmos uma lista de Nós ( lista encadeada - Node list ) em um array no ES05 tinhamos que fazer a seguinte função:
+
+        código:
+        var boxes = document.querySelectorAll( ".box" );
+
+        // Método que convertia a lista de nós para Array:
+        var boxesArr5 = Array.prototype.slice.call( boxes );
+
+        // Método forEach para percorrer um array
+        boxesArr5.forEach( function( elementoCorrente ) {
+            // Inserindo em todos os elementos contidos no array o estilo de cor preta.
+            elementoCorrente.style.backgroundColor = "black";
+        } );
+
+        Método novo no ES06: Array.from
+
+        let boxes = document.querySelectorAll( ".box" );
+
+        // Novo método
+        let boxesArr6 = Array.from( boxes );
+
+        boxesArr6.forEach( ( elementoCorrente ) => {
+            elementoCorrente.style.backgroundColor = "black";
+        } );
+
+
+OBS: nos métodos forEach e map dos Arrays não podemos utilizar as palavras chaves "break" e "continue"
+_____________________________________________________________________________________________________
+    - Nova forma de loop: For of
+    sintaxe: for( let variavel of array/obj )
+    nesse caso variavel pode ser qualquer nome
+    a variavel a cada iteração com o array/obj irá corresponder ao valor contido no array[ vezes iteração ] ou valor atribuido ao atributo do objeto.
+
+    dessa forma podemos utilizar as palavras chave "break" e "continue";
+
+    Código: ES05: loop for padrão
+    var boxes = document.querySelectorAll( ".box" );
+
+    // transformando lista para array:
+    var boxesArr5 = Array.prototype.slice.call( boxes );
+
+    // percorrendo o array utilizando as palavras chave "break", "continue":
+    for( var i = 0; i < boxesArr5.length; i++ ){
+
+        if( boxesArr5[ i ].className === "box" && boxesArr5[ i ].id === "blue" ){
+            continue;
+        }
+
+        // Modificando todas as caixas que não tem a classe "blue" para a cor azul e o conteudo textual.
+        boxesArr5[ i ].textContent = "Conteudo Modificado para Blue";
+        boxesArr5[ i ].style = "blue";
+    }
+
+    Utilizando o for of ES06:
+    let boxes = document.querySelectorAll( ".box" );
+
+    // Convertendo Lista Encadeada ( node list ) para array usando método novo ES06 Array.from
+    let boxArr6 = Array.from( boxes );
+
+    // For of
+    for( let elementoCorrente of boxArr6 ){
+        if( elementoCorrente.className === "box" && elementoCorrente.id === "blue" ){
+            continue;
+            //break;
+        }
+
+
+        elementoCorrente.style.backgroundColor = "blue";
+        elementoCorrente.textContent = "Conteudo Modificado para Blue";
+        elementoCorrente.style.color = "white";
+    }
+_____________________________________________________________________________________________________
+    - Array.findIndex( callback ) e Array.find( callback ):
+    
+    Novos métodos para encontrarmos um elemento no array segundo algum critério utilizado por uma função callback ( callback function ).
+
+    Anteriormente na versão ES05 poderiamos utilizar o Array.map ( callback ) para utilizar algum critério no Array através da função callback, e adicionavamos esse Array resultante em uma outra variavel. Após isso utilizavamos essa variavel resultante o método Array.indexOf() para utilizarmos elementos específicos do array que obedeciam ao critério desejado que foi passado pela função callback na função Array.map( callback ).
+
+    exemplo:
+        Temos um array contendo idades, queremos descobrir quais desses elementos o numero é maior do que 18.
+
+        depois queremos imprimir o indice/posição do elemento 
+
+        depois queremos imprimir os numeros que são maiores que 18;
+
+        código ES05:
+            var idades = [ 10, 5, 20, 14, 17, 25, 50 ]
+
+            var maiorIdade = idades.map( function( elementoCorrente ) {
+                return elementoCorrente >= 18;
+            } );
+
+            // Problema: Só retorna um valor, o primeiro elemento maior que 18
+            console.log( maiorIdade.indexOf( true ) );
+
+            console.log( idades[ indexOf( true ) ] );
+
+        Código ES06 utilizando Array.findIndex( callback ) e Array.find( callback );
+
+            let idades = [ 10, 5, 20, 14, 17, 25, 50 ]
+
+            // Retorna o index do elemento corrente que é maior que 18
+            console.log( idades.findIndex( ( elementoCorrente ) => {
+                return elementoCorrente >= 18;
+            } ) );
+
+            // Problema, também retorna apenas o primeiro elemento maior que 18 e não todos.
+            // Retorna o elemento corrente maior que 18
+            console.log( idades.find( ( elementoCorrente ) => {
+                return elementoCorrente >= 18;
+            } ) );

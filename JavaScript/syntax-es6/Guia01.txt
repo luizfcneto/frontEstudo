@@ -12,7 +12,7 @@ Todos os browsers modernos tem suporte
 
 Nao tem suporte nos browsers antigos ( meio vago, quais que não tem suporte? )
 
-Conseguem usar melhores features in produção com transpiling e polyfiling ( convertendo para ES5 )
+Conseguem usar a maioria Desrtucturing features in produção com transpiling e polyfiling ( convertendo para ES5 )
 
 ES6: Novas Features ( Características ) que iremos utilizar e estudar para os próximos capítulos:
 
