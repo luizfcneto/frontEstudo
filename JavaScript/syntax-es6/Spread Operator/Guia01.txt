@@ -1,0 +1,104 @@
+Spread Operator // Operador de extensão/espalhamento
+
+    Permite que um objeto iterável, como um array ou string, seja expandida em locais onde zero ou mais argumentos ( passados em funções ) ou elementos ( de arrays ) são esperados, ou que um objeto seja expandido onde zero ou mais pares "atributo:valor" ( em objetos ) são esperados.
+
+Na versão ES05:
+    Para ter essa mesma mecânica na versão anterior ( es05 ) utilizavamos o método apply.
+
+    exemplo:
+    Temos uma função que recebe como argumentos e retornamos a soma destes.
+
+    código:
+        function addValores( elemento1, elemento2, elemento3 ){
+            return elemento1 + elemento2 + elemento3;
+        }
+
+        // Se quisessemos utilizar essa função passando como argumentos elementos de um vetor:
+        let valoresArray = [ 10, 15, 30 ];
+
+        // ES05:
+        let resposta = addValores.apply( null, valoresArray );
+        console.log( resposta );
+        //10 + 15 + 30 = 55
+
+        
+Na versão ES06:
+
+    Mesmo exemplo:
+
+    código:
+        function addValores( elemento1, elemento2, elemento3 ){
+            return elemento1 + elemento2 + elemento3;
+        }
+
+        // Array
+        let valoresArray2 = [ 10, 15, 30 ];
+
+        // Operador de extensão/espalhamento ( Spread Operator ): "..."
+        let resposta2 = addValores( ...valoresArray2 ); 
+        console.log( resposta2 );
+        //  10 + 15 + 30 = 55
+
+    Sintaxe:
+        Para chamadas de funções:
+            minhaFuncao( ...ObjetoIteravel ) // iterableObj
+
+            Dicas:
+                - Qualquer argumento numa lista de argumentos pode usar a sintaxe de espalhamento e pode ser usado mais de uma vez.
+                Exemplo:
+                    function minhaFuncao( var1, var2, var3, var4, var5, var6 ) {
+                        return var1 + var2 + var3 + var4 + var5 + var6;
+                    }
+
+                    let args = [ 0, 1 ];
+                    minhaFuncao( -1, ...args, 2, ...[ 4, 5 ] );
+
+
+        Para arrays literais ou strings:
+            [ ...ObjetoIteravel, "4", "cinco", 6 ];
+
+            Dicas:
+                - Concatenando arrays literais mais fácil com spread operator
+                
+                Exemplo:
+                    let familia1 = [ "Luiz", "Renata" ];
+                    let familia2 = [ "Monah", "Gabriel" ];
+
+                    let geralJunto = [ ...familia1, ...familia2, "Thabata" ];
+                    console.log( geralJunto );
+
+                - Copiando arrays: *INADEQUADO PARA ARRAYS MULTIDIMENSIONAIS*
+                
+                Exemplo:
+                    let copiaGeralJunto = [ ...geralJunto ];
+                    console.log( copiaGeralJunto );
+
+        Para Objetos Literais ( Novo ECMAScript 2018 ):
+            let objClone = { ...obj }
+
+            Dica:
+                Quando um construtor é chamado com new, não é possível usar diretamente um array e apply ( o apply executa o call e não o construct ). No entanto podemos utilizar com o new graças ao operador de espalhamento.
+                
+                Exemplo:
+                    let camposData = [ 1996, 0, 30 ] // 30 Jan 1996
+                    let nascimento = new Date( ...camposData );
+                    console.log( nascimento );
+        
+
+
+    OBS: AO utilizar o operador de espalhamento / Spread Operator ficar ciente que existe um limite de variaveis que podem ser passadas como argumento em funções. O limite do motor da engine do javascript é de 65 536 argumentos. Isso se estende ao uso do método apply.
+
+
+
+- Links de referência:
+    Spread Operator:
+        - https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+
+    Objetos Literais:
+        - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer
+
+    Função/método Apply:
+        https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply
+
+    Limite de argumentos:
+        https://bugs.webkit.org/show_bug.cgi?id=80797
