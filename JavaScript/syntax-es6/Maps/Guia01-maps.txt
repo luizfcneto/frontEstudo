@@ -1,0 +1,128 @@
+Maps
+
+    - Uma nova estrutura de dados de chave:valor em javascript ( ES06 ), a novidade é que a chave pode ser qualquer outro tipo de variável primitiva além de string.
+
+    até ES05 tinhamos de utilizar objetos para serem mapeados de acordo com o seguinte critério: "string":valor - HashMap, valores das chaves são obrigatóriamente strings.
+
+
+    O objeto Map é um mapa simples de chave/valor. Qualquer valor ( objeto e valores primitivos ) pode ser usado como uma chave ou valor.
+
+    Sintaxe:
+        new Map( arrayIterable )  
+
+    iterable:
+        É um Array ou outro objeto iterável, cujos elementos são pares de chave-valor. Cada par de chave-valor é adicionado ao novo Map. 
+        OBS: null é tratado como undefined.
+
+    Semelhanças entre Objects e Maps:
+        - Ambos deixam adicionar chaves para valores, recuperar valores ( get ), apagar chaves, detectar quando algo foi adicionado em uma chave;
+
+        OBS: devido a isso Objects historicamente foram utilizados como Maps.
+
+    Diferenças entre Objects e Maps:
+        - Object tem um prototype, logo existem chaves "padrão" no mapa. Pode ser evitado utilizando um Map = Object.create( null ), mas é raramente feito;
+
+        - As chaves de um Object são Strings e Symbols, porém podem ser qualquer valor primitivo em um Map.
+
+        - Podemos obter o tamanho de um Map facilmente, enquanto em um Object é necessário ter esse controle manualmente.
+
+    Onde utilizar Maps?
+        - Maps: são úteis somente para coleções.
+
+    Onde utilizar Objects?
+        - Objects: devem ser utilizados como registros, com campos e métodos.
+
+    Para conferir qual dos dois deve usar responda as seguintes perguntas:
+        - As keys são desconhecidas até o tempo de execução, você precisa procurá-las dinamicamente?
+
+        - Todos os valores sempre serão do mesmo tipo, e podem ser usados de forma intercambiável?
+
+        - Você precisa de keys que não são strings?
+
+        - Os pares chave:valor são adicionados ou removidos frequentemente?
+
+        - Você tem uma quantidade de pares chave:valor arbitrária ( de troca fácil )?
+    
+        - A coleção é iterada?
+
+        Caso responda sim em qualquer uma das questões acima é sinal de que deve utilizar Map.
+
+        Caso ao invés disso você tem um numero fixo de chaves, trabalhar com eles individualmente, e que faça diferenciação entre o uso deles, você deve utilizar Object
+
+        - Propriedades/ atributos de Map:
+            - meuMap.size: retorna o tamanho de pares presentes no Map
+
+            - get Map;
+
+            - Map.prototype
+
+        - Métodos de Map:
+            
+            - meuMap.set( chave, valor ): adiciona chave, valor
+                sintaxe:
+                    meuMap.set( chaveString, valorString );
+                    meuMap.set( chaveObj, valorAssociadoChaveObj );
+                    meuMap.set( chaveFuncao, valorAssociadoChaveFunc );
+
+            - meuMap.get( chave ): retorna o valor associado a chave passada como parametro.
+
+            - meuMap.keys(): método que retorna chaves ( iterando for...of );
+
+            - meuMap.delete( "chave" ): método que remove o par pela chave.
+
+            - meuMap.has( "chave" ): método que verifica se "chave" está no mapa.
+
+            - meuMap.values(): método que retorna valores ( iternando for...of );
+
+            - meuMap.entries(): método que retorna o par ( interando for...of );
+
+            - meuMap.clear(): método que elimina todos os pares chave:valor do mapa.
+
+        - Iterando Maps ( for of ):
+            // chave:valor ( forma 1 ). ( utilizando destructuring: [ chave, valor ] );
+            for( let [ chave, valor ] of meuMap ){
+                ...
+            }
+
+            // chave
+            for( let chave of meuMap.keys() ){
+                ...
+            }
+        
+            // valor
+            for( let valor of meuMap.values() ){
+                ...
+            }
+
+            // chave:valor ( forma 2 ). ( utilizando destructuring: [ chave, valor ] )
+            for( let [ chave, valor ] of meuMap.entries() ){
+                ...
+            }
+
+        - Iterando Maps ( forEach() ):
+            meuMap.forEach( ( valor, chave ) => {
+                ...
+            }, meuMap );
+
+        - Relacionando Map com Arrays:
+        // formato do Map em array:
+        let arrayDeMap = [ ["chave1", "valor1" ], [ "chave2", "valor2" ] ];
+
+        // Construindo Map através de seu construtor:
+        let meuMap = new Map( arrayDeMap );
+
+        //Convertendo Map para um Array de duas dimensões de chave-valor
+        let arrayDeMap2 = Array.from( meuMap );
+
+        // Convertendo Map para um Array utilizando o Spread Operator
+        let arrayDeMap3 = [ ...meuMap ];
+
+        // Covertendo somente os valores de Map para array utilizando o Spread Operator:
+        let arrayDeValores = [ ...meuMap.values() ];
+
+        // Conertendo somente as chaves de Map para array utilizando o Spread Operator:
+        let arrayDeChaves = [ ...meuMap.keys() ];
+
+
+Referencia:
+    - https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Map

@@ -1,0 +1,59 @@
+Default Parameters ou Parametros padrões.
+
+    Parametros default permite que parametros sejam inicializados na própria assinatura da função com valores padronizados caso nenhum valor seja passado a ele, ou nenhuma variavel seja passada.
+
+    por padrão no javascript, os parametros de funções por padrão são undefined. Entretanto, pode ser útil setar um valor diferente de undefined para garantir o comportamento da função, principalmente em funções de calculos matemáticos para não retornar NaN.
+
+    sintaxe:
+        function minhaFuncao( var1, var2 = valorPredefinido ){
+          //...  
+        }
+
+        // var2 vai ter valor atualizado para 5
+        minhaFuncao( 100, 5 );
+
+        // var2 vai manter o valorPredefinido na assinatura da função
+        minhaFuncao( 50 );
+
+    Como era feito no ES05:
+        Exemplo:
+            Criando um objeto simples de uma pessoa recebendo como parametros primeiroNome, ultimoNome, anoNascimento e nacionalidade
+
+            Caso algum parametro nao seja informado, será adicionado ao objeto o valor undefined respectivamente.
+            Portanto, precisamos fazer uma verificação e atribuição manual das variavels antes de atribuirmos ao objeto.
+
+            código:
+                function pessoa( primeiroNome, anoNascimento, ultimoNome, nacionalidade ){
+                    
+                    // Atribuindo valores padrões aos parametros para que nenhum campo seja undefined, nesse exemplo ultimoNome e nacionalidade
+                    if( ultimoNome === undefined ){
+                        ultimoNome = "Neto"
+                    }
+
+                    if( nacionalidade === undefined ){
+                        nacionalidade = "brasileiro"
+                    }
+
+                    this.primeiroNome = primeiroNome;
+                    this.ultimoNome = ultimoNome;
+                    this.anoNascimento = anoNascimento;
+                    this.nacionalidade = nacionalidade;
+                }
+
+
+                var luiz = new pessoa( "Luiz", 1996 );
+    
+    Como é feito no ES06:
+        Mesmo exemplo:
+            function pessoa( primeiroNome, anoNascimento, ultimoNome = "Neto", nacionalidade = "brasileiro"){
+                this.primeiroNome = primeiroNome;
+                this.anoNascimento = anoNascimento;
+                this.ultimoNome = ultimoNome;
+                this.nacionalidade = nacionalidade;
+            }
+
+            let luiz = new pessoa( "Luiz", 1996 );
+
+
+Referencias:
+    - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters

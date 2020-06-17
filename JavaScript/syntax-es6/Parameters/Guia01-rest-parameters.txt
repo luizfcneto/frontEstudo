@@ -1,0 +1,71 @@
+Rest Parameters ou Parametros Rest
+
+    Nos permite representar um número indefinido de argumentos ( argumentos = parametros de função ) como array;
+
+    É o oposto do spread operator, enquanto ele nos permite manipular/transformar um array em uma determinada quantidade de elementos. O rest parameters nos permite manipular/transformar uma quantidade de elementos em um array.
+
+    sintaxe:
+        function ( var1, var2, ...args ){
+            //...
+        }
+
+    a função acima recebe como parametro var1, var2 e um array de elementos de tamanho desconhecido ( lembrando tamanho limite de parametros que podem ser passados como argumentos de uma função em js )
+
+    ES05:
+        Podiamos passar infinitos argumentos sem que estejam declarados na função, reconhecendo-os através da palavra chave: "arguments"
+
+        OBS: arguments representa um objeto Arguments e não um array de elementos. Temos que converte-lo para Array
+
+        exemplo:
+            function maiorIdade5(){
+
+                // arguments = Objeto e não Array 
+                console.log( arguments );
+
+                //Transformando Objeto Arguments em Array:
+                var args = Array.prototype.slice.call( arguments );
+                console.log( args );
+
+                args.forEach( function( elementoAtual ) {
+                    console.log( elementoAtual, 2020 - elementoAtual,  ( 2020 - elementoAtual ) >= 18 );
+                } )
+            }
+
+            maiorIdade5( 1950, 1996, 2005, 2002 );
+
+            Dando mais complexidade para o código de maiorIdade, se tivesse um parametro definido como argumento, que informa a idade que temos uma pessoa maior idade ( exemplo, paises que tem maior idade com 18 outros com 21 ).
+
+        exemplo:
+            // Argumento conhecido + argumentos desconhecidos.
+            function maiorIdade5Criterio( criterio ){
+                console.log( "MaiorIdade5Criterio", arguments );
+            }
+
+            // Passando o criterio na primeira posição: 18 anos
+            maiorIdade5Criterio( 18, 1950, 1996, 2005, 2002 );
+
+    ES06:
+        mesmo exemplo, sem critério:
+            function maiorIdade6( ...args ){
+                console.log( args );
+
+                args.forEach( ( elementoAtual ) => {
+                    console.log( elementoAtual, 2020 - elementoAtual, ( 2020 - elementoAtual ) >= 18 );
+                } )
+            }
+
+        mesmo exemplo, com critério ( parametros conhecidos + parametros rest ):
+            function maiorIdade6Criterio( criterio, ...args ){
+                console.log( "MaiorIdade6Criterio", criterio, args );
+
+                args.forEach( ( elementoAtual ) => {
+                    console.log( elementoAtual, 2020 - elementoAtual, ( 2020 - elementoAtual ) >= criterio, criterio );
+                } )
+            }
+
+maiorIdade6Criterio( 18, 1950, 1996, 2005, 2002 );
+
+
+
+Referencias:
+    https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/rest_parameters
