@@ -1,0 +1,107 @@
+Classes
+Na versão ES05 js não tinha palavra chave class, para simular uma class utilizavamos uma funçao construtora, pois uma função também é conhecido como um objeto em js
+
+ES05: Função Construtora:
+var Pessoa5 = function( nome, anoNascimento, profissao ){
+    this.nome = nome;
+    this.anoNascimento = anoNascimento;
+    this.profissao = profissao;
+}
+
+Pessoa5.prototype.calculaIdade = function( ){
+    var idade = new Date().getFullYear() - this.anoNascimento;
+    console.log( idade );
+}
+
+var pessoaQualquer = new Pessoa5( "Luiz", 1996, "desenvolvedor" );
+
+// ES06: Class
+class Pessoa6 {
+    // Função construtora, recebe parametros necessários para construir objeto da classe Pessoa6
+    constructor( nome, anoNascimento, profissao ){
+        this.nome = nome;
+        this.anoNascimento = anoNascimento;
+        this.profissao = profissao;
+    }
+
+    // Método
+    calculaIdade() {
+        let idade = new Date().getFullYear() - this.anoNascimento;
+        console.log( idade );
+    }
+
+    // Método estático:
+    static olaMundo(){
+        console.log( "Olá, Mundo!" );
+    }
+}
+
+// OBS: Métodos estáticos são métodos que podem ser utilizados sem que tenhamos um objeto instanciado. Utilizamos o próprio nome da classe. 
+Ex: 
+Pessoa6.olaMundo();
+
+let Luiz = new Pessoa6( "Luiz", 1996, "desenvolvedor" );
+Luiz.olaMundo();        // Caso utilizassemos dessa forma daria erro.
+
+
+Explicando:
+    Construtor:
+        É um tipo especial de método para criar e iniciar um objeto criado pela classse. Só pode existir um método especial com o nome "constructor" dentro da classe.
+        Caso tenha mais de um será lançado um erro: "SyntaxeError".
+
+        Um construtor pode usar a palavra chave "super" para chamar o construtor de uma classe pai.
+
+    Métodos Protótipos: getters e setters
+    Exemplo:
+        class Retangulo {
+            constructor( altura, largura ){
+                this.altura = altura;
+                this.largnura = largura;
+            }
+
+            // método get area()
+            get area(){
+                return this.area()
+            }
+
+            // método set area()
+            set area(){
+                this.area = this.calculaArea();
+            }
+
+            calculaArea(){
+                return this.altura * this.largura;
+            }
+        }
+
+        const quadrado = new Retangulo( 4, 4 );
+        console.log( quadrado.area );
+
+OBS: Uma diferença importante entre declarações de funções das declarações de classes, é que as declarações de funções são "hoisted" e declarações de classes não são.
+Primeiro devemos declarar a classe para só então acessá-la, caso contrário o código irá lançar uma execeção: ReferenceError.
+
+Exemplo:
+const variavelQualquer = new Retangulo();   // erro ReferenceError.
+
+class Retangulo{
+    ...
+}
+
+
+
+Referencias:
+    Classes:
+        https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Classes
+
+    Métodos:
+        https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions
+
+    Setters:
+        https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set
+
+    Getters:
+        https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get
+
+    https://www.w3schools.com/jS/js_object_accessors.asp
+
+    https://google.github.io/styleguide/jsguide.html

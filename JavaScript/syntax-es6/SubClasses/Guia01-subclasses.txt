@@ -1,0 +1,80 @@
+SubClasses: Heranças em classes.
+
+Subclasses resumidamente são classes que herdam propriedades e métodos de uma classe pai. para reaproveitar o código que são aplicáveis na classe filha.
+
+ES05:
+Nessa versão do javascript nós definiamos a função construtora ( classe - objeto ) as propriedades.
+Exemplo:
+    var pessoa = function( nome, anoNascimento ){
+        this.nome = nome;
+        this.anoNascimento = anoNascimento;
+    }
+
+pessoa é agora um objeto ( classe 1).
+
+Adicionavamos o método calculaIdade() nesse objeto através da propriedade prototype pela seguinte forma:
+    pessoa.prototype.calculaIdade = function(){
+        var anoAtual = new Date().getFullYear();
+        return anoAtual - this.anoNascimento;
+    }
+
+Para criamos uma subclasse que herda as propriedades e métodos de pessoa ( "classe" acima ), primeiro devemos criar a função construtora dessa classe, utilizando como parametros obrigatórios de pessoa e os específicos da subclasse, nossa subclasse em questão será atleta.
+
+    var atleta = function( nome, anoNascimento, profissao, jogosOlimpicos, medalhas ){
+        // Invocando "super" da função construtora pai, nesse caso pessoa
+        pessoa.call( this, nome, anoNascimento );
+        this.profissao = profissao;
+        this.jogosOlimpicos = jogosOlimpicos;
+        this.medalhas = medalhas;
+    }
+    
+    
+
+// A partir deste momento a "classe" atleta possui as mesmas propriedades de pessoa e atleta. Agora falta adicionar os métodos que estão presentes em pessoa. Fazemos da seguinte forma:
+
+    atleta.prototype = Object.create( pessoa.prototype );
+
+Classe pai: pessoa;
+Classe filha/subclasse de pessoa: atleta.
+
+Caso tenhamos métodos específicos para a classe atleta, iriamos fazer da mesma forma como adicionamos na classe pessoa, na propriedade prototype. Todas as subclasses que herdarem de atleta irão também herdar seus métodos e propriedades.
+
+ES06:
+Utilizando o mesmo exemplo acima para a versão ES06:
+classe pessoa:
+class Pessoa {
+    constructor( nome, anoNascimento ){
+        this.nome = nome;
+        this.anoNascimento = anoNascimento;
+    }
+
+    calculaIdade(){
+        let anoAtual = new Date().getFullYear();
+        return anoAtual - anoNascimento;
+    }
+}
+
+subclasse atleta que herda propriedades e métodos de pessoa:
+class Atleta extends pessoa {
+    constructor( nome, anoNascimento, profissao, jogosOlimpicos, medalhas ){
+        
+        // herdando propriedades de pessoa
+        super( Pessoa );
+
+        this.profissao = profissao;
+        this.jogosOlimpicos = jogosOlimpicos;
+        this.medalhas = medalhas;
+    }
+
+    medalhaGanha(){
+        this.medals++;
+        console.log( this.medalhas );
+    }
+    
+}
+
+const Luiz = new Atleta( "Luiz", 1996, "desenvolvedor", 0, 0 );
+console.log( Luiz );
+
+Referencia:
+    https://developer.mozilla.org/pt-BR/docs/Aprender/JavaScript/Objetos/Heran%C3%A7a
