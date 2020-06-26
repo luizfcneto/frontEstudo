@@ -48,7 +48,7 @@ class Atleta06 extends Pessoa06 {
     constructor( nome, anoNascimento, profissao, jogosOlimpicos, medalhas ){
         
         // herdando propriedades de pessoa
-        super( Pessoa06 );
+        super( nome, anoNascimento );
 
         this.profissao = profissao;
         this.jogosOlimpicos = jogosOlimpicos;

@@ -76,3 +76,39 @@ map3.forEach( ( valor, chave ) => {
     // Lembrando que como chave pode ter tipos diferentes podemos fazer ações mais coordenadas relacionadas a cada tipo difrente de chave.
     console.log( `${ chave } : ${ valor }`)
 } , map3 )
+
+// Testando Maps de Objetos:
+let ObjectMaps = new Map();
+
+let object1 = {
+    nome: "Nome1",
+    anoConstrucao: 1996,
+    numeroDeArvores: 50000,
+    area: 7500000
+}
+
+let object2 = {
+    nome: "Nome2",
+    anoConstrucao: 2000,
+    numeroDeArvores: 4500,
+    area: 10000
+}
+
+let propriedadesObjeto1 = Object.getOwnPropertyNames( object1 );
+let [ propriedade1 , propriedade2, propriedade3, propriedade4 ] = propriedadesObjeto1;
+
+
+ObjectMaps.set( propriedade1, object1.nome );
+ObjectMaps.set( propriedade2 , object1.anoConstrucao );
+ObjectMaps.set( propriedade3 , object1.numeroDeArvores );
+ObjectMaps.set( propriedade4, object1.area );
+
+ObjectMaps.set( object2, object2.nome );
+ObjectMaps.set( object2, object2.anoConstrucao );
+ObjectMaps.set( object2, object2.numeroDeArvores );
+// ObjectMaps.set( object2, object2.area );
+
+console.log( ObjectMaps );
+
+let arrayMap = Array.from( ObjectMaps );
+console.log( arrayMap );

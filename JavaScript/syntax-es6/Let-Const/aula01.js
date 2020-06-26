@@ -35,7 +35,7 @@ function funcaoTesteVar(){
     var i = 25;
     console.log( i );
 
-    for( var i = 0; i < 10; i++ ){
+    for(  i = 0; i < 10; i++ ){
         console.log( i );
     }
 
@@ -67,7 +67,7 @@ function funcaoTesteLet(){
     // escopo desse bloco de instrução esse i = 20
     let i = 20;
 
-    for( let i = 0; i < 5; i++ ){
+    for( i = 0; i < 5; i++ ){
         // i = 0, 1, 2, 3, 4; escopo desse bloco de instrução esse i varia de 0 até 4
         console.log( i );
     }

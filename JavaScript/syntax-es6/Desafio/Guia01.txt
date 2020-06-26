@@ -1,0 +1,156 @@
+Suponha que voce trabalha na administração de uma cidade pequena, e você está no comando de dois elementos na cidade:
+1. Parques
+2. Ruas
+
+É uma cidade muito pequena, então atualmente só temos 3 parques e 4 ruas. Todos os parques e ruas tem nome e ano de construção.
+
+No encontro do final do ano, o nosso chefe quer um relatório final com as seguintes informações:
+
+1. Densidade de arvores de cada parque da cidade. ( numero de arvores / area do parque );
+
+2. Idade média de todos os parques da cidade ( soma de todas as idades dos parques / quantidade de parques existentes )
+
+3. O nome do parque que tem mais de 1000 arvores
+
+4. Comprimento total de distancia de ruas da cidade e a média de comprimento de rua. 
+
+5. Classificação de tamanho da rua:
+muito pequena;
+pequena;
+normal;
+grande;
+gigante
+Se o tamanho é desconhecido o padrão é normal.
+
+Todos os dados devem ser printados no console.
+
+Dica: Utilizar features do ES06:
+Classes;
+SubClasses;
+template Strings;
+default parameters;
+rest parameters;
+maps;
+arrow functions;
+destructuring;
+etc.
+
+Minha Solução:
+________________________
+Classe Construção:      
+- nome;                
+- anoConstrucao;        
+                        
+- calculaIdade();      
+                    
+________________________
+
+_____________________________
+Subclasse: Parque:
+- nome;
+- anoConstrucao;
+- numeroDeArvores;
+- area;
+- densidadeArvores;
+
+- calculaIdade()
+- calculaDensidadeArvores();
+_____________________________
+
+_____________________________
+Subclasse: Rua:
+- nome;
+- anoConstrucao;
+- comprimento;
+- classificacao;
+
+- calculaIdade();
+
+_____________________________
+
+Mapa de Rua;
+Mapa de Parque;
+
+Relatório - Anual:
+utiliza funções: 
+    - idadeMediaParques()
+    - densidadeDeArvoresDeCadaParque()
+    - verificaQtdArvores( qtdCriterio )
+    - comprimentoTotalRuas()
+    - mediaComprimentoRuas()
+
+
+Duas formas de gerar relatório:
+1. Mais simples, gerado por uma função que retorna as informações requeridas para o relatório.
+
+2. Mais organizado, relatório seria uma classe que conteria os mapas de ruas e arvores, e utilizaria os métodos das funções desejadas acima e por fim uma função específica que retornaria no console o relatório com informações completas.
+
+entrada:
+
+
+saida Listas:
+___________________________ruas____________________________
+rua: rua0.nome
+Construido em: rua0.anoConstrucao
+Idade: rua0.calculaIdade()
+Comprimento: rua0.comprimento
+Classificacao: rua0.classificacao
+
+Comprimento Total:
+Media Comprimento Total:
+
+____________________________Parques_________________________
+parque: parque0.anoConstrucao0
+Construido em: parque0.anoConstrucao0
+Idade: parque0.calculaIdade();
+Densidade: parque0.calculaDensidadeArvores()
+
+
+
+saida relatório:
+____________________________Parques_________________________
+densidade de arvores cada parque:
+parque0: parque0.densidadeArvores
+parque1: parque1.densidadeArvores
+parque2: parque2.densidadeArvores
+parque3: parque3.densidadeArvores
+
+idade média parques: idadeMediaParques();
+
+parques com mais de 1000 arvores:
+parque: verificaQtdArvores()
+
+___________________________ruas____________________________
+Comprimento total de ruas:
+
+Comprimento médio das ruas:
+
+Classificação das ruas:
+nome:       Classificação:
+nome:       Classificação:
+nome:       Classificação:
+nome:       Classificação:
+
+// Classe Relatorio:
+- templateParques1: `____________________________Parques_________________________ \n
+densidade de arvores cada parque: `
+- templateParques2: `\n${ obj.propriedade } : ${ obj.densidadeArvores }`
+- templateMediaParques: `\nidade média parques: ${ idadeMediaParques() } ` 
+- templateParquesMaisArvores: `\nparques com mais de 1000 arvores: \n ${ obj.verificaQtdArvores }
+
+
+- templateRuas1: `___________________________ruas____________________________`
+- templateRuasComprimentoTotal: `Comprimento total de ruas: ${ comprimentoTotal()  }
+- templateRuasComprimentoMedio: `Comprimento médio das ruas: ${ comprimentoMedio() }
+- templateClassificacaoRuas: `Classificação das ruas: \n`
+- templateClassificacao: `nome: ${ obj.nome } \t\t Classificacao: ${ obj.classificacao }`
+
+- mapRuas
+- mapParques
+
+- idadeMediaParques()
+- densidadeDeArvores()
+- verificaQtdArvores()
+- comprimentoTotal()
+- comprimentoMedio()
+- saidaRelatorio()

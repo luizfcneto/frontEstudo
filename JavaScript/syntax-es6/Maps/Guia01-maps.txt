@@ -83,6 +83,9 @@ Maps
             for( let [ chave, valor ] of meuMap ){
                 ...
             }
+            
+            arrayMap = [ [ chave0, valor0 ], [ chave1, valor1] , [ chave3, valor3 ] ];
+            meuMap = new Map( arrayMap );
 
             // chave
             for( let chave of meuMap.keys() ){

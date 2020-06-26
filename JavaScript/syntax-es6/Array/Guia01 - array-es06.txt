@@ -4,7 +4,7 @@ Novos métodos adicionados ao objeto Array:
 
 _____________________________________________________________________________________________________
     - Array.from:
-        Para transformarmos uma lista de Nós ( lista encadeada - Node list ) em um array no ES05 tinhamos que fazer a seguinte função:
+        Para transformarmos uma lista de Nós ( lista encadeada - Node list ) & Map em um array no ES05 tinhamos que fazer a seguinte função:
 
         código:
         var boxes = document.querySelectorAll( ".box" );
