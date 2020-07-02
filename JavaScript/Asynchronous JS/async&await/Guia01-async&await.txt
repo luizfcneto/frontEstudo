@@ -1,0 +1,106 @@
+Async & Await 
+Uma nova forma ( versão ES8 / E2017 ) de consumir as promises de forma mais simples
+
+async & await são específicos para consumir uma Promise e não para criá-las.
+
+Só podemos utilizar await dentro de funções assíncronas, funções declaradas async veremos nos exemplos abaixo
+
+Utilizamos o "await" para resgatar/consumir uma Promise, enquanto isso ocorre o código que está sendo executado assíncronamente para até que o resultado da Promise seja retornado. Código sincrono não para, apenas o assíncrono.
+
+A declaração "async function" define uma função assincrona, que retorna um objeto AsyncFunction.
+
+Tamém podemos definir funções assíncronas usando uma expressão async function
+
+Sintaxe:
+async function nomeFuncao( parametros ... ){
+    instruções...
+}
+
+nomeFuncao = nome da função
+parametros ... = o nome de um parametro a ser passado para a função
+instruções = instruções que compõem o corpo da função.
+
+Descrição:
+    Quando uma função assíncrona é chamada, ela retorna uma Promise. 
+    
+    Quando a função assíncrona retorna um valor, a Promise será resolvida com o valor retornado.
+
+    Quando a função assíncrona lança uma exceção ou algum valor, a Promise será rejeitada com o valor lançado.
+
+    Uma função assíncrona pode conter uma expressão "await", que pausa a execução da função assíncrona e espera pela resolução da Promise passada, e depois retoma a execução da função assíncrona e retorna o valor resolvido.
+
+Proposta de Async/Await:
+    É de simplificar o uso de forma síncronas das Promises e executar alguns procedimentos em um grupo de Promises. Assim como Promises são similares a callbacks estruturados, funções async/await são similares à junção de generators com Promises.
+
+Exemplo Simples:
+    // criando a promise.
+    function resolverDepoisDe2Segundos( numeroParam ) {
+        return new Promise( resolve => {
+            
+            setTimeOut( () => {
+                resolve( numeroParam );
+            }, 2000 )
+        
+        } )
+    }
+
+    // utilizando funções asincronas que executam a promise
+    async function adicionar1( numero ) {
+        let a = resolverDepoisDe2Segundos( 20 );
+        let b = resolverDepoisDe2Segundos( 30 );
+        return numero + await a + await b;
+    }
+
+    // funções assincronas consumindo a promise
+    adicionar1( 10 ).then( resultado => {
+        console.log( resultado )
+    } )
+
+    // utilizando função assíncrona que executa a Promise
+    async function adicionar2( numeroParam ) {
+        let a = await resolverDepoisDe2Segundos( 20 );
+        let b = await resolverDepoisDe2Segundos( 30 );
+        return numeroParam + a + b;
+    }
+
+    // função assíncrona que consome a Promise
+    adicionar2( 10 ).then( resultado => {
+        console.log( resultado );
+    } )
+
+Exemplo de uma API que retorna uma Promise que resulta em uma cadeia de Promises e separa a função em varias partes:
+    function pegarDadosProcessados( url ) {
+        
+        return baixarDados( url ) // retorna uma Promise
+        
+        .catch( erro => {
+            return baixarDadosReservas( url ) // retorna uma promise caso de alguma falha
+        } )
+
+        .then( resultado => {
+            return processarDadosNoWorker( resultado )  // retorna uma promise caso bem sucedido.
+        } )
+    }
+
+Reescrevendo o código acima com uma única função async da seguinte forma:
+    async function pegarDadosProcessados( url ) {
+        let resultado;
+
+        try{
+            resultado = await baixarDados( url );
+
+        } catch( erro ){
+            resultado = await baixarDadosReservas( url );
+        }
+
+        return processarDadosNoWorker( resultado );
+    }
+
+OBS: No exemplo acima não tem a instrução "await" na instrução do return, porque o valor retornado de uma função "async" é implicitamente passado por um Promise.resolve ( ou seja, estado de que a requisição já foi concluida ( seja rejeitada ou concluida com sucesso ) ).
+
+
+Referencias:
+    https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/funcoes_assincronas
+
+    https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/async_function
+

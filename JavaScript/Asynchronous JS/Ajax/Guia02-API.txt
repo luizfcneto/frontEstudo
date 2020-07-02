@@ -1,0 +1,34 @@
+API ( application programming interface // interface de programa de aplicativos )
+    É uma interface computacional que define interações entre multiplos softwares intermediarios.
+    
+    Ele define os tipos de chamadas e requisições que podem ser feitas, como podem ser feitas, os formatos de dados que podem ser usados, convenções a serem seguidas e etc.
+
+    Ele também fornece mecanismos de extensão para que usuários possam replicar e utilizar funcionalidades em varias formas e graus diferentes.
+
+    Ela pode ser completamente customizada, especifica para um componente ou pode ser planejada baseada nos padrões de garantia de interoperabilidade. 
+
+WebAPI:
+    Quando usada no contexto de desenvolvimento web, uma API é tipicamente definida como um conjunto de especificações, como mensagens de requisição HTTP, e uma estrutura de mensagens de respostas, usualmente em formato XML ou JSON.  
+
+Para nós é um software que permite que outros softwares se comuniquem entre eles.
+
+API não é servidor, é uma ponte de comunicação com o servidor. Ele recebe requisições e devolve respostas. ( ele recebe requisição do client, checa no servidor os dados e envia a resposta para o Client ).
+
+Existem duas categorias de APIs:
+    1. As que você desenvolveu e implementou;
+        exemplo:
+            Você desenvolveu uma aplicação que demanda e possui diversos dados, você pode projetar uma API desses dados para serem consumidos pelo frontend da sua aplicação, essa comunicação é projetada no backend. 
+
+    2. As de que terceiros implementaram e desenvolveram e você apenas as consome.
+        ex:
+            Google Maps;
+            embutir videos do Youtube;
+            dados de clima;
+            dados de filmes;
+            Enviar email ou sms;
+            etc... 
+
+
+
+Referências:
+    https://en.wikipedia.org/wiki/Application_programming_interface#Web_APIs

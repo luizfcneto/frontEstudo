@@ -1,0 +1,167 @@
+Fetch API:
+    Proporciona uma interface para buscar recursos ( através da rede internet ).
+    Ele é bem similar com XMLHttpRequest, mas essa nova API fornece um conjunto com características mais flexiveis e poderosas.
+
+Conceitos:
+    Fetch fornece uma definição genérica para objetos "request" ( requisição ) e "response" ( resposta ) ( e outras coisas relacionadas com requisições na rede ). Permitindo sua utilização sempre que necessário no futuro, mesmo que seja para um serviço de um worker, Cache API, e outras coisas similares que manipulam e modificam as requests e responses, ou qualquer outro tipo de caso de uso que você precise gerar suas próprias respostas de forma programada.
+
+    Ele também fornece a definição de conceitos relacionados como CORS e a semântica cabeçalho de origem do HTTP, substituindo suas definições separadas em outros lugares 
+
+Uso:
+    Para fazer uma requisição e busca de um recurso, usar o método WindowOrWorkerGlobalScope.fetch(). Ele é implementado em múltiplas interfaces, especificamente Window e WorkerGlobalScope. Isso permite autorização em muitos contextos em que voce deseja fazer buscas.
+
+    o método fetch() precisa de um parametro mandatório, o caminho para o recurso que você deseja buscar. Ele retornará uma Promise que quando concluida ( resolve ) é atribuida ao Objeto Response ( resposta ) para aquela requisição, mesmo que bem sucedida ou não. Você tem a opção de passar em opções padrões "init" ( iniciais ) de objetos como segundo parametro  
+
+    Obs: Request é um objeto que implementa a requisição desejada para uma API, no nosso caso Fetch.
+    Response é o objeto que implementa a resposta da requisição que foi feita.
+
+    Assim que o objeto Response retorna, existem muitos métodos aptos para definir como o conteudo de body ( conteudo de body é essencialmente a resposta que nós queremos em formato de objeto, é o corpo da resposta da mensagem ) é definido e como ele pode ser manipulado.
+
+    Você consegue criar uma request e uma response diretamente usando construtores Request() e Response(), mas é incomum fazer isso diretamente. Ao invés disso, eles são comummente criados como resultados de ação de outra API ( ex: FetchEvent.respondWith() de serviços de workers ).
+
+Diferenças do jQuery:
+    A especificação de fetch difere de jQuery.ajax() em três formas:
+        1. A promise retornada de fetch() não rejeitará o status de erro do HTTP mesmo se o status da resposta do HTTP for 404 ou 500. Ao invés disso, será resolvido normalmente ( com status ok setado para false ), e somente será rejeitado caso a rede falhe ou se alguma coisa interferir na requisição antes de ser concluida.
+
+        2. fetch() não aceita cookies de cross-site. Você não consegue estabelecer sessão com cross site usando fetch(). Cabeçalhos Set-Cookie de outros sites são completamente ignorados.
+
+        3. fetch() não envia cookies, ao menos que você configure "credentials" na opção "init".
+
+
+
+CORS:
+    Existe uma politica de proteção para APIs, chamada same origin, que não permitem que nós façamos requisições AJAX para um dominio diferente do nosso. Como o nosso exemplo não temos dominio criado, é apenas um arquivo javascript, enquanto que o dominio da nossa API de exemplo é o metaweather. Por isso tivemos um erro ao tentar fazer uma requisição a ela.
+
+    Para permitir que desenvolvedores façam requisições "requests" para diferentes dominios foi desenvolvido o Cross Origin Resource Sharing ( CORS ), que resumidamente os desenvolvedores da API que estamos consumindo tiveram que implementa-lo no seu servidor para que nós tenhamos acesso aos seus recursos.
+    
+    Infelizmente o nosso exemplo ( metaweather api ) não tem o CORS implementado, portando nós utilizaremos um Proxy ( intermediário ) "corsproxy.github.io"
+    Ele faz com que desenvolvedores possam ter acesso a recursos de APIs de servidores sem que eles tenham uma aplicação hospedada em um servidor.
+
+    OBS: crossorigin.me teve dominio vencido, utilizaremos o https://cors-anywhere.herokuapp.com/
+    "https://cors-anywhere.herokuapp.com/ + url
+    fetch( "https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/455825/" );
+
+Explicando exemplo: ajax-fetch-promise.js
+O retorno do método fetch é uma Promise.
+Manipulamos uma Promise utilizando os métodos ".then( respostaPromise )" e ".catch( erro )"
+
+// utilizando outro proxy: https://cors-anywhere.herokuapp.com/
+fetch( "https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/455825/" )
+.then( ( response ) => { 
+    
+    // Response é um objeto que não é completamente acessível para nós, o que nos interessa é o dado contido no corpo dela. ( body ) que é o objeto ReadableStream, temos que converte-la para JSON para termos acesso às suas propriedades.
+    
+    console.log( response );
+
+    // Para converter o objeto ReadableStream para JSON utilizamos o método assíncrono ".json()" que retorna uma outra promise. Dessa forma incrementamos com mais uma cadeia de método ".then()" para manipular a Promise que retorna do método response.json().
+
+    Uma boa prática é fazer tratamento de erro antes de fazer o retorno, pois como response é consequencia de uma requisição, esta pode não ter sido bem sucedida.
+
+    try{
+        // status 200 = resposta bem sucedida.
+        if( response.status === 200 ){
+            return response.json();
+        }else{
+            throw new Error( "Erro, requisição mal sucedida");
+        }
+    }catch( erro ) {
+        console.log( erro.name, erro.message );
+    }
+
+} )
+
+.then( data => { 
+    // printando corpo de Resposta completo 
+    console.log( data );
+})
+
+.catch( error => {
+    console.log( error );
+}) 
+
+
+Explicando exemplo: ajax-fetch-async-await.js mesmo exemplo do código axcima, mas utilizando async-await
+
+async function buscaClimaAW( woeid ){
+    
+    // faz tratamento de um erro de requisição.
+    try { 
+        
+        // palavra chave await espera o retorno da requisição feita pela função fetch().
+        const response = await fetch( `https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${ woeid }/ ` );
+        
+        // tratamento caso requisição seja bem sucedida.
+        if( response.status === 200 ){
+
+            // transformando objeto response ( que é um ReadableStream ) para JSON, poderíamos fazer um outro try, catch aqui.
+            const data = await response.json();
+            
+            // previsão do tempo do dia corrente.
+            const hoje = data.consolidated_weather[0];
+            console.log( `Temperaturas na cidade: ${ data.title } 
+            \nTemperaturas entre: ${ hoje.min_temp } & ${ hoje.max_temp } 
+            \nTemperatura atual: ${ hoje.the_temp } ` );
+
+
+            // previsão do tempo do dia seguinte
+            const amanha = data.consolidated_weather[1];
+            console.log( `Temperaturas na cidade: ${ data.title } 
+            \nTemperaturas entre: ${ amanha.min_temp } & ${ amanha.max_temp } 
+            \nTemperatura atual: ${ amanha.the_temp } ` );
+            
+            return data;
+        
+        // tratamento caso requisição seja mal sucedida.
+        }else{
+            throw new Error( "Erro, requisição mal sucedida" );
+        }
+        
+        // imprimindo mensagem de erro caso seja lançado um erro no bloco "try" acima.
+    }catch( error ){
+        console.log( error.message );
+    }
+
+}
+
+// se quisermos manipular os dados de resposta externamente da função buscaClimaAW temos que fazer da seguinte forma: o retorno de uma função async é sempre uma Promise, então devemos manipular data através dos métodos ".then()" e ".catch()".
+let data;
+
+// id RJ:
+buscaClimaAW( 455825 ).then( ( response ) => {
+    data = response;
+    console.log( data );
+} )
+
+// id Londres:
+buscaClimaAW( 44418 ).then( ( response ) => {
+    data = response;
+    console.log( data );
+} )
+
+// id São Francisco:
+buscaClimaAW( 2487956 ).then( response => {
+    data = response;
+    console.log( data );
+})
+
+// id Desconhecido ( para forçar erro );
+buscaClimaAW( 0 ).then( response => {
+    data = response;
+    console.log( data );
+} )
+
+
+Referências:
+    - https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+    - https://developer.mozilla.org/en-US/docs/Web/API/Request/Request
+    - https://developer.mozilla.org/en-US/docs/Web/API/Response/Response
+    - https://developer.mozilla.org/en-US/docs/Web/API/Body
+
+
+    - Conceitos Básicos:
+        https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Basic_concepts
+
+    - implementações, exemplos:
+        https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch 
+
+        

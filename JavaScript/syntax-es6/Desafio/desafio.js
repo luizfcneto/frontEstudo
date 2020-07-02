@@ -322,6 +322,3 @@ function initRelatorio() {
 
 initRelatorio();
 relatorio2020.displayRelatorio();
-
-
-

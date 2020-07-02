@@ -1,0 +1,49 @@
+Javascript assincrono explicação exemplo1:
+Utilizando imagens 0, 1, 2 e 3.
+
+imagem 0:
+primeira execução do código exemplo1.js:
+_________________IMAGEM0_________________
+0. "funcao1()" -> entra na pilha de execução de contexto global
+
+1. funcao1() é executada pelo contexto global.
+
+2. funcao1() adiciona "console.log( "Ola mundo" ); no contexto global
+
+3. "console.log( "Ola mundo" )", é executada pela pilha de execução no contexto global.
+
+4. "funcao2Assincrono()" é chamada. Portanto é adicionada à pilha de contexto de global
+
+5. "funcao2Assincrono()" é executada pela pilha de execução global.
+
+6. "funcao2Assincrono()" seta a função "setTimeOut()" para printar "Assincrono, Olá mundo" daqui a dois segundos. Logo, adiciona à pilha de execução global.
+
+
+OBS: setTimeOut() é uma função fora de javascript, é pertinente ao navegador ( WEB APIS ), mas pode utilizar essa função callback pois no tempo de execução do javascript pelo Browser ele tem acesso a essa função.
+
+7. função callback "setTimeOut()" é executada pela pilha de execução global e a WEB API executa esse temporizador setado na função callback "setTimeOut()", no nosso exemplo por 2 segundos. 
+________________IMAGEM1__________________
+
+8. Resposta da função callback "setTimeOut()" é adicionada à fila de mensagem.
+
+_______________IMAGEM2___________________
+9. Terminou funcao2Assincrono(), então funcao1() adiciona comando "console.log("fim")" na pilha de contexto global.
+
+10. Contexto global de execução executa comando "console.log( "fim" );
+
+11. Após função callback executar "setTimeOut()" de dois segundos e finzalizar, será adicionado na fila de mensagem.
+
+12. Loop de Eventos ( event looping ) encaminha as instruções dentro de "setTimeOut()" ( que é "console.log( "Assincrono, Ola mundo" )" ) que estava na fila de mensagem para o contexto de execução global.
+
+13. Contexto de execução global executa o console.log( "Assincrono, Ola Mundo" );
+________________IMAGEM3__________________
+
+A função do Event Loop é justamente aguardar de maneira sincrona, receber uma mensagem. 
+
+Implementado por uma fila e cada elemento dessa fila é uma mensagem. Cada mensagem é processada em ordem e é finalizada antes de começar a seguinte, sem ser interrompida, caso possua. 
+
+Problema: Como ela não pode ser interrompida, se uma mensagem levar muito tempo para ser processda, a aplicação web fica indisponível para processar interações do usuario na UI. Uma boa prática é fazer processamento de mensagens curtas e se possível dividir essas mensagens em múltiplas mensagens.
+
+
+Referências: 
+    https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/EventLoop

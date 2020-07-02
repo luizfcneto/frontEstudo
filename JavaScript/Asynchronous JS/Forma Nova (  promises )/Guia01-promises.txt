@@ -1,0 +1,87 @@
+Promises:
+
+O que é?
+    Objeto que mantém o trajeto sobre quando um evento específico aconteceu ou não.
+
+    Caso aconteça ele determina o que acontecerá após o evento.
+
+    Ele implementa o conceito de um futuro valor que está sendo esperado de retorno 
+
+    Como ele é um objeto ele possui propriedades:
+    - estado // state:
+    pode ser:
+
+        - pending => Evento está pendente, ainda não foi finalizado.
+
+        - settled / resolved => Evento foi concluido/realizado
+            - fulfilled => caso concluido com sucesso.
+            
+            - rejected => caso concluido sem sucesso.
+
+
+Sintaxe:
+    new Promise( /* executor */ function ( resolvem reject ) {
+        ...
+    } )
+
+    Parametros:
+        executor: 
+            Uma função que recebe dois argumentos "resolve" e "reject". Esta função é executada imediatamente pela implementação do Promise, passando as funções "resolve" e 'reject". O executor é chamado antes que o construtor de Promise retorne o objeto criado.
+
+            As funções "resolve" e "reject", quando chamadas, resolvem ( em caso de sucesso ), ou rejeitam ( quando ocorre um erro ) a promessa, respectivamente. O executor começa o trabalho assíncrono que, quando concluido, chama uma das duas funções "resolve" ou "reject" para definir o estado da promessa.
+
+Descrição:
+    Um promise representa um proxy ( intermediário ) para um valor que não é necessariamente conhecido quando a promessa é criada. Isso permite a associação de métodos de tratamento para eventos da ação assíncrona num caso eventual de sucesso ou de falha. Isto permite que métodos assíncronos retornem valores como métodos síncronos: ao invés do valor final, o método assíncrono retorna uma promessa ao valor em algum momento no futuro.
+
+    Um promise está em um destes estados:
+    1. pending ( pendente ): Estado inicial, que não foi realizada nem rejeitada.
+
+    2. fulfilled ( realizada ): sucesso na operação;
+
+    3. rejected ( rejeitado ): falha na operação;
+
+    4. settled/resolved ( estabelecida/concluida ): que foi realizada ou rejeitada.
+
+    Uma promessa pendente pode se tornar realizada com um valor ou rejeitada por um motivo( erro ). Quando um desses estados ocorre, o método "then()" do Promise é chamado, e ele chama o método de tratamento associado ao estado ( "rejected" ou "resolved" ).
+
+    ( Se a promessa foi realizada ou rejeitada quando o método de tratamento correspondente for associado, o método será chamado, desta forma não há uma condição de competição entre uma operação assíncrona e seus manipuladores que estão sendo associados. )
+
+    Como os métodos Promise.prorotype.then() e Promise.prototype.catch() retornam promises, eles podem ser encadeados, uma operação chamada de "composição".
+
+        
+
+Resumindo: Uma Promise é um objeto que representa a eventual conclusão ou falha de uma operação assincrona.
+
+Garantias de Promises:
+    Ao contrário de callbacks com retornos de funções ( forma antiga ), uma promisse vem  com algumas garantias:
+
+    - Callbacks nunca serão chamados antes da conclusão da execução atual do loop de eventos do javascript;
+
+    - Callbacks adicionadas com .then() mesmo depois do sucesso ou falha da operação assincrona, serão chamadas como acima.
+
+    - Múltiplos callbacks podem ser adicionados chamando-se .then() várias vezes, para serem executados independentemente da ordem de inserção.
+
+    O benefício mais imediato da promises é o encadeamento.
+
+Encadeamento:
+    - Uma necessidade comum é executar duas ou mais operações assincronas consecutivas, onde cada operação subsequente começa quando a operação anterior é bem sucedida, com o resultado do passo anterior. Nós conseguimos isso criando uma cadeia de promises.
+
+    A função then() retorna uma nova promise, diferente da original.
+    exemplo:
+        const promise = facaAlgo();
+        const promise2 = promise.then( callBackBemSucedido, callbackMalSucedido );
+
+        ou
+
+        const promise2 = facaAlgo().then( callBackBemSucedido, callbackMalSucedido );
+
+    Essa segunda promise representa a conclusão não apenas de "facaAlgo()", mas também a do "callBackBemSucedido" ou "callbackMalSucedido" que você passou, que podem ser outras funções assincronas que retornam uma promise. Quando esse for o caso, quaisquer callbacks adicionados a promise2 serão enfileiradas atrás da promise retornada por "callBackBemSucedido" ou "callbackMalSucedido". 
+
+
+    OBS: é possível encadear depois de uma falha, método "catch()", isso é muito útil para realizar novas ações mesmo depois de uma falha no encadeamento. 
+
+    Para saber mais:
+        https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Usando_promises
+
+        https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Promise
+

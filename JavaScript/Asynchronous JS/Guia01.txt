@@ -1,0 +1,97 @@
+Asynchronous Javascript -> Javascript assíncrono.
+assíncrono = pode manter um processamento em segundo plano enquanto outro código está sendo processado no mesmo tempo.
+
+Explicando:
+    Normalmente, um código de um determinado programa é executado diretamente, com apenas uma instrução processada em um tempo. Se uma função retorna um resultado de uma outra função, essa primeira função deve esperar para que a segunda função faça o seu processamento, para que então a segunda função termine retornando o valor necessário para que a primeira função termine de ser processada. Enquanto isso o programa essencialmente para pela perspectiva do Usuario/Cliente. 
+
+    A base da programação assincrona é justamente fazer com que multiplos processamentos ocorram em paralelo de forma que o programa não fique "parado" aguardando um processamento necessário para dar continuidade a execução do mesmo. Isso permite que o programa faça outros serviços/trabalhos ao mesmo tempo.
+
+    Essa forma de programar foi consequencia do surgimento de inumeros processadores que possuem mais de um núcleo de processamento. Dessa forma assincrona podemos utilizar de melhor maneira para o funcionamento do programa dando a cada nucleo uma tarefa a ser processada respectivamente, fornecendo para nós usuários finais uma perspectiva que o programa executado não travou/parou quando alguma atividade for solicitada a ele.
+
+    Na perspectiva WEB a programação com uma API ( Application Programming Interface -> Interface de Programa de Aplicativos - IPA ) nos permite de executarmos tarefas assincronamente. 
+
+
+Código de Blocking ( código de travamento )
+    Técnicas assincronas são muito úteis particularmente na programação Web. Quando um aplicativo web executa em um browser e este executa um grande bloco de instruções de código sem retornar o controle para o browser, o browser aparenta estar congelado. Isso se chama "blocking". O browser foi bloqueado de continuar manipulando e recebedno entradas de usuários e de executar outras tarefas até que o aplicativo web retorne o controle para o processador.
+
+    Exemplos de código de blocking: 
+        - https://mdn.github.io/learning-area/javascript/asynchronous/introducing/simple-sync.html
+
+        - https://mdn.github.io/learning-area/javascript/asynchronous/introducing/simple-sync-ui-blocking.html
+
+
+Threads:
+    - Uma thread é basicamente um único processo que um programa consegue utilizar para completar tarefas. Cada thread consegue processar uma única tarefa por vez.
+    Tarefa A --> Tarefa B --> Tarefa C
+
+    Cada tarefa irá ser executada sequencialmente.
+    Uma tarefa tem de ser completada antes que a próxima seja iniciada.
+
+    Como dizemos anteriormente, muitos computadores atualmente, possuem múltiplos núcleos, então conseguimos processar múltiplas tarefas por vez.
+    Linguagens de programação tem suporte para multiplas threads para que múltiplos núcleos completem múltiplas tarefas simultaneamente:
+    Thread 1: Tarefa A --> Tarefa B
+    Thread 2: Tarefa C --> Tarefa D
+    ...
+
+Javascript é single-threaded
+A linguagem Javascript é tradicionalmente Single-Threaded. Mesmo com múltiplos núcleos, nós só conseguimos executar tarefas em uma única Thread, chamada de Main Thread. 
+
+Exemplo:
+    Main Thread: renderiza circulos no canvas -> dispara alerta();
+
+Após um tempo o Javascript ganhou algumas ferramentas que ajudaram a solucionar alguns problemas. "Web Workers" permitiram que nós mandassemos alguns processamentos em javascript para uma thread separada, chamada de "worker", dessa forma podemos executar múltiplos blocos de processamento simultaneamente. Nós geralmente usamos worker para executar processamentos "caros"/"expensives" fora da thread principal ( Main Thread ) para que a interação com o usuário não seja bloqueada.
+
+Main Thread: Tarefa A --> Tarefa C
+Worker Thread: Tarefa cara B. // expensive Task B.
+
+Com isso em mente, nós mostrando mesmo exemplo acima utilizando worker:
+    - https://mdn.github.io/learning-area/javascript/asynchronous/introducing/simple-sync-worker.html
+
+Código Assincrono:
+    Web Workers são muito utilizados, mas eles tem suas limitações. A maior delas é que eles não estão permitidos a acessar o DOM. 
+    
+    1. Você não pode fazer com que um Worker modifique nada diretamente na interface do usuário ( UI ). nós não podemos rendereziar 1 milhão de circulos azuis dentro de um worker; Ele apenas consegue fazer processamento de numeros ( number crunching ) .
+
+    2. Apesar do código ser executado em um worker não ser bloqueado, ele continua sincrono. Isso pode se tornar um problema caso uma função dependa de um resultado de processamento de funções anteriores.
+
+    Exemplo 1:
+    Main Thread: Tarefa A --> Tarefa B
+    Nesse caso, vamos dizer que tarefa A irá buscar uma imagem de um servidor enquanto a tarefa B irá aplicar um filtro nessa imagem. 
+    Caso você incie a execução com a tarefa A e imediatamente depois tentar executar a Tarefa B, você terá um erro, porque a imagem ainda não estará disponivel. ( A busca pela imagem no servidor leva tempo e possui alguns processos, somado a eles tem a demora do transporte do envio desses dados pela rede, isso faz com que a imagem não retorne imediatamente após o fim da Tarefa A ).
+
+
+    Exemplo 2:
+    Main Thread: Tarefa A --> Tarefa B --> | Tarefa D |
+    Worker Thread: Tarefa C -------------> |    |
+
+    Neste caso, digamos que Tarefa D faz o uso do resultado das Tarefas B e C. Se nós pudermos garantir que esses resultados juntos estarão disponíveis ao mesmo tempo, então Tarefa D será executada com sucesso, caso contrário não. Se a Tarefa D tentar executar enquanto pelo menos um desses dois parametros não estiver disponível ela irá lançar um erro.
+
+    Para fixar esses problemas, o Browser permite a nós que executamos certas operações assincronamente. Técnicas utilizando "Promises" permite a nós setarmos uma execução de uma operação ( exemplo, buscando uma imagem em um servidor ), e então esperar até que o resultado seja retornado antes da execução da próxima operação:
+    Exemplo:
+        Main Thread: Tarefa A                   Tarefa B
+        Promise:             |_async operation_|
+
+    Desde que a operação da tarefa A esteja sendo processada em algum lugar, a Thread Main não estará blockada/travada enquanto a operação assincrona estiver sendo processada.
+
+
+Conclusão:
+    O design moderno de software gira em torno do uso de programação assincrona, para permitir que os programas façam mais de uma coisa por vez. Ao usar API's mais novas e mais poderosas, você encontrará mais casos em que a única maneira de fazer as coisas é assincronamente. Costumava ser difícil escrever código assincrono. Ainda é preciso se acostumar, mas ficou mais fácil. 
+
+    Formas assincronas:
+        Mais antiga: callback functions async
+        Mais nova e fácil: promises
+
+    Ambas possuem similaridades, retornam objetos através de funções callbacks. Entretanto, promises são mais específicas para fazer manipulações de operações assincronas, e tem mais vantagens que a versão mais antiga:
+
+        - Você pode ligar multiplas operações assincronas juntas usando operações ".then()", passando o resultado de uma para o processamento seguinte de outra como uma entrada/parametro. Isso é muito mais dificil de fazer com callbacks, e pode terminar com promblemas "pyramid of doom // piramide da desgraça" ( conhecida como callback do inferno ).
+
+        - Promise callbacks são sempre chamadas no modo estrito ( strict mode ) onde elas são colocadas em uma fila de eventos.
+
+        - Manipulação de erros é melhor. Todos os erros são manipulados pelo ultimo bloco ".catch()", ao invés de serem manipulados individualmente em cada nível da "piramide".
+
+        - Promises evitam a inversão de controle, diferentemente dos modos antigos de callback, em que perdem o controle total de como a função será executada ao passar uma callback de retorno para uma biblioteca de terceiros.
+
+Referências:
+    https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Concepts
+
+    https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing

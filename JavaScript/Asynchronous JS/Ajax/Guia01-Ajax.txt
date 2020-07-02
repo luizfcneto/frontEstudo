@@ -1,0 +1,34 @@
+Ajax:
+    É acronimo para Javascript assíncrono + XML. Empregado em 2005 por Jesse James Garrett para descrever uma nova forma de utilizar em conjunto algumas tecnologias incluindo:
+        HTML ou XHTML;
+        CSS;
+        Javascript;
+        DOMI;
+        XML;
+        XSL
+        e o mais importante objeto XMLHttpRequest.
+
+    Quando essas tecnologias são combinadas no modelo Ajax, as aplicações web que a utilizam são capazes de fazer rapidamente atualizações incrementais para a interface do usuário sem recarregar a página inteira do navegador. Isso torna a aplicação mais rápida e sensível às ações do usuário.
+
+    Embora o X de AJAX corresponda ao XML, atualmente o JSON é o mais utilizado que o XML devido às suas vantagens, como ser mais leve e ser parte do Javascript. Ambos ( JSON e XML ) são utilizados para obter informações do pacote no modelo AJAX.
+
+Ajax nos permite nos comunicarmos com servidores remotos, tanto para captarmos dados do servidor, como para enviarmos dados para ele, sem que a aplicação web/página web seja completamente carregada, desde que esteja no padrão/formatação de dado que o servidor entenda.
+
+Ajax faz essa comunicação através de requisição "get" HTTP ( método get() )
+Uma requisição HTTP pode ter os seguintes métodos:
+    - get() -> pega do Servidor e devolve os dados para o Client
+    - post() -> pega dados do Client e "salva" no Servidor
+    - delete() -> deleta o dado do Servidor
+    - put() -> modifica dado do servidor
+
+    - connect() -> estabele comunicação entre Client e Servidor;
+    - options() -> 
+    - trace() -> 
+    - patch() ->
+    - head() ->
+
+Existem muitas maneiras de utilizarmos Ajax em javascript, nós iremos focar na API fetch web.
+
+Referências: 
+    - https://developer.mozilla.org/pt-BR/docs/Web/Guide/AJAX
+    - https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Methods
