@@ -1,0 +1,73 @@
+NPM: Após resumo do que é o NPM ( gerenciador de pacotes ) e as funções que ele proporciona, irei mostrar comandos simples de sua utilização.
+
+Instalalando NPM na nossa máquina:
+baixar e extrair arquivo da versão LTS no site abaixo.
+https://nodejs.org/en/
+
+verificar versão instalada do node usando o comando: 
+node --version
+
+verificar versão instalada do npm usando o comando:
+npm --version
+ 
+npm vem juntamente com o arquivo de instalação do node.
+
+Indo para Pasta do projeto: ~/Documentos/PastaProjeto
+cd ~/Documentos/PastaProjeto
+
+// Inicializando o npm: responder perguntas para preencher o arquivo package.json
+npm init
+
+comando acima cria o arquivo package.json referente a esta pasta do projeto.
+package.json:
+    Arquivo formato json responsável por gerenciar/manter todas as informações
+    sobre a aplicação React como:
+        - nome da aplicação;
+        - versão da aplicação;
+        - gerenciar dependencias e versões;
+        - configurar alias de scripts de execução do npm ( gerenciador de pacotes )
+            exemplo:
+                - npm start = react-scripts starts
+        - Informações de testes utilizados na Aplicação
+        - Informações de compatibilidade de browsers para a Aplicação
+
+lembrando que formato json = objeto, as propriedades dele são as informações "nome da aplicação", "versão", e outros.
+
+Uma dessas propriedades é o "dependencies" que é um outro objeto que deixa guardado todas as dependencias, utilizamos esse objeto para guardar dependencias como bibliotecas  que o projeto irá utilizar ( que foram instaladas pelo npm ).
+
+existe outra propriedade que é "devDependencies" que é destinada a guardar ferramentas que serão utilizadas na Pasta do projeto, no nosso caso webpack e babel.
+
+// instalando dependencia e adicionando na propriedade DevDependencies ( parametro --save-dev );
+npm install webpack --save-dev
+
+após comando ser executado o npm irá instalar uma pasta chamada "node_modules" que irá conter nela todos os arquivos das dependencias que forem sendo instaladas no projeto.
+( ao compartilharmos o projeto não enviamos a pasta "node_modules" porque ela é gigante, muito pesada, nós só compartilhamos o package.json, que a partir dele com o comando "npm install" o npm irá instalar todas as dependencias necessárias que estão contidas no package.json que colocará no recém arquivo "node_modules" criado os arquivos referente a elas. )
+
+node_modules:
+    Arquivo que contém todas as bibliotecas/módulos existentes no projeto
+    é gerado utilizando o comando 
+    npm install 
+    dentro da pasta do projeto que possua o arquivo package.json
+    é um arquivo gigante que possui mais de 2 Gbs de tamanho.
+
+// instalando dependencia e adicionando na propriedade dependencias ( parametro --save )
+npm install jquery --save
+
+// removendo dependencia do projeto:
+npm uninstall jquery --save
+
+// instalando uma dependencia de um pacote de forma global ( parametro --global ou -g )
+npm install live-server --global 
+
+Nesse nosso exemplo essa ferramenta é responsável por simular/hostear um "servidor" local na sua máquina no endereço 127.0.0.1:8080 para visualizarmos nosso arquivo html "estático" no nosso browser.
+
+para mais informações: https://www.npmjs.com/package/live-server
+
+o parametro global da instalação do "live-server" permite que nós possamos utilizar o comando "live-server" em qualquer outra pasta além da página do nosso projeto.
+
+Quando geramos o package.json, é gerado também o arquivo "package-lock.json"
+package-lock.json:
+    Enquanto o package.json são responsaveis por gerenciar/manter informações
+    sobre a Aplicação, o package-lock.json é responsavel por manter/gerenciar
+    todas as informações sobre caminhos/localização e referencias das dependencias
+    e seus requisitos para a utilização destas na Aplicação.

@@ -1,0 +1,18 @@
+Arquitetura de projeto padrão MVC ( Model - View - Controller ): 
+Uma das caracteristicas dessa arquitetura é que ela separa a lógica de apresentação visual ( visual - view ) da lógica da aplicação ( regra de negócio - Model ) utilizando um Controller ( um controlador ) que faz a ponte de comunicação entre eles ( controla o funcionamento da aplicação )
+
+
+MODEL --------------------> Controller <------------------------- VIEW 
+
+
+Exemplo de como iremos planejar a nossa aplicação ( Project ):
+Iremos utilizar módulos ES6. Cada um dele será específico para sua funcionalidade, tornando o projeto mais fácil para manutenção. 
+
+Controller será o arquivo index.js
+
+MODEL -----------------------------> CONTROLLER <----------------------------- VIEW
+
+search.js                               index.js                            searchView.js
+recipe.js                                                                   recipeView.js
+list.js                                                                     listView.js
+likes.js                                                                    likesView.js

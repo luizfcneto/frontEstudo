@@ -1,0 +1,635 @@
+Webpack:
+    Uma ferramenta utilizada para facilitar o desenvolvimento de aplicações web, empacotando e organizando módulos de javascript através do bundler ( empacotador ).
+
+    Conceitos:
+        Em seu núcleo, webpack é um módulo estático ( static ) bundler ( empacotador ) de aplicações de javascript moderno. Quando o webpack processa a sua aplicação, ela internamente constroi um grafo de dependencia que mapeia todos os módulos que o seu projeto precisa e gera um ou mais bundlers ( empacotadores ).
+
+        Recapitulando módulos:
+            Em programação modular, desenvolvedores "quebram"/separam em blocos discretos de funcionalidades, chamados de módulos.
+
+            Cada módulo tem uma area de superficie menor do que um programa completo, fazendo verificação, debugando, e fazendo testes triviais. Módulos bem escritos proporcionam abstrações sólidas e limitam encapsulamento, então cada módulo possui um design coerente e claro do seu propósito para toda aplicação.
+
+        O que é um módulo webpack:
+            Em contraste com módulos Node.js, módulos webpack conseguem expressar suas dependências de várias formas, exemplo de algumas:
+                - Palavra chave import na versão "ES06"
+                - Palavra chave require() em "CommomJS"
+                - Palavras chave define e require em "AMD"
+                - Palavra chave @import dentro de arquivos "css/sass/less"
+                - Palavra chave url( ... ) em arquivos "css" ou dentro de tags <img src="..."> em arquivos HTML.
+
+        Tipos de módulos que webpack da suporte:
+            Webpack oferece suporte a módulos escritos em uma variedade de linguagens e preprocessadores, via loaders ( carregadores ). Loadres descrevem para o webpack como eles processam os módulos que não são do Javascript e incluem essas dependencias no seu bundler ( empacotador ). A comunidade do webpack construiu esses loaders para uma ampla variedade de linguagens populares e linguagens de processamento incluindo:
+                - CoffeeScript;
+                - TypeScript;
+                - ESNext( Babel )
+                - Sass
+                - Less
+                - Stylus
+                - Elm
+            e muitos outros. Weback proporciona uma poderosa e rica API para customização nos permitindo usa-lo para qualquer stack ( combinação de linguagens utilizadas para aplicações ), ao mesmo tempo que não tem opiniao sobre o seu desenvolvimento, teste e fluxos de trabalho ( workflows ).
+
+    Voltando aos conceitos de Webpack:
+        Desde a versão 4.0.0, webpack não precisa de um arquivo de configuração para empacotar ( bundler ) o seu prjeto. Mesmo assim, é incrivelmente configuravel para melhor atender as suas necessidades.
+
+        Para começar nós devemos entender os conceitos do núcleo do webpack:
+            1. Entry ( entrada )
+            2. Output ( saida )
+            3. Loaders ( Carregadores )
+            4. Plugins 
+            5. Mode
+            6. Compatibilidade do Browser
+
+        A ideia aqui é ter uma noção superficial de todos os conceitos, para saber mais aprofundadamente os conceitos irei deixar links para certos casos de usos especificos.
+
+        
+        1. Entry // Entrada:
+            Um ponto de entrada indica qual módulo do webpack deve ser usado para começar a construção de saída para o grafo de dependência. Webpack irá descobrir quais outros módulos e bibliotecas que o ponto de entrada é dependente, direta ou indiretamente.
+
+            Por default ( padrão ) o valor é "./src/index.js", mas você pode especificar um diferente ( ou múltiplos pontos de partida ) configurando uma "entrada de propriedade de configuração webpack, como por exemplo:
+            
+            arquivo webpack.config.js:
+                module.exports = {
+                    entry: "./caminho/para/o/meuarquivo/de/entrada/arquivo.js"
+                };
+
+            para saber mais sobre pontos de entrada ( entry points ):
+                - https://webpack.js.org/concepts/entry-points/
+                - https://webpack.js.org/configuration/entry-context/#entry
+
+
+        2. Output // saída:
+            A propriedade output ( saida ) diz ao webpack onde deve emitir os pacotes configurados, que foram criados/empacotados pelos bundlers, e como deve nomear esses arquivos. Por default ( padrão ) para "./dist/main.js" para o arquivo de saída principal ( main output file ) e para a pasta "./dist" para qualquer outro arquivo gerado.
+
+            Nós podemos configurar essa parte do processo especificando um campo "output" na nossa configuração, exemplo:
+                arquivo webpack.config.js:
+                    const path = require( "path" );
+
+                    module.exports = {
+                        entry: "./caminho/para/o/meuarquivo/de/entrada/arquivo.js",
+
+                        output: {
+                            path: path.resolve( __dirname, "dist" ),
+                            filename: "meu-primeiro-webpack.bundle.js"
+                        }
+                    };
+
+            No exemplo acima, nós usamos as propriedades output.filename e o output.path para dizer ao webpack o nome de nossos bundle e onde eles querem que seja emitido. 
+
+            No começo do exemplo nós estamos importando um módulo do núcleo do Node.js chamado "path" que é usado para manipular caminhos de arquivos.
+
+            Para saber mais sobre pontos de saída:
+                - https://webpack.js.org/configuration/output/
+                - https://webpack.js.org/concepts/output/
+            
+        3. Loaders // Carregadores:
+            Fora da caixa, webpack entende apenas Javascript e arquivos JSON. Loaders permitem que o webpack processe outros tipos de arquivos e converta-os para módulos válidos que podem ser consumidos pela sua aplicação e adicionado no grafo de dependências.
+
+            OBS: Note que a habilidade para import ( importar ) qualquer tipo de módulo, exemplo: arquivos ".css" é uma característica ( feature ) específica do webpack e provavelmente não oferece suporte a outros bundlers ( empacotadores ) ou task runners ( executadores de tarefas ). 
+
+            Em alto nível ( superficialmente ), os loaders tem duas propriedades na configuração do webpack:
+                - A propriedade "test" que identifica qual/quais arquivo(s) devem ser transformados;
+                - A propriedade "use" que indica qual loader deve ser usado para fazer a transformação.
+
+            Exemplo: 
+                arquivo webpack.config.js: 
+                    const path = require( "path" );
+
+                    module.exports = {
+                        output: {
+                            filename: "meu-primeiro-webpack.bundle.js"
+                        },
+                        module: {
+                            rules: [
+                                {
+                                    test: /\.txt$/, 
+                                    use: "raw-loader"
+                                }
+                            ]
+                        }
+                    }
+
+            A configuração acima definiu a propriedade "rules" para um único módulo que precisa de duas propriedades: "test" e "use". Eles dizem para o compilador webpack o seguinte:
+            "Ei compilador webpack, quando voce vier por esse caminho que retorna um arquivo ".txt" de uma requisição "require()" ou "import", use o loader "raw-loader" para transforma-lo antes de adiciona-lo ao bundle ( pacote ).
+
+            OBS: é importante lembrar que quando definimos as regras no nosso arquivo de configuração webpack, nós estamos definindo pelo "module.rules" e não "rules", webpack irá nos avisar quando feito incorretamente.
+            Note que quando usamos "regex" para encontrar/verificar arquivos, nós não devemos por aspas. Exemplo: /\.txt$/ não é o mesmo que "/\.txt$/" ou '/\.txt$/'. A instrução passada para o webpack é encontrar qualquer arquivo que termine com .txt e os dois entre aspas está instruindo para o webpack encontrar um único arquivo que possua um caminho absoluto ".txt" que não é a nossa itenção. ( Olar regex para melhor utilização ).
+
+            Para mais informações sobre Loaders:
+                - https://webpack.js.org/concepts/loaders/
+
+        4. Plugins:
+            Enquanto Loaders são utilizados para transformar certos tipos de módulos, plugins conseguem alavancar a performance ampliando o alcançe de tarefas como otimização de bundle( pacotes ), gerenciamento de assets ( recursos ) e injeção de variaveis de ambiente.
+
+            Par autilizar um plugin, é necessário usar "require()" e adiciona-lo no array de plugins. Muitos plugins são customizaveis através de opções. Desde que você possa utilizar o plugin múltiplas vezes em uma configuração para diferentes propósitos, você precisa criar uma instância para ele utilizando a palavra chave new "pluginBlabla()"
+            Exemplo: arquivo webpack.config.js:
+                const HtmlWebpackPlugin = require( "html-webpack-plugin" );
+                const webpack = require( "webpack " );
+
+                module.exports = {
+                    module: {
+                        rules: [
+                            {
+                                test: /\.txt$/, use: "raw-loader"
+                            }
+                        ]
+                    },
+                    plugins: [
+                        new HtmlWebpackPlugin( {
+                            template: "./src/index.html" 
+                        } )
+                    ]
+                }
+            
+            No exemplo acima, o plugin "html-webpack-plugin" gera um arquivo HTML para a sua aplicação no padrão "utf-8" ( porque o loader "raw-loader", faz isso ), injetando-o automaticamente todos os pacotes ( bundles ) gerados.
+            Existem muitos outros plugins do webpack,
+            para saber mais veja a lista de plugins fornecidos:
+                - https://webpack.js.org/plugins/
+
+            Usando plugins na sua configuração webpack é direto. Entretanto, existem muitos casos de uso que valem mais apenas explorar.    
+            Para saber outras formas de configuração de plugins no webpack veja:
+                - https://webpack.js.org/api/plugins/
+
+
+        5. Mode
+            Configurando o parametro "mode" para "development", "production", ou "none" ( estados de mode, "desenvolvimento, produção e nenhum ), nós podemos permitir otimizações de construção do webpack que correspondam a cada ambiente.
+            O valor default ( padrão ) é "production". 
+            Exemplo:
+
+                module.exports = {
+                    mode: "production"
+                };
+
+            Aprenda mais sobre configurações de mode ( modo ) e quais otimizações são feitas para cada valor.
+
+        
+        6. Compatibilidade com Browser:
+            Webpack fornece suporte para todos os Browsers que são compatíveis com ES05 ( Internet Explorer 8 e abaixo não tem suporte ). Webpack precisa de Promise para importar ( import() e require.ensure() ). Se você quer fornecer suporte para browsers mais antigos, você terá que utilizar o carregador "load a polyfill" antes de utilizar essas expressões de Promises.
+
+            Para mais informações aprofundadas:
+                - Promises imports ( import() e require.ensure() ):  https://webpack.js.org/guides/code-splitting/#dynamic-imports
+                - Polyfill: https://webpack.js.org/guides/shimming/
+            
+    Ambiente do Webpack: Executado por versões Node.js 8.x+ 
+
+    Configuração do Webpack:
+        Webpack não nos obriga a usar um arquivo de configuração. Entretanto, ele irá assumir o ponto de entrada ( entry point ) do seu projeto no arquivo src/index.js e o ponto de saída ( output ) irá receber o resultado no arquivo dist/main.js minificado e otimizado para o ambiente de produção.
+
+        Comumente nos nossos projetos ele precisará extender essa funcionalidade, paara isso nós iremos criar o arquivo "webpack.config.js" na pasta raiz do projeto e o webpack automaticamente irá utiliza-lo.
+
+    Utilizando um arquivo de configuração diferente do "webpack.config.js":
+        Se por algum motivo você quer usar um arquivo diferente de configuração do webpack dependendo de certas situações você consegue modificar ele via comando usando a flag --config.
+
+        no package.json:
+        "scripts": {
+            "build": "webpack --config prod.config.js"
+        }
+
+        Exemplo de arquivo webpack.config.js detalhado:
+
+const path = require('path');
+
+module.exports = {
+    
+    mode: "production", // "production" | "development" | "none"
+    
+    // production: Permite muitas omitizações para construção de produção
+    // development: Permite utilzizar ferramentas para desenvolvimento
+    // none: nada, padrão.
+    // mode escolhido diz ao webpack para usa-lo com otimizações na construção
+
+    entry: "./app/entry", // string | object | array
+    // padrão: ./src
+    
+    // Aqui a aplicação começa a executar e o webpack começa o empacotamento.
+    output: {
+
+        // Opções relacionadas de como o webpack emitirá o resultado
+        // O diretório alvo para todos os arquivos de saida devem ter um caminho absoluto. ( uitlize o módulo do Node, path )
+        path: path.resolve(__dirname, "dist"), // string
+        
+        // o template do nome do arquivo, filename, para a entrada dos blocos "empacotados" 
+        filename: "bundle.js", // string
+        
+        // a url para o diretório saída de retorno ( resolved de Promise ) da página HTML relativa
+        publicPath: "/assets/", // string
+        
+        // O nome da biblioteca que foi exportada
+        library: "MyLibrary", // string,
+        
+        
+        // O tipo de biblioteca que foi exportada
+        libraryTarget: "umd", // universal module definition
+    },
+
+    // configuração relacionada aos módulos:
+    module: {
+        
+        // regras para módulos ( configuração, loaders, opções de parser e etc )
+        rules: [
+            {
+                // Essas são as condições de verificação dos módulos, aceita Regex ou String.
+                // test e include tem o mesmo comportamento, ambos permitem serem verificados/encontrados
+                // exclude não deve ser verificado/encontrado ( assume preferencia sobre test e include )
+                
+                // Melhores práticas:
+                // Usar apenas regex no test e para encontrar nome do arquivo.
+                // Usar arrays de caminhos absolutos no include e exclude
+                // Tente evitar o exclude e prefira o include.
+
+                test: /\.jsx?$/,
+                include: [
+                    path.resolve(__dirname, "app")
+                ],
+                exclude: [
+                    path.resolve(__dirname, "app/demo-files")
+                ],
+
+
+                // Condições para o issuer ( emissor ) -> a origem do import
+                issuer: {
+                    test, 
+                    inclue, 
+                    exclude
+                }
+
+
+                // flags que apliquem essas regras, mesmo se eles são sobrescritos ( opção avançada )
+                enforce: "pre",
+                enforce: "post",
+
+                // O loader que deve ser aplicado, que irá retornar a promise relativa ao contexto
+                loader: "babel-loader",
+                
+                // Opções para o Loader
+                options: {
+                    presets: ["es2015"]
+                },
+                
+            },
+
+            {
+                test: /\.html$/,
+                // Aplique múltiplos Loaders e Options
+                use: [
+                    "htmllint-loader",
+                    {
+                        loader: "html-loader",
+                        options: {
+                        / ... /
+                        }
+                    }
+                ]
+            },
+            // Use apenas uma dessas rules ( regras ) aninhadas 
+            { 
+                oneOf: [ / rules / ] 
+            },
+            
+            // Use todas essas rules ( regras ) aninhadas ( combine-as com condiçoes para ser útil )
+            { 
+                rules: [ / rules / ] 
+            },
+            
+            // Verifica/Encontra somente se todas as condições forem aceitas.
+            { 
+                resource: { 
+                    and: [ / conditions / ] 
+                } 
+            },
+
+            { 
+                resource: { 
+                    or: [ / conditions / ] 
+                } 
+            },
+
+            // Verifica/Encontra se qualquer condição for aceita ( padrão para arrays )
+            { 
+                resource: [ / conditions / ] 
+            },
+            
+            // Verifica/Encontra se uma condição não foi aceita 
+            { 
+                resource: { 
+                    not: / condition / 
+                } 
+            }
+        ],
+        
+    },
+    // Opções para resolver/retornar requests de módulos.
+    // Não se aplica a resvolver/retornar para Loaders 
+    resolve: {
+        
+        // Pastas onde deve procurar pelos módulos
+        // Extensões que são usadas e utilizadas: .js, .json, .jsx, .css
+        modules: [
+            "node_modules",
+            path.resolve(__dirname, "app")
+        ],
+        
+        // Lista de nome/apelido/alias de módulos
+        alias: {
+            
+            // alias "module" = "new-module" |  "module/path/file" = "new-module/path/file"
+            "module": "new-module",
+
+            // alias "only-module$" = "new-module" "only-module/path/file" != "new-modeule/path/file"
+            "only-module$": "new-module",
+            
+
+            // alias "module" = "./app/third/module.js" e "module/file" resulta em erro
+            // alias de módulos são importados relativamente ao contexto corrente.
+            "module": path.resolve(__dirname, "app/third/module.js"),
+            
+        },
+        
+    },
+    
+    performance: {
+        hints: "warning", // enum
+        maxAssetSize: 200000, // int ( em bytes ),
+        maxEntrypointSize: 400000, // int ( em bytes )
+
+        // Função que retorna/fornece nome do arquivo dos recursos 
+        assetFilter: function(assetFilename) {
+            return assetFilename.endsWith('.css') || assetFilename.endsWith('.js');
+        }
+    },
+    // Melhora o debug adicionando meta-informações para as ferramentas do browser
+    // source-map é o mais detalhado no custo de velocidade de construção. 
+    devtool: "source-map", // enum
+    
+    // Pasta home para o webpack
+    // A entrada e o module.rules.loader são relativos a este diretório 
+    context: __dirname, // string ( absolute path! )
+    
+
+    //O ambiente no qual o bundle ( pacote ) deve executar.
+    //Mudanças de comportamento de carregamento de blocos e modulos permitidos
+    target: "web", // enum
+    
+    // Não empacotar/agrupar esses módulos, mas requisite-os no tempo de execução pelo ambiente.
+    externals: ["react", /^@angular/],
+    
+    // Permite que você precisamente controle quais informações do bundle ( pacote ) possam ser printadas 
+    stats: "errors-only",
+    
+    devServer: {
+        proxy: { // proxy URLs do servidor de desenvolvimento do backend
+        '/api': 'http://localhost:3000'
+        },
+        contentBase: path.join(__dirname, 'public'), // boolean | string | array, static file location
+        compress: true, // permite compressão gzip 
+        historyApiFallback: true, // true para index.html acima de 404, object para multiplos caminhos
+        hot: true, // Substituição de hot module. Depende do HotModuleReplacementPlugin
+        https: false, // true para autoassinatura, object para CERT authority ( Autoridade de Assinatura )
+        noInfo: true, // apenas erros & avisos quando há carregamento hot
+        // ...
+    },
+    plugins: [
+        // ...
+    ],
+    // list of additional plugins
+
+}
+
+Project:
+arquivo webpack.config.js:
+// importando módule "path" para utilizar o __dirname como caminho absoluto do projeto
+const path = require( "path" );
+
+// formato de exportação do módulo.
+module.exports = {
+
+    // ponto de entrada
+    entry: "./src/js/index.js",
+
+    // ponto de saida
+    output: {
+        // __dirname = caminho absoluto da pasta do projeto
+        path: path.resolve( __dirname, "dist" ),
+
+        // nome do arquivo de saida: "bundle.js"
+        filename: "js/bundle.js"
+    },
+    // ponto de saida acima definido como: "caminhoAbsolutoProjeto/dist/js/bundle.js"
+
+    // adicionamos a propriedade mode no script diretamente no package.json
+    // mode: "development"
+    
+
+}   
+
+instalando a dependência webpack-cli:
+npm install webpack-cli --save-dev
+
+
+arquivo package.json:
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "projeto teste, configurando npm no primeiro projeto",
+  "main": "index.js",
+
+  "scripts": {
+    
+    // empacotamento no modo development fornece um resultado do arquivo de saida com código "normal" não muito otimizado.
+    "dev": "webpack --mode development",
+
+    // empacotamento no modo production fornece um resultado do arquivo de saida minificado, é mais otimizado para ambientes de produção
+    "build": "webpack --mode production"
+  },
+  "author": "Luizfcneto",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {}
+}
+
+
+// executando o webpack:
+npm run "scripts"
+
+ex: executando o script "dev":
+npm run dev
+
+executando o script "build":
+npm run build
+
+Webpack-dev-server: Outro pacote do NPM que nos permite simular um "servidor" para nós visualizarmos o nosso código no navegador.  
+
+Configurando através do webpack-server para que sempre que nós salvarmos o código o webpack atualize no browser: 
+
+instalando webpack-dev-server:
+npm install webpack-dev-server --save-dev:
+
+configurando o webpack-dev-server no arquivo webpack.config.js:
+const path = require( "path" );
+
+module.exports = {
+
+    // ponto de entrada
+    entry: "./src/js/index.js",
+
+    // ponto de saida
+    output: {
+        // __dirname = caminho absoluto da pasta do projeto
+        path: path.resolve( __dirname, "dist" ),
+        filename: "js/bundle.js"
+    },
+
+    // adicionamos a propriedade mode no script diretamente no package.json
+    // mode: "development"
+
+    
+    // configuração do webpack-dev-server:
+    devServer: {
+
+        // especifica a pasta para qual o webpack server "hospeda" nossos arquivos
+        // pasta src é a pasta de aplicação que os desenvolvedores irão desenvolver a aplicação.
+        // pasta dist é a pasta de aplicação que nós iremos entregar para o client
+        // podemos especificar na propriedade abaixo a porta que ele será entregue tbm, mas depois iremos nos aprofundar nisso
+        contentBase: "./dist"
+
+    }
+
+}   
+
+Após feito isso, precisamos que o HTML que foi desenvolvido seja o mesmo HTML que é "servido" pelo servidor do webpack ( localizado na pasta "dist" ) injetando o nome do script correto ao ser carregado, no caso o "bundle.js" localizado no "/dist/js/bundle.js" que contem os arquivos js empacotados e otimizados para serem executados no servidor. Para isso utilizaremos o plugin na configuração do webpack para manipular o arquivo HTML na pasta "dist".
+
+Primeiro precisamos instalar o plugin html-webpack-plugin:
+npm install html-webpack-plugin --save-dev
+
+configurando no arquivo webpack.config.js:
+
+// importando módulo "path"
+const path = require( "path" );
+
+// importando módulo do plugin que manipula o arquivo html: html-webpack-plugin
+const HtmlWebpackPlugin = require( "html-webpack-plugin" );
+
+o plugin HtmlWebpackPlugin irá gerar um arquivo Html 5 para nós incluirmos todos os pacotes do webpack no seu <body> usando as tags de script.
+
+module.exports = {
+
+    // ponto de entrada
+    entry: "./src/js/index.js",
+
+    // ponto de saida
+    output: {
+        // __dirname = caminho absoluto da pasta do projeto
+        path: path.resolve( __dirname, "dist" ),
+        filename: "js/bundle.js"
+    },
+
+    // adicionamos a propriedade mode no script diretamente no package.json
+    // mode: "development"
+
+    
+    // configuração do webpack-dev-server:
+    devServer: {
+
+        // especifica a pasta para qual o webpack server "hospeda" nossos arquivos
+        // pasta src é a pasta de aplicação que os desenvolvedores irão desenvolver a aplicação.
+        // pasta dist é a pasta de aplicação que nós iremos entregar para o client
+        // podemos especificar na propriedade abaixo a porta que ele será entregue tbm, mas depois iremos nos aprofundar nisso
+        contentBase: "./dist"
+
+    },
+
+    // Configurando plugins:
+    plugins: [
+
+        // criamos uma nova instancia desse plugin
+        new HtmlWebpackPlugin( {
+
+            // Options desse plugin:
+            // nome do arquivo que será gerado e manipulado pelo plugin.
+            filename: "index.html", 
+
+            // template é o arquivo desenvolvido que irá ser copiado para o diretório "./dist"
+            template: "./src/index.html" 
+        } )
+    ]
+
+}   
+
+Configurando o loader do Babel para que webpack e babel se comuniquem ( babel vai gerar pelo polyfill todos os arquivos js ES6+ para ES05 que será o outro ponto de entrada do webpack.config empacotar de forma otimizada ).
+arquivo webpack.config.js ficará da seguinte maneira:
+
+// importando módulo "path"
+const path = require( "path" );
+
+// importando módulo do plugin que manipula o arquivo html: html-webpack-plugin
+const HtmlWebpackPlugin = require( "html-webpack-plugin" );
+
+module.exports = {
+
+    // ponto de entrada ( adicionando ponto de entrada do babel-polyfill )
+    entry: [ "@babel/polyfill", "./src/js/index.js" ],
+
+    // ponto de saida
+    output: {
+        // __dirname = caminho absoluto da pasta do projeto
+        path: path.resolve( __dirname, "dist" ),
+        filename: "js/bundle.js"
+    },
+
+    // adicionamos a propriedade mode no script diretamente no package.json
+    // mode: "development"
+
+    
+    // configuração do webpack-dev-server:
+    devServer: {
+
+        // especifica a pasta para qual o webpack server "hospeda" nossos arquivos
+        // pasta src é a pasta de aplicação que os desenvolvedores irão desenvolver a aplicação.
+        // pasta dist é a pasta de aplicação que nós iremos entregar para o client
+        // podemos especificar na propriedade abaixo a porta que ele será entregue tbm, mas depois iremos nos aprofundar nisso
+        contentBase: "./dist"
+
+
+    },
+
+    // Configurando plugins:
+    plugins: [
+        // criamos uma nova instancia desse plugin
+        new HtmlWebpackPlugin( {
+            // Options desse plugin:
+            filename: "index.html", 
+            template: "./src/index.html" 
+        } )
+    ],
+    
+    // Configurando Loader
+    module: {
+        
+        // regras
+        rules: [
+            {
+                // regex para pegar todos os arquivos que terminarem com ".js"
+                test: /\.js$/,
+
+                // excluir arquivos do diretório "node_modules"
+                exclude: /node_modules/,
+
+                // usar o loader: babel-loader para o webpack executar o babel
+                use: {
+                    loader: 'babel-loader'
+                }
+            }
+        ]
+    }
+}   
+
+Referência:
+    - Webpack: https://webpack.js.org/guides/getting-started/
+
+    - Conceitos Módulos: https://webpack.js.org/concepts/modules/
+
+    - Configuração: https://webpack.js.org/configuration/
+
+    - Loaders: https://webpack.js.org/loaders/

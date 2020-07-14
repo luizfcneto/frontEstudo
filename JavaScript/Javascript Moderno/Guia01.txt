@@ -1,0 +1,68 @@
+Pacotes externos que auxiliam e facilitam o desenvolvimento de aplicações atualmente ( 2020 ):
+    - libraries ( bibliotecas ) e frameworks
+    - Ferramentas de desenvolvimento
+
+Exemplo: 
+    - Ecossitema:
+        - node.js -> É uma engine/motor de tempo de execução de JavaScript desenvolvido em uma engine/motor do google chrome ( V8, motor de alta performance de Js e Web assembly desenvolvido em C++ pelo Google para implementar e executar ES e Web Assembly que pode ser executado diretamente por sistemas operacionais como Win7+, macOS 10.12+ e Linux, ou em conjunto com aplicações de C++  ) 
+
+        É um orientador a eventos de javascript assíncrono planejado/desenvolvido para construir aplicações na rede de forma escalável.
+        Através dele podemos desenvolver e configurar o backend de aplicações ( códigos que são executados pelo servidor em uma rede )
+        
+        - npm -> gerenciador de pacotes que contém o node.js e outras infinitas bibliotecas, frameworks e ferramentas desenvolvidas por terceiros ( onde pacotes podem ser compartilhados ).
+        NPM possui três tipos de componentes: 
+            - Site:
+                Use ele para descobrir / encontrar pacotes, configurar perfil, gerenciar outros aspectos da sua experiencia do NPM. ( configurando organizaçoes para gerenciar acesso público ou privado dos seus pacotes );
+                
+            - Interface de linha de comando ( CLI ):
+                Executa no terminal, é como a maioria dos desenvolvedores interagem com NPM.
+
+            - Registrador:
+                Banco de dados gigante público de softwares de JS e meta-dado.
+        NPM é utilizado para:
+            1. Adaptar pacotes de código de suas aplicações, ou incorporar pacotes nelas;
+            2. Baixar ferramentas que podem ser utilizadas separadamente;
+            3. Executar pacotes sem ter que baixar utilizando npx.
+            4. Compartilhar código com qualquer usuário NPM, em qualquer lugar;
+            5. Restringir código para desenvolvedores específicos;
+            6. Criar organizações para coordenar a manutenção de pacotes, desenve-los e os próprios desenvolvedores;
+            7. Formar times virtuais usando as orgs ( organizações );
+            8. Gerenciar múltiplas versões de código e dependências de códigos;
+            9. Atualizar aplicações facilmente quando código tem versão da linguagem é atualizada.
+            10. Descobrir múltiplas formas de resolver o mesmo problema;
+            11. Encontrar desenvolvedores que estão trabalhando em problemas e projetos similares aos seus.
+            Exemplos de pacotes/ferramentas que podem ser encontradas no NPM:
+                - React;
+                - Angular;
+                - Jquery;
+                - Lodash;
+
+            - ferramentas para:
+                - automatizar tarefas;
+                - recarregamento automatico do browser
+                - compilar JavaScript versão ES6+ para ES5 para ser interpretado em todos os navegadores
+
+        Todas as ferramentas, bibliotecas e frameworks comentadas acima são gerenciadas pelo NPM ( uma interface de linha de comando que nos permite colocar as ferramentas/bibliotecas/frameworks nos nossos projetos )
+
+        Exemplo:
+            Babel -> Um compilador de Javascript que transforma códigos de Javascript de versões ES6+ para ES5 ( ESNext ), permitindo que o nosso código independente da versão de Js seja interpretado por todos os navegadores.
+
+            Webpack -> Ferramenta utilizada para compilar/empacotar Módulos de JavaScript, através do "bundler". 
+
+            Modularização é um processo importantíssimo de organização do código, deixando arquivos separados com código específicos a ele em um mesmo arquivo, facilitando no processo de desenvolvimento, deixando ele mais organizado, para fácil manutenção, além de replica-lo em outro projeto caso necessário. 
+
+            Webpack é justamente uma ferramenta que nos auxilia compilando esses módulos específicos e empactoando-os nos permitindo reutiliza-los em qualquer projeto.
+
+        Esses dois exemplos de ferramentas/pacotes estão presentes no NPM, que através de scripts podemos automatizá-los de forma mais fácil e prática do que fazer manualmente.
+
+
+    Referências:
+        NPM: https://docs.npmjs.com/about-npm/
+        
+        Node: https://nodejs.org/en/ 
+
+        Babel: https://babeljs.io/ 
+
+        Webpack: https://webpack.js.org/guides/getting-started/
+
+        V8: https://v8.dev/ 
