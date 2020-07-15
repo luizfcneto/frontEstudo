@@ -3561,19 +3561,31 @@ eval("/**\n * Copyright (c) 2014-present, Facebook, Inc.\n *\n * This source cod
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _test_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./test.js */ \"./src/js/test.js\");\n// Controller global da aplicação\n\nvar anotherNum = 25;\nconsole.log(\"Numero importado de um m\\xF3dulo: \".concat(_test_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"], \". chamado teste.js. Opa, espera, outro n\\xFAmero: \").concat(anotherNum));\n\n//# sourceURL=webpack:///./src/js/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _models_Search__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./models/Search */ \"./src/js/models/Search.js\");\n/* harmony import */ var _views_searchView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./views/searchView */ \"./src/js/views/searchView.js\");\n// import { add, multiply } from \"./views/searchView\";\n// import { id } from \"./views/searchView\";\n // console.log( add( 1, 5 ), multiply( id, 10 ), id, string );\n// renomeando modulos para outro nome\n// import { add as adiciona, multiply as multiplica, id as ID } from \"./views/searchView\";\n// console.log( adiciona( 1, 5 ), multiplica( ID, 10 ), ID, string );\n// Importando todos os módulos como um Componente:\n\n\nconsole.log(_models_Search__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\nconsole.log(_views_searchView__WEBPACK_IMPORTED_MODULE_1__[\"add\"](1, 5), _views_searchView__WEBPACK_IMPORTED_MODULE_1__[\"multiply\"](_views_searchView__WEBPACK_IMPORTED_MODULE_1__[\"id\"], 10), _views_searchView__WEBPACK_IMPORTED_MODULE_1__[\"id\"], _models_Search__WEBPACK_IMPORTED_MODULE_0__[\"default\"]);\n\n//# sourceURL=webpack:///./src/js/index.js?");
 
 /***/ }),
 
-/***/ "./src/js/test.js":
-/*!************************!*\
-  !*** ./src/js/test.js ***!
-  \************************/
+/***/ "./src/js/models/Search.js":
+/*!*********************************!*\
+  !*** ./src/js/models/Search.js ***!
+  \*********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nconsole.log(\"Módulo importado\");\n/* harmony default export */ __webpack_exports__[\"default\"] = (50);\n\n//# sourceURL=webpack:///./src/js/test.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"Eu sou uma String exportada.\");\n\n//# sourceURL=webpack:///./src/js/models/Search.js?");
+
+/***/ }),
+
+/***/ "./src/js/views/searchView.js":
+/*!************************************!*\
+  !*** ./src/js/views/searchView.js ***!
+  \************************************/
+/*! exports provided: add, multiply, id */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"add\", function() { return add; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"multiply\", function() { return multiply; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"id\", function() { return id; });\nvar add = function add(num1, num2) {\n  return num1 + num2;\n};\nvar multiply = function multiply(num1, num2) {\n  return num1 * num2;\n};\nvar id = 50;\n\n//# sourceURL=webpack:///./src/js/views/searchView.js?");
 
 /***/ }),
 

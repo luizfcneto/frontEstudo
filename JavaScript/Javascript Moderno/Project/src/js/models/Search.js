@@ -1,0 +1,1 @@
+export default "Eu sou uma String exportada.";

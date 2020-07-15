@@ -1,0 +1,122 @@
+Módulos:
+    No começo do desenvolvimento web o javascript era utilizado pontualmente para fazer scripts pequenos em aplicações, os arquivos eram pequenos. Atualmente isso mudou, temos aplicações inteiras feitas com javascript executadas pelos browsers assim como em outros contextos ( Node.js é um exemplo, executado por sistemas operacionais de servidores ).
+
+    Por conta do amplo uso do javascript, foram fornecidos mecanismos para separação dos programas de javascript em diferentes módulos que podem ser importados em outros arquivos quando necessário. Dado esse avanço da linguagem e de bibliotecas que utilizaram essas caracteristicas a seu proveito, muitos browsers foram atualizados para fornecer suporte a esse tipo de caracteristica.
+
+    A ideia do módulo é literalmente separar códigos, que são relacionados por contexto, em arquivos. 
+
+Exemplos de módulos básicos: https://github.com/mdn/js-examples/blob/master/modules/basic-modules/modules/square.js
+
+OBS: Em alguns projetos utilizamos a extensão .mjs para:
+    - É uma forma de deixar claro que esses arquivos.mjs são arquivos de módulos e separar arquivos de módulos de arquivos comuns de javascript.
+
+    - Para assegurar que os arquivos de módulos .mjs serão analisados ( transpilados ) como um módulo no tempo de execução como Node.js e ferramentas de construção como Babel.
+
+    Ler mais a documentação do V8 que recomenda esse tipo de formatação:
+    https://v8.dev/features/modules#mjs
+
+Atualmente ainda mantemos por momento a formatação comum .js para evitar problemas com vários navegadores com MIME type que costumam interpretar tipos como "text/javascript". 
+
+Para importar um módulo no arquivo.html devemos adicionar o atributo "type" na tag "<script>" para que o browser reconheça o módulo ( para podermos utilizar as palavras chave "export" e "import" ):
+<script type="module" src="modulo.js"> </script>
+
+ou
+
+<script type="module">
+    //...códdigo do módulo atrelado ao HTML
+</script>
+
+OBS: TypeScript não tem suporte para .mjs.
+
+
+EXPORTANDO UM MÓDULO:
+
+arquivo Search.js exportando apenas um módulo deste arquivo:
+export default "Qualquer coisa";
+
+// export default variavel, funcao, objeto...
+
+OBS: A palavra chave "export default" é interpretada pelo ES6 como um módulo único, não podendo conter outra palavra chave "export default" no mesmo arquivo.js. Mas podemos exportar múltiplos módulos através da palavra chave "export", desde que não seja declarado após o "export default" no arquivo.js. 
+
+ exemplo:
+    modulo.js:
+        export const variavelTeste = 5;
+        export const quadrado = { lado: 10 };
+        export const calculaAreaQuadrado = ( num1, num2 ) => {
+            return num1 * num2;
+        }
+
+        export const calculaPerimetroQuadrado = ( lado ) => {
+            return 4 * lado;
+        }
+        
+        export default "Qualquer outra coisa".
+    
+        // não pode haver a partir daqui outro export...
+
+        // sintaxe de um módulo exportado de uma função anonima:
+        export default () => {
+            return "Função anonima que retorna essa string"
+        }
+
+
+        // Renomeando módulos exportados:
+        export {
+            variavelTeste as teste,
+            quadrado as square,
+            calculaAreaQuadrado as calculaAreaRetangulo
+        }
+
+
+        // Exportando uma classe modulo2-Classe.js:
+        class Quadrado {
+            constructor( lado ){
+                this.lado = lado;
+            }
+
+            calculaArea() {
+                return lado * lado;
+            }
+
+            calculaPerimetro(){
+                return 4 * lado;
+            }
+
+            ...
+
+        }
+
+        export { Quadrado };
+
+
+IMPORTANDO MÓDULOS:
+arquivo index.js importando módulos sintaxe:
+1 forma: múltiplos módulos de um mesmo arquivo: modulo.js
+import { variavelTeste, quadrado, calculaAreaQuadrado, calculaPerimetroQuadrado } from "./caminho/modulo";
+
+// não precisa colocar "./caminho/modulo.js";
+2 forma: Renomeando módulos
+import { variavelTeste as teste, quadrado as square } from "./caminho/module";
+
+3 forma: Importando todos os módulos exportados por um Objeto
+import * as ObjetoModulo from "./caminho/modulo";
+
+para utilizar cada módulo do objeto é utilizando suas propriedades:
+ObjetoModulo.variavelTeste;
+ObjetoModulo.calculaAreaQuadrado;
+...
+
+1 & 4 forma: Importando módulo de uma classe:
+import { Quadrado } from "./caminho/modulo2-Classe";
+let quadrado = new Quadrado( 5 );
+
+5 forma:  Importando um módulo de forma dinâmica em formato de Promise:
+import ( "./caminho/meuModulo.js" )
+.then( ( modulo ) => {
+    // Faça alguma coisa com o módulo;
+} );
+
+
+
+Referência:
+    - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules

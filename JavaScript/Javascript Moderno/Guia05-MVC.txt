@@ -12,7 +12,9 @@ Controller será o arquivo index.js
 
 MODEL -----------------------------> CONTROLLER <----------------------------- VIEW
 
-search.js                               index.js                            searchView.js
-recipe.js                                                                   recipeView.js
-list.js                                                                     listView.js
-likes.js                                                                    likesView.js
+Search.js                               index.js                            searchView.js
+Recipe.js                                                                   recipeView.js
+List.js                                                                     listView.js
+Likes.js                                                                    likesView.js
+
+Por convenção, escrevemos os arquivos de Model com a primeira letra maiuscula para rápida associação de que aquele arquivo é um Model.
