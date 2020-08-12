@@ -421,6 +421,9 @@ module.exports = {
 
 }   
 
+instalando o webpack:
+npm install webpack --save-dev
+
 instalando a dependência webpack-cli:
 npm install webpack-cli --save-dev
 

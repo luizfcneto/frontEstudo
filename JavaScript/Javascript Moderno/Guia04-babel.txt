@@ -345,9 +345,9 @@ Babel:
                         "edge": "17",
                         "firefox": "60",
                         "chrome": "67",
-                        "safari": "11.1",
+                        "safari": "11.1"
                     },
-                    "useBuiltIns": "usage",
+                    "useBuiltIns": "usage"
                 }
             ]
         } 
@@ -365,9 +365,10 @@ Babel:
 
         https://babeljs.io/docs/en/usage
         
+instalar babel-loader:
+npm install babel-loader
 
-
-            
+é configurado no webpack.
 
 
 Referências:

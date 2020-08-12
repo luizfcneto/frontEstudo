@@ -26,6 +26,9 @@ ou
     //...códdigo do módulo atrelado ao HTML
 </script>
 
+OBS: Só podemos utilizar módulos ES6 em aplicações que estejam hospedadas em um servidor que utilize protocolo HTTP, porque existem normas e politicas de seguranças para utiliza-los.
+
+
 OBS: TypeScript não tem suporte para .mjs.
 
 

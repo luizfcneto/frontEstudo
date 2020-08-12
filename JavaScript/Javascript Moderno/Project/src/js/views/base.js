@@ -10,7 +10,9 @@ export const domElements = {
      
     shoppingList: document.querySelector( ".shopping__list" ),
 
-    paginationLocation: document.querySelector( ".results__pages" )
+    paginationLocation: document.querySelector( ".results__pages" ),
+
+    likesMenu: document.querySelector( ".likes__field" )
 }
 
 export const elementStrings = {

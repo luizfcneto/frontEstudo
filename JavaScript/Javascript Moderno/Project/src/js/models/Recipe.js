@@ -59,7 +59,8 @@ export default class Recipe {
     parseIngredientes() {
         const unitsLong = [ "tablespoons", "tablespoon", "ounces", "ounce", "teaspoon", "teaspoons", "cups", "pounds" ];
         const unitsShort = [ "tbsp", "tbsp", "oz", "oz", "tsp", "tsp", "cup", "pound" ];
-        
+        const units = [ ...unitsShort, "kg", "g" ]
+
         const newIngredientes = this.ingredientes.map( element => {
             // Modelar unidades de medidas utilizadas nas receitas
             let ingrediente = element.toLowerCase();
@@ -77,7 +78,7 @@ export default class Recipe {
 
             // Separar ingredientes em contagem, unidades e texto
             const arrayIngredientes = ingrediente.split(" ");
-            const indexUnidade = arrayIngredientes.findIndex( element2 => unitsShort.includes( element2 ) );
+            const indexUnidade = arrayIngredientes.findIndex( element2 => units.includes( element2 ) );
             let objIngrediente;
             let quantidade;
 
@@ -85,10 +86,9 @@ export default class Recipe {
                 const arrayCount = arrayIngredientes.slice( 0, indexUnidade );
                 if( arrayCount.length === 1 ){
                     quantidade = eval( arrayCount[0].replace( "-", "+" ) );
-                    
-                }else if( arrayCount.length === 0 ) {
-                    quantidade = eval( arrayIngredientes( 0, indexUnidade ).join( "+" ));
 
+                }else if( arrayCount.length === 0 ) {
+                    quantidade = eval( arrayIngredientes( 0, indexUnidade ).join( "+" ));                    
                 }
 
                 objIngrediente = {
@@ -122,6 +122,21 @@ export default class Recipe {
         } )
     
         this.ingredientes = newIngredientes;
+    }
+
+    atualizaAlimentaPessoas( tipo ){
+        // Serve:
+        const newServindo = tipo === "dec" ? this.serve - 1 : this.serve + 1;
+        
+        //ingredientes
+        this.ingredientes.forEach( (current) => {
+            current.quantidade *= ( newServindo / this.serve );
+            
+        })
+        
+        // Ingredientes 
+        this.serve = newServindo;
+    
     }
 
 }

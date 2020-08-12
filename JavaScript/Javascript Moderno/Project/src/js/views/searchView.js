@@ -1,6 +1,21 @@
 // variaveis do DOM:
 import { domElements, elementStrings } from "./base";
 
+// Mostrar elemento selecionado, quando clicado
+export const selecionaDestaque = ( id ) => {
+    const arrayResultados = Array.from( document.querySelectorAll( ".results__link" ) );
+
+    arrayResultados.forEach( element => {
+        element.classList.remove("results__link--active");
+    } ) 
+
+    // Buscar elemento dentro de results_list que tenha o id que foi clicado
+    // inserir a classe "results__link--active" nesse elemento com id
+    document.querySelector( `.results__link[href="#${id}"]` ).classList.add( "results__link--active" );
+    
+    
+    
+}
 
 export const getInput = () => {
     return domElements.searchField.value;
@@ -8,11 +23,6 @@ export const getInput = () => {
 
 export const clearInput = () => {
     domElements.searchField.value = ""
-}
-
-// Renderiza a Receita escolhida
-export const renderReceita = ( receita ) => {
-
 }
 
 // Função que trunca o titulo da receita até 17 caracteres ou na ultima palavra que completa 17 caracteres
@@ -53,7 +63,7 @@ export const tituloLimiteReceita = ( recipeTitle, limit = 17 ) => {
 // Define formato de exibição dos elementos da lista de receitas.
 const templateElements = async ( element ) => {
     let template = `<li>
-                        <a class="results__link results__link--active" href="#${ element.recipe_id }" target="_self">
+                        <a class="results__link" href="#${ element.recipe_id }" target="_self">
                             <figure class="results__fig">
                                 <img src="${ element.image_url }" alt="Test">
                             </figure>
