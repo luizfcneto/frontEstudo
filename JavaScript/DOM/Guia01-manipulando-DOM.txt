@@ -1,0 +1,142 @@
+DOM:
+O document é uma variável muito importante do Javascript. Ela contém o DOM ou Document Object Model, que é como o navegador enxerga o HTML utilizado por ele para renderizar a página.
+
+O DOM então é uma "cópia" em memória representando o arquivo HTML e variável document contém o valor do DOM. Com javascript nós estamos manipulando o DOM, estamos manipulando o que o navegador renderizou. 
+
+Então, ao manipularmos/alterarmos um conteudo de h1 via javascript, alteramos o DOM, a representação em memória do conteúdo HTML, o código fonte HTML, o arquivo, se manterá intacto.  
+
+Utilizando:
+Seletores:
+    função querySelector do objeto document.
+    Retorna o primeiro elemento dentro do documento, usando ordenação em profundidade, pré ordenada e transversal dos nós do documento, que corresponde ao grupo específicado de seletores.
+
+    Se você não sabe, os elementos html tem um comportamento de uma árvore de nós, sendo cada nó um elemento html. Elementos html possuem relação de pai, filho e irmão;
+    <main>
+        <section>  
+            <h2> ... </h2>
+            <ul>
+                <li> ... </li>
+                <li> ... </li>
+                ...
+            </ul>
+        </section>
+    </main>
+
+    o elemento main é pai do elemento section
+    section portanto é filho de elemento main, e também é pai de h2 e ul.
+    h2 e ul portanto são filhos de section e irmãos entre si
+    ul é pai de li's 
+    logo li's são filhos de ul, e li's são irmãos entre si.    
+
+    Os seletores captam tanto pelo elemento html, quanto pela classe ou id do elemento html
+
+    exemplo:
+    console.log( document.querySelector("h1") );
+    console.log( document.querySelector(".classeDeH1") );
+    console.log( document.querySelector("#idDeH1") );
+
+OBS: É uma boa prática utilizar seletores nas classes ou id's, pois caso alguem refatore o código html, se houver mudança no elemento o código javascript irá quebrar, caso ele perpetue os valores das classes pros elementos corretos o código se manterá. Contudo, é sempre importante verificar se o elemento html que será refatorado manterá as classes de css ou id, e se eles são manipulados via javascript.
+
+para mais informações sobre o método querySelector(): 
+https://developer.mozilla.org/pt-BR/docs/Web/API/Document/querySelector
+https://www.w3schools.com/jsref/met_document_queryselector.asp
+
+Outra forma de manipular o conteúdo do elemento html é:
+Pelo método ".innerHTML", e atribuido a ele, deverá conter um código de marcação html.
+        Exemplo:
+        object.querySelector("#nomeId").innerHTML = "<p>" + Paragrafo + "</p>"
+
+        object.querySelector("#nomeId").innerHTML = "<b>" + em negrito + "</b>"
+
+        object.querySelector(".nomeClass").innerHTML = "<p>" + Paragrafo + "</p>"
+        object.querySelector(".nomeClass").innerHTML = "<b>" + em negrito + "</b>"
+Ele não é muito utilizado.
+
+Outra forma de manipular o conteúdo do elmento html é:
+pelo método "getElementById"   
+    é mais rapido que o querySelector( pesquisar porque! )
+    Ao utilizar o método ".getElementById("valorAtribuidoId")" precisamos que exista dentro do elemento html, com uma propriedade "id", e um valor atribuido a ele, este que será referenciado no método.  
+    
+    Exemplo:
+        html:
+            <div> <p id="paragrafo-1" class="paragrafo"> texto 1 </p> </div>  
+    
+        js: 
+            object.getElementById("paragrafo-1").textContent = "teste".
+
+Para saber mais sobre o método getElementById: 
+https://developer.mozilla.org/pt-BR/docs/Web/API/Document/getElementById
+
+
+Alterando uma propriedade css de uma classe, nesse exemplo incrementando um atributo "display" e atribuindo o valor "none";
+    Exemplo:
+    código html:
+        <img src="caminho.png" alt="imagem descricao" class="imagem">
+
+    código css:
+    .imagem{
+        position: relative;
+        height: 100 px;
+        left: 50%;
+        ...
+    } 
+
+    código javascript:
+        document.querySelector( ".imagem" ).nomeArquivo(.css).display = "none";
+                                                      //.css não necessário
+
+
+Alterando a imagem src="caminho.png", para outra imagem, src="caminhoNovo.png"
+    utilizando o método querySelector:
+
+    document.querySelector( ".imagem" ).src="caminhoNovo.png";   
+
+
+Para adicionar, remover, modificar uma classe em um elemento html:
+    utilizamos o método ".classList."add/remove/toggle"("classeQueQueroInserir")"
+    - para adicionar a classe "classeQueQueroInserir".
+
+    exemplo:
+    html:
+        <div class="player-0-panel">
+    
+    javascript
+        document.querySelector( ".player-0-panel" ).classList.add("active");
+    
+    //resultado:
+    html:
+        <div class="player-0-panel active">
+
+
+    
+    - para remover a classe "active":
+    
+    exemplo:
+    html:
+        <div class="player-0-panel active">
+
+    javascript:
+        document.querySelector( ".player-0-panel" ).classList.remove("active");
+    
+    //resultado:
+        <div class="player-0-panel">
+
+modificando valor de um input html com a propriedade "value"
+
+código html:
+    <input id="id-input" value="valor-atual"> </input>
+    <p id="new-value" > </p>
+
+código javascript:
+    var valor = document.getElementById( "id-input" ).value;
+    document.getElementById( "new-value" ).innerHTML = "<b>" + valor + "</b>";
+
+mais informações em: https://www.w3schools.com/jsref/prop_text_value.asp
+
+Modificando o estilo de um elemento html:
+    Após selecionarmos um elemento html utilizando os seletores comentados anteriormente, podemos configurar o estilo de um elemento html via Javascript.
+
+    Exemplo:
+    document.querySelector( ".divCorAzul" ).style.backgroundColor = "blue"
+
+OBS: não é uma boa prática misturar o código de estilo com o de javascript, portanto, raramente utilizaremos o modificador do atributo style dos objetos via javascript. O melhor jeito seria definir a classe com o estilo que queremos modificar do elemento no arquivo de css, e colocar pro javascript adicionar essa classe ao elemento.

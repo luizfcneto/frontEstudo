@@ -1,0 +1,41 @@
+Eventos:
+    Notificações que são enviadas para noticiar ao código que algo aconteceu com a página web;
+
+    Exemplo:
+        Clicar em um botão "button";
+        reabrir a janela;
+        scrollar para baixo ou para cima a página;
+        apertar um botão no teclado "press a key"
+
+    Event Listener:
+        Uma função performatica, que realiza a ação baseado num determinado evento.
+        que espera um evendo especifico acontecer.
+        chama-se: event-handler
+
+        no nosso exemplo temos 3 event-handlers
+        new game();
+        roll(); --> classe do botão de rolar: "btn-roll"
+        hold();
+
+        funcaoQueIraExecutar(){
+            //executa esse código
+        }
+
+        exemplo no roll():
+        document.querySelector(".btn-roll").addEventListener("click", funcaoQueIraExecutar );
+
+        funcaoQueIraExecutar = função de callback -> porque quem chama essa função é outra função.
+
+
+        document.querySelector(".btn-roll").addEventListener("click", function(){
+            //essa aqui se chama uma função anonima, pois ela única e não é 
+            //reaproveitada pelo resto do código javascript, pois não possui nome.
+        } );
+
+
+
+
+
+para mais informaçõeS:
+    https://www.w3schools.com/jsref/dom_obj_event.asp
+    https://developer.mozilla.org/pt-BR/docs/Web/Events

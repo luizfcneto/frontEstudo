@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,600" rel="stylesheet" type="text/css">
+        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+        <link href="https://unpkg.com/ionicons@4.5.5/dist/css/ionicons.min.css" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="style.css">
+        <link type="text/css" rel="stylesheet" href="bootstrap-grid.min.css">
+        <title>Pig Game</title>
+    </head>
+
+    <body>
+            
+        <div class="wrapper clearfix">
+            <div class="row">
+                <div class="col-6 col-md-4">
+            
+                </div>
+                
+                <div class="col-6 col-md-4">
+                    <form>
+                        <b> Informe pontuação limite: </b>
+                        <input id="limitScore" type="number" value="20" >
+                    </form>
+                    
+                </div>
+                
+                <div class="col-6 col-md-4">
+                    <b> Limite Atual: </b>
+                    <b id="currentLimit">  </b>
+                </div>
+                
+            </div>   
+
+            <div class="player-0-panel active">
+                <div class="player-name" id="name-0"> <b> Player 1 </b> </div>
+                <div class="player-score" id="score-0">  <b> 43 </b>  </div>
+                <div class="player-current-box">
+                    <div class="player-current-label"> <strong> Current </strong> </div>
+                    <div class="player-current-score" id="current-0"> <strong> 11 </strong> </div>
+                </div>
+            </div>
+            
+            <div class="player-1-panel">
+                <div class="player-name" id="name-1"> <strong> Player 2 </strong> </div>
+                <div class="player-score" id="score-1"> <strong> 72 </strong> </div>
+                <div class="player-current-box">
+                    <div class="player-current-label"><strong> Current </strong> </div>
+                    <div class="player-current-score" id="current-1"> <strong> 80 </strong> </div>
+                </div>
+            </div>
+                        
+            <button class="btn-new button-style"><i class="icon ion-md-add-circle"></i>New game</button>           
+            <button class="btn-roll button-style"><i class="icon ion-md-sync"></i>Roll dice</button>
+            <button class="btn-hold button-style"><i class="icon ion-md-lock"></i>Hold</button>
+            
+            <img src="dice-5.png" alt="Dice-0" class="dice" id="dice-0">
+            <br>
+            <img src="dice-5.png" alt="Dice-1" class="dice" id="dice-1">
+        </div>
+
+        <script src="app.js"></script>
+    </body>
+</html>

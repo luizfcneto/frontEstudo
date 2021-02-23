@@ -1,0 +1,212 @@
+*{
+	box-sizing: border-box;
+ }
+
+body{
+	font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+}
+
+header{
+	background-color: #333;
+	height: 3em;
+	color: #FFF;
+	margin-bottom: 1em;
+}
+
+header h1{
+	font-size: 2em;
+	display:inline-block;
+	vertical-align:	middle;
+}
+header h2{
+	font-size: 2em;
+	display:inline-block;
+	vertical-align:	middle;
+}
+
+header .container:before{
+	content: '';
+	display:inline-block;
+	height: 100%;
+	vertical-align:	middle;
+}
+
+.container{
+	width: 80%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+section{
+	margin: 2em 0;
+	overflow: hidden;
+}
+
+section h2{
+	font-size: 3em;
+	display: block;
+	padding-bottom: .5em;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: .5em;
+}
+
+/* Formulário: */
+.container-form {
+	display: flex;
+	justify-content: flex-start;
+}
+
+form {
+	width: 100%;
+	margin: 0 auto;
+}
+
+label{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.input-form {
+	margin: 0.4em 0;
+	font-size: 14px;
+	width: 100%;
+	padding: 0.3em 0.1em;
+}
+
+.btn-container{
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	margin-bottom: 1em;
+}
+
+.btn-adicionar{
+	background-color: coral;
+	border-radius: 5px;
+	font-size: 16px;
+	font-weight: bold;
+	color: whitesmoke;
+	cursor: pointer;
+}
+
+/* Erro Validação Mensagem */
+.erro-validacao .erro-mensagem{
+	list-style-type: none;
+	font-size: 16px;
+	font-weight: bold;
+	color: crimson;
+}
+
+/* Exclusão de um elemento da tabela */
+.remove-animation{
+	opacity: 0;
+	transition: 500ms;
+}
+
+/* Filtro da Tabela */
+.input-busca {
+	width: 40%;
+	margin-bottom: 1em;
+	padding: 0.5em;
+}
+
+.esconde-tr{
+	display: none;
+}
+
+/* Tabela */
+table{
+	width: 100%;
+	margin-bottom : .5em;
+    table-layout: fixed;
+
+}
+
+td, th {
+	padding: .7em;
+	margin: 0;
+	border: 1px solid #ccc;
+	text-align: center;
+}
+
+th{
+	font-weight: bold;
+	background-color: #EEE;
+}
+
+label{
+	color: #555;
+	display: block;
+	margin-bottom: .2em;
+}
+
+.campo{
+	margin: 0;
+	padding-bottom: 1em;
+	width: 100%;
+	border: 1px solid #ccc;
+	padding: .7em;
+	width: 100%;
+}
+
+.campo-medio{
+	display: inline-block;
+	padding-right: .5em;
+}
+
+.grupo{
+	width: 32%;
+	display: inline-block;
+	padding: 10px 0px;
+}
+
+button{
+	padding: .5em 2em;
+	border: 0;
+	border-bottom: 3px solid;
+	font-size: 1.2em;
+	cursor: pointer;
+	margin: 0;
+	margin-top: -3px;
+	color: #fff;
+	background-color:#0c8cd3;
+	border-color: #04324c;
+	width: 20%;
+    display: block;
+    clear: both;
+    margin: 10px 0px;
+
+}
+
+button:active{
+	margin-top:0px;
+	border: 0;
+}
+
+button[disabled=disabled], button:disabled {
+    background-color: gray;
+	border-color: darkgray;
+
+}
+
+.adicionar-paciente{
+    margin-top: 30px;
+}
+
+.campo-invalido{
+	border: 1px solid red;
+}
+
+.linha-invalida {
+	background-color: rgb(255, 108, 108)
+}
+
+.btn-buscar {
+	padding: 0.5em 0.7em;
+	background-color: darkgoldenrod;
+	color: whitesmoke;
+	border: 1px darkgoldenrod;
+	border-radius: 1px;
+	cursor: pointer;
+}
