@@ -1,0 +1,107 @@
+Tags HTML vistas:
+h1: Titulo
+p: paragrafo
+strong: negrito
+em: itálico
+<!DOCTYPE html>: tag que informa ao navegador qual versão do documento html estamos utilizando
+<html>: tag que identificação do navegador indicando que tudo que estiver inserida nela será um conteúdo html; marca o conteúdo a ser renderizado no navegador
+    propriedade lang: informa ao navegador a tradução da linguagem q ele deverá fazer sobre o conteúdo que está presente nele.
+    exemplo: <html lang="pt-br">
+    
+
+
+<meta charset="UTF-8">: tag que informa ao navegador os símbolos que serão utilizados internamente no documento, que estão presentes no sistema UTF-8, "`"...
+    charset -> propriedade da tag meta.
+
+    "passar as informações do encoding da nossa página para o navegador"
+
+<title>: Tag que define o nome que será exibido na aba do navegador referente a este documento html
+<head>: tag semantica que para o html informa configurações para o navegador referente a este documento
+<body>: tag que define o corpo do documento html ( conteúdo da página que será apresentado visualmente no navegador )
+
+propriedades de estilo utilizadas no html:
+No alinhamento deles: text-align
+No tamanho da fonte: font-size
+Na cor de fundo: background-color
+Na cor do texto: color
+
+3 formas distintas de inserir estilização no arquivo html:
+CSS inline, adicionando na tag html a propriedade "style": propridedades de estilo: valor;
+exemplo:
+<h1 style="text-align: center"> Titulo </h1>
+
+a utilização dentro da tag <head> a tag <style> propriedades de estilo </style>
+
+inserindo um arquivo externo que contenha informações das propriedades de estilo através do da tag <link>, a propriedade da localização do arquivo de estilo "href" e a propriedade que define a relação de documento "rel".
+Exemplo:
+<link rel="stylesheet" href="caminho/arquivo.css">
+
+<div>: divisões de conteúdo
+
+Dicas:
+O cabeçalho da página deve ter mais destaque;
+Ideal é usar classes para tudo
+
+Tags Semanticas: Utilizadas para facilitar entendimento do desenvolvedor e navegador:
+header: divisão do cabeçalho
+main: divisão do conteúdo principal da página web
+
+Links externos e internos ( ancora )
+<a href="../caminho/localizacao" target="_self"> </a>
+
+imagem:
+<img src="../caminho/localizacao" alt="descricao_da_imagem_para_acessibilidade" >
+
+listas:
+<ul> : lista não-ordenadas
+<li> : elementos da lista não-ordenada
+<ol> : lista ordenada
+
+
+Formularios:
+<form>: cria formulário html
+<input>: caixa para entrada do usuário
+
+tipos de input:
+    - email
+    - tel
+    - number
+    - password
+    - date
+    - datetime
+    - month
+    - search
+
+http://mobileinputtypes.com/
+
+<label>: etiqueta para refereciar o input
+Exemplo:
+<form>
+    <label for="teste"> Teste: </label>
+    <input type="text" id="teste">
+</form>
+Obs: Podemos criar input dentro de uma label.
+Ao clicar no texto "Teste:" o usário, o cursor de digitação na caixa de input com id "teste" irá aparecer
+
+<textarea>: Cria uma caixa de texto de mais de uma linha
+<input type="radio">: Tipo de input que temos varias alternativas mas que só podemos escolher uma
+<input type="checkbox">: Tipo que cria uma caixa selecionavel ou mais 
+
+<select>: É um campo de seleção que possui mais de um item de alternativa onde só podemos escolher uma.
+<option>: É a marcação para o item interno da tag <select>
+
+atributo "required": faz com o que o input seja preenchido no formulário antes de submete-lo
+atributo "checked": deixa um input radio/checkbox marcado por padrão
+
+<fieldset>: Estrutura melhor o código html de formulário para substituir as divs ( agrupamento de formulários ).
+<legend>: Estrutura o titulo desse fieldset que utilizamos 
+
+
+Tabelas:
+<table>: formatação do inicio da tabela
+<tr>: representa a linha da tabela
+<td>: representa cada célula da tabela
+<thead>: representa o cabeçalho da tabela
+<tbody>: representa o corpo da tabela
+<th>: representa a célula do cabeçalho da tabela
+<foot>: representa o rodapé da tabela

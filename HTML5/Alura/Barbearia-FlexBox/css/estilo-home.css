@@ -1,0 +1,191 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Foto do Banner  */
+.banner {
+    width: 100%;
+}
+
+/* Seção Principal */
+.principal{
+    padding: 3em 0;
+    background-color: #FEFEFE;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.titulo-secao{ 
+    text-align: center;
+    font-size: 2.3em;
+    /* font-weight: bold; */
+    margin: 0 0 1em;
+}
+
+.principal-post {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.img-utensilios{
+    margin-left: 2%;
+    width: 70px;
+    height: 70px;
+}
+
+.principal-post p {
+    margin: 0.7em 0;
+    width: 85%;
+    height: 10%;
+    flex-grow: 1;
+}
+
+p:first-line{
+    font-style: italic;
+}
+
+.principal strong {
+    font-weight: bold;
+}
+
+.principal em {
+    font-style: italic;
+} 
+
+/* Localização Mapa */
+.localizacao {
+    padding: 3em 0;
+    background: linear-gradient(#FEFEFE, #888888 );
+}
+
+.localizacao p {
+    margin: 0 0 2em;
+    text-align: center;
+}
+
+.localizacao-conteudo{
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Seção Benefícios */
+.beneficios{
+    background-color: #888888;
+    padding-bottom: 1.2em;
+}
+
+.conteudo-beneficios{
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+}
+
+.lista-beneficios {
+    width: 40%;
+}
+
+.itens-beneficios {
+    line-height: 1.5;
+}
+
+.itens-beneficios:before {
+    content: "🧔"
+}
+
+.itens-beneficios:first-child {
+    font-weight: bold;
+}
+
+.img-beneficios{
+    width: 60%;
+    margin-bottom: 2em; 
+}
+
+.video {
+    width: 560px;
+    margin: 2em auto;
+}
+
+@media screen and ( min-width: 430px ) and ( max-width: 580px ){
+
+    .titulo-principal {
+        font-size: 1.5em;
+    }
+
+    .principal {
+        padding: 1.2em;
+    }
+
+    .mapa {
+        padding: 1.5em;
+    }
+
+    .mapa-conteudo {
+        height: 10%;
+    }
+
+    .conteudo-beneficios{
+        flex-flow: column;
+    }
+
+    .lista-beneficios{
+        margin: auto;
+        width: 100%;
+        margin-bottom: 1.1ex;
+    }
+
+    .img-beneficios {
+        width: 100%;
+        margin: auto;
+        margin-bottom: 2em;
+    }
+
+    .video {
+        margin: 0 auto;
+        width: 90%;
+    }
+
+}
+
+@media screen and ( max-width: 429px ) {
+    .titulo-principal{
+        font-size: 1.3em;
+    }
+
+    .principal{
+        padding: 1em;
+    }
+
+    .mapa {
+        padding: 1em;
+    }
+
+    .mapa-conteudo {
+        height: 5%;
+    }
+
+    .conteudo-beneficios{
+        flex-flow: column
+    }
+
+    .lista-beneficios {
+        margin: auto;
+        width: 100%;
+        margin-bottom: 1em;
+    }
+
+    .img-beneficios {
+        margin: auto;
+        width: 100%;
+        margin-bottom: 1em;
+    }
+
+    .video {
+        margin: 0 auto;
+        width: 90%;    
+    }
+
+
+}
+

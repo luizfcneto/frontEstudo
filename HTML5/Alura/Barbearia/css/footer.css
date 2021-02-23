@@ -1,0 +1,32 @@
+/* Footer */
+footer{
+    padding: 20px 0;
+    text-align: center;
+    background-color: #BBBBBB;
+
+    /* inserindo uma imagem de fundo via url: background-color: url("nome_da_img.png") */
+}
+
+#img-footer{
+    width: 15%;
+}
+
+footer .copyright {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+@media screen and ( max-width: 429px ){
+    #img-footer {
+        width: 35%;
+    }
+
+}
+
+@media screen and ( min-width:430px ) and ( max-width: 510px ){
+    #img-footer{
+        width: 35%;
+    }
+
+}

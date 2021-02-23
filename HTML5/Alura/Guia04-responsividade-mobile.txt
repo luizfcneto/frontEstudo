@@ -1,0 +1,16 @@
+Tag meta de viewport:
+Precisamos coletar informações da resolução do dispositivo em relação a densidade de pixels q ele possui para renderização da nossa página web. 
+
+Para indicar isso, adicionamos a tag meta abaixo no head do nosso documento html:
+<meta name="viewport" content="width-device-width">
+
+Além disso, precisamos utilizar as media queries para especificar a estilização da nossa página de acordo com o tamanho em pixels q o dispositivo possui.
+exemplo:
+
+@media screen and ( max-width: 480px ) {
+    body{ 
+        background: red;
+    }
+}
+
+a afirmativa acima no css diz que para os dispositivos com tamanho de largura de até 480px, iremos estilizar com que estiver ali dentro, nesse nosso exemplo a cor de fundo da nossa página terá a cor vermelha.

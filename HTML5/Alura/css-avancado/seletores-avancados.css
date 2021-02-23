@@ -1,0 +1,71 @@
+/* .img-cortes {
+    width: 50%;
+} */
+
+/* Pegando todos os paragrafos internos da tag main */
+/* main p {
+    background: brown;
+} */
+
+/* Pegando filhos diretos e apenas eles da main */
+/* main > p {
+    background-color: coral;
+} */
+
+/* Pegando o paragrafo seguinte de uma imagem, seu irmão */
+/* img + p {
+    background-color: cornflowerblue;
+} */
+
+/* Pegando todos os paragrafos seguintes e irmãos da imagem */
+/* img ~ p {
+    background-color: cyan;
+} */
+
+/* Selecionando todos os elementos filhos de uma classe, menos um elemento com id especifico */
+/* .principal p:not(#especifico){
+    background-color: darkmagenta;
+} */
+
+/*  Calculo do elemento pelo CSS mantendo as medidas proporcionais */
+.img-cortes {
+    /* width: calc( ( 60% * 4 ) / 4 ) ; */
+    /* width: calc( 50% - 30px ); */
+    width: calc( 25% + 200px );
+
+}
+
+/* Opacidade: aplicavel a todos os elementos e todas as cores */
+.img-cortes {
+    opacity: 1;
+}
+
+.img-cortes:hover {
+    opacity: 0.3;
+    transition: 400ms;
+}
+
+main p {
+        /* opacity: 0.3; */
+    /* color: rgb( 0, 0, 0 ); */
+    color: rgba( 0, 0, 0, 0.5 );
+}
+
+/* Sombreamento de um elemento */
+.img-cortes:hover{
+    /* box-shadow: 10px 10px 30px 20px #000000, -10px -10px yellow, -20px 20px rgba( 255, 0, 0, 0.7 ); */
+    box-shadow: 5px 5px 2px #000000;
+}
+
+body {
+    box-shadow: inset 0 0 30px darkorange;
+}
+
+main > p {
+    text-shadow: 1px 1px darkorange;
+}
+
+
+
+
+

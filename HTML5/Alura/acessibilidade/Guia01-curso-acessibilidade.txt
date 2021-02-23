@@ -1,0 +1,130 @@
+Curso de desenvolvimento, utilizando boas práticas para fornecer acessibilidade a PCDs.
+
+Utilizaremos o leitor de tela NVDA ( Windows ) e navegador Firefox.
+Para verificar leitores mais utilizados pelos usuários olhar na pesquisa https://webaim.org/projects/screenreadersurvey7/
+https://estudoinclusivo.com.br/pesquisa-ldt/resultados2#parte2
+
+
+Para Mac temos o Voiceover
+
+Para Linux temos o Orca
+
+Para mais informações sobre leitores de telas atual:
+https://en.wikipedia.org/wiki/List_of_screen_readers
+
+Lembrando que é de suma importância testar com frequencia e ir aprimorando o código de forma contínua. Importantíssimo ter a empatia para tentar compreender os caminhos e dificuldades que muitos PCDs podem ter na utilização do seu sistema. 
+
+É recomendável utilizar divs em casos de dúvidas de html semântico. Usar nos que façam sentido
+
+Acha que acessibilidade não é importante?
+https://pt.slideshare.net/MarinaDomingues7/acessibilidade-por-que-deixarmos-de-ser-amadores-para-um-pblico-que-espera-mais-de-ns
+
+
+Processos:
+0. Verificar dialeto do contéudo da sua aplicação
+<html lang="pt-br"> para portugues brasil
+caso tenha algum conteúdo que deva ser lido em outro dialéto, devemos colocar esse atributo lang no elemento html específico.
+Exemplo: 
+<h1 class="...classes" lang="en"> Welcome to our application </h1>
+
+1. Links: Definir apenas um titulo principal h1 ( nível 1 )
+associar os cabeçalhos corretamente para facilitar a navegação por cabeçalhos ( nível 2, nível 3, nível 4 ). Dessa forma ele pode checar rapidamente se o assunto do site é de seu interesse ou não.
+
+2. Imagens: Fazer descrição da imagem no atributo "alt" corretamente;
+Especificar em caso da imagem ser uma ilustração;
+
+Descrever a imagem de acordo com a mensagem que ela está propondo transmitir juntamente com o texto associado a ela, caso seja ilustrativa e não faça parte do conteúdo da mensagem, tentar transmitir sentimento/significado que deseja passar com a imagem [OBS: não fazer descrição muito extensa], caso contrário deixe o alt vazio;
+
+Imagens de ícones contendo a propriedade alt são desnecessários e prejudicam a navegabilidade do site pelos leitores de tela, deixe-os vazios para que o leitor não leia-os;
+
+Imagens do formato SVG não possuem o atribuito, mas existe o elemento 
+<title>Logotipo da aplicação</title>
+retire o elemento <desc> </desc>
+Verificar se o svg está dentro de uma ancora, colocar na ancora o atributo title nela para ser lida pelo leitor de tela, testar para ver como é realizado para cada leitor, ou simplesmente tira o svg e ponha uma imagem;
+
+Nunca coloque atributos de alt + title na mesma imagem, com informações iguais, pense no usuário e não na otimização de SEO apelativo. Coloque um ou outro;
+
+Alguns leitores de tela mencionam no final da descrição alternativa uma palavra específica "Gráfico", então é desnecessário e repetitivo escrever no inicio da descrição palavras como "Foto de" ou "Imagem"
+
+dicas de palestras sobre explicações dos atributos mencionados no process 0 e 2
+https://www.youtube.com/watch?v=5FJJuEVt5sA&feature=emb_logo
+http://www.reinaldoferraz.com.br/acessibilidade-seo-e-svg/
+
+3: O CSS também influencia no leitor de tela, exemplo em listas
+alguns leitores de tela mencionam a bolinha na hora de ler cada elemento da lista, portanto utilize a propriedade "list-style" com valor "none"
+
+4: Elementos invisíveis 
+Caso você tenha customizado um elemento, exemplo, uma caixa de checkbox e coloque outra personalizada para ilustrar a caixa de marcação, você precisa esconder a caixa original, certo?
+se utilizarmos a propriedade do css: 
+display: none, essa caixa não é lida pelo leitor de tela. --  não funciona
+visibility: hidden, a caixa também não será lida pelo leitor de tela. -- não funciona
+
+Precisamos fazer uma "gambiarra" para poder esconder a caixa original para que ela seja lida pelo leitor de tela,
+podemos tentar utilizar o 
+opacity: 0      // lembrando que nesse caso o elemento continua fisicamente disposto no corpo da página, mas não está aparente.
+ou simplesmente jogar o elemento html para longe do campo de visão da página:
+left: -9999px
+position: absolute;
+
+site contendo informações e dicas de como esconder elementos no html:
+https://webaim.org/techniques/css/invisiblecontent/
+
+5: Para aplicações mobile
+Jamais bloquear o zoom do site em aparelhos mobile:
+utilzar: 
+<meta name="viewport" content="width=device-width" />
+
+
+
+HTML:
+atributo role, tem como objetivo informar ao html o papel que aquele elemento está exercendo na aplicação. Tradução: role = papél/função, muda a semântica do elemento
+Isso auxilia na navegabilidade de PCDs, pois os leitores de tela diferenciam esses elementos, e com comandos de teclados específicos dos leitores de tela, o usuário poderá saber navegar por esses elementos compreedendo seu papel na aplicação. Utilizamos ele em divs que não sabemos definir a tag semântica, e inclusive em tags semânticas mapeadas.
+
+WAI-Aria ( pacote de expansão do HTML ) fornecido pelo W3C
+Em uma imagem link, dentro de um card, meramente ilustrativa, seguida de uma legenda, quando lidas pelo leitor de tela, informam tanto o "alt" da imagem, quanto o texto seguido da imagem que na maioria das vezes querem dizer a mesma coisa, o que torna a informação contida ali repetida. Para melhorar essa compreenção do usuário, temos que fazer o leitor de tela ignorar o texto contido no alt e apenas ler o texto informativo seguido da imagem.
+Para fazermos isso no HTML sozinho não da, precisamos utilizar um pacote de classes projetadas e adicionadas ao HTML para dizer que o link da ancora será referenciado somente pelo texto e não pelo "alt" da imagem
+utilizamos o atributo "aria-labelledby" e atribuindo à ela, o id do elemento específico que ela deve ser referenciada. tradução labelledby = rotulado por
+Exemplo:
+<a href="..." aria-labelledby="conteudoReferencia" >    OBS, não precisa colocar o "#" no conteudo do atributo aria-labelledby
+    <img src="..." alt="..., imagem ilustrativa">
+    <p id="conteudoReferencia"> para aprender mais sobre o assunto referente a esse link </p>
+</a>
+
+Dessa forma preservamos o alt da imagem, para caso ela nao seja carregada efetivamente, e será lida pelo leitor de tela apenas o texto do paragrafro informativo do link e não o alt da imagem 
+
+Lista de papéis/funções existentes:
+https://www.w3.org/TR/wai-aria/
+
+Formulários:
+Rotular inputs com labels para serem referenciados pelo leitor a respeito de qual campo aquele input pertence, 
+utilizar placeholder em inputs é uma boa prática mas não resolve o problema, pois quando o usuário digita ele pode não se lembrar sobre qual label aquele input pertence pois não é mencionado no leitor de tela
+0. Lembrar de utilizar o atributo for no label para referenciar o id do input a que ele se refere
+
+1. Colocar placeholder para dar mais uma informação sobre o que deve ser preenchido no campo 
+
+2. OBS: em inputs que não podem ser alterados nunca utilizar a propriedade/atributo disabled, pois os leitores de tela os ignoram, substitua pela propriedade/atributo readonly.
+
+Videos:
+Para utilzarmos um vídeo de nossa autoria, temos duas possibilidades, a primeira, menos trabalhosa, seria upar o vídeo para o youtube e incorporar o vídeo upado nele no nosso sistema web.
+
+Caso o vídeo seja curto e específico do nosso site e não pudermos upar para o youtube, devemos utilizar o HTML 5 para formatar a exibição do video, utilizar a propriedade "controls" para habilitar os controles de play, pause, volume, expandir video. 
+
+E para adicionarmos acessibilidade a ele, devemos incluir uma legenda sobre o conteúdo que está sendo transmitido no video, uma transcrição, para isso devemos produzir o arquivo de legenda, com ele produzido colocaremos dentro do elemento video o elemento track, como o exmeplo a seguir:
+
+<video src=".../.formato" class="" controls>
+    <track src=".../formatoLegenda" kind="subtitles" srclang="pt-br" label="Portugues (pt-br)">
+</video>
+
+Formatação do Arquivo de Legenda formato vtt: pesquisar melhor para mais informações
+Exemplo:
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.000 a:start
+O que é ser um desenvolver web, quais linguagens estudar
+
+2
+00:00:03.000 --> 00:00:08 
+para ser um bom desenvolvedor além de estudar as ferramentas é necessário compreender a lógica da programação
+
+Podemos personalizar os controles de comando do video, através de javascript ( para remover os elementos padrões e criar os seus ) e estiliza-los via css

@@ -1,0 +1,51 @@
+Algumas propriedades de estilização de elementos HTML
+
+height: ajusta a altura do elemento
+width: ajusta a largura do elemento
+padding: ajusta o espaçamento interno do elemento
+margin: ajusta o espaçamento externo do elemento
+
+
+comportamentos inline e block:
+block: itens bloqueiam elementos na mesma linha 
+inline: elemento permite que outros elementos estejam na mesma linha
+inline-block: nós definimos o tamanho da largura do fim do elemento para que outro elemento ocupe a mesma linha
+
+
+Como remover os estilos que o navegador cria automaticamente:
+Utilizando o arquivo reset.css, encontrado na web;
+
+Posicionamentos: 
+position: static -> mantem a posição do elemento no seu ponto inicial
+position: relative -> podemos modificar a posição do elemento, a partir do ponto inicial através das propriedades: top, bottom, left, right
+position: absolute -> modifica o ponto inicial do elemento ( a origem é o topo da página html ) utilizando as mesmas propriedades acima;
+
+OBS: Para que um elemento com posição absoluta seja interno de um outro elemento, esse outro elemento deve possuir posição relativa
+
+
+Bordas:
+border-color: propriedade que define a cor da borda de um elemento
+border-style: propriedade que define o estilo da borda e um elemento
+border-width: propriedade que define a esspessura da borda de um elemento.
+
+podemos declarar apenas com a propriedade border:
+border: width style color -> exemplo: border: 2px solid #000000 
+
+outra propridade de borda:
+border-radius: propriedade que define o tamanho do raio dos cantos da borda do elemento.
+
+Comportamentos: iteração do site com o cliente passando o mouse.]
+hover => quando o mouse passa por cima do elemento 
+active => mantendo o mouse clicado no elemento
+transition: realizar transições do elemento ( exemplo: transition: 0.4s background-color )
+cursor: modificar estilo do cursor quando houver essa transição de comportamento
+transform: modificar o estilo ( dimensões, tamanho, largura, rotação ) proporcionalmente em todo o elemento 
+
+OBS Formulário:
+por padrão, label e input possuem display: inline como propriedade por padrão.
+
+propriedade de Flutuação:
+float: Faz com que o elemento se desloque da página ( flutue ) mantendo a sua "sombra" no mesmo local, pode ser posionado na direita ( right ) ou esquerda ( left ) fazendo com que elementos próximos a ele fiquem em sua volta. Mais utilizados em imagens ao lado de textos.
+
+OBS: para limpar o float, utilizamos a propriedade clear, na classe seguinte que quisermos, a partir dela limpar a consequencia do float da imagem. O float afeta toda a página após o elemento que está flutuando, para que não afete, utilizamos na classe seguinte a propriedade 
+clear: left ou right;

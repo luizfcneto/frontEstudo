@@ -1,0 +1,92 @@
+/* Header */
+header{
+    background-color: #BBBBBB;
+    padding: 20px 0;
+}
+
+.nav-box{
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+}
+
+#logo{
+    width: 20%;
+}
+
+/* 
+position: static -> mantem a posição do elemento no seu ponto inicial
+position: relative -> podemos modificar a posição do elemento, a partir do ponto inicial através das propriedades: top, bottom, left, right
+position: absolute -> modifica o ponto inicial do elemento ( a origem é o topo da página html ) utilizando as mesmas propriedades acima;
+*/
+nav{
+    position: absolute;
+    top: 50%;
+    right: 0;
+}
+
+nav .elemento-navegacao{
+    display: inline;
+    margin: 0 0 0 15px;
+}
+
+nav a {
+    text-transform: uppercase;
+    color: #000000;
+    font-weight: bold;
+    font-size: 22px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #C78C19;
+    text-decoration: underline;
+}
+
+nav a::selection {
+    color: blue
+}
+
+
+@media screen and ( max-width: 429px ) {
+
+    .nav-box {
+        margin: auto;
+        width: 100%;
+    }
+
+    #logo{
+        width: 40%;
+    }
+
+    nav {
+        position: static;
+        padding-top: 10px;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+}
+
+
+@media screen and ( min-width:430px ) and ( max-width: 510px ){
+    .nav-box {
+        margin: auto;
+        width: 90%;
+    }
+
+    #logo {
+        width: 40%;
+    }
+
+    nav {
+        position: static;
+        padding-top: 10px;
+    }
+
+    h1 {
+        text-align: center;
+    }
+}

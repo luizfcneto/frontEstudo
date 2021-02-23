@@ -1,0 +1,76 @@
+Problemas e limitações do uso das propriedades de posicionamento:
+
+display: inline -> quando colocamos, ele nos permite posicionar os elementos um do lado do outro, o problema é que eles não aceitam mais modificações tanto na width quanto no heigth, limitando muito as nossas possibilidades.
+
+display: inline-block -> faz o mesmo que o display inline, mas nos permite alterarmos a width e o heiht do elemento, é mais interessante utiliza-lo do que apenas o "display: inline". O problema do "display: inline-block" é espaçar os elementos entre si. para isso teríamos que usar numeros mágicos para colocar margins e fazer contas, é mais trabalhoso, mas dá pra fazer.
+
+float: left | right -> O elemento será empurrado tanto pra direita ou pra esquerda e todos os elementos abaixo a ele irão subir, para tratarmos isso, teríamos que utilizar margins top e bottom e números mágicos para contornar esse problema. Isso ocorre pelo fado do float não nos permitir usar a propriedade "vertical-align: middle".
+
+display: flex -> Veio para facilitar os aspectos de posicionamento. O intuito é verificar qual o elemento pai do elemento que queremos posicionar, atribuir ao pai ( container ) a propriedade "display:flex", e através de diversas outras propriedades podemos definir como posicionar os elementos filhos dele, com o justify-content, align-itens... 
+
+esse site contém umas informações resumidas sobre as propriedades do flexbox:
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/#top-of-site
+
+esse site contém informações de quais versões de navegadores são suportadas pelas propriedades do flexbox e outras:
+https://caniuse.com/
+
+propriedades:
+display: flex      // ou inline-flex
+    Utilizamos essa propriedade na classe pai ( container ) ao elemento que queremos posicionar, só de utilizarmos o display: flex, os elementos filhos ja ficam alinhados lado a lado e propriedade altura ( heigth ) dos elementos dos filhos ficam iguais.
+
+justify-content: space-between
+    a propriedade justify-content faz um alinhamento aos elementos de forma horizontal, o valor "space-between" irá alinhar os elementos filhos de forma que tenha espaço entre eles de acordo com o tamanho total da div do pai ( container ). 
+    OBS: Caso só tenha dois elementos filhos, um ficará na extrema esquerda e o outro ficará na extrema direita.
+
+    Outros valores possíveis:
+    space-around: organiza os elementos filhos de forma que eles tenham o mesmo espaço entre eles de acordo com o tamanho total do elemento pai ( container )
+
+    center: organiza os elementos filhos alinhados no centro da div do elemento pai ( container )
+
+    flex-start: organiza os elementos filhos alinhados à esquerda dentro da div do elemento pai ( container )
+
+    flex-end: organiza os elementos filhos alinhados à direita dentro da div do elemento pai ( container )
+
+
+align-itens: center
+    A propriedade align-itens assim como o justify-content faz um alinhamento dos elementos filhos que queremos posicionar, mas será na forma vertical
+
+flex-direction: column
+    A direção padrão flex é colocar os elementos um do lado do outro horizontalmente ( flex-direction: row ), com essa propriedade podemos modificar a direção e colocar para q os elementos fiquem alinhados um embaixo do outro. 
+
+    OBS: Quando modificamos a direção do container, o eixo principal também é alterado, então isso impacta no justify-content e no align-itens
+
+flex-wrap: wrap
+    Essa propriedade faz com que quando o elemento extrapole a altura máxima do elemento pai ( container, uma div ), o elemento que a excede é jogado para o lado, internamente ao pai. Importante verificar e definir a altura máxima do elemento pai/div/container ( heigth )
+
+flex-flow: column wrap
+    Propriedade que substitui as duas propriedades acima, flex-direction e flex-wrap.
+
+As propriedades de container flex:
+display: flex
+flex-direction
+justify-content
+flex-wrap
+flex-flow
+align-items
+align-content
+
+Todas as propriedades vistas acima são relacionadas ao componente pai ( container/flex ), existem outras propriedades que são relacionadas aos elementos contidos dentro do componente pai ( container ), mais conhecidos como flex-itens
+flex-grow: 1
+    Propriedade do flex-iten que faz ele ocupar todo o espaço sobrando interno do elemento pai ( container ) flex. 
+    Se houver mais de um flex-item podemos definir o espaçamento para cada um dos elementos através dessa propriedade, se ambos forem flex-grow: 1, o espaçamento sobrando será dividido igualmente aos dois ( pedaço vazio dividido por 2 )
+
+flex-shrink: 1
+    Assim como a propriedade flex-grow amplia o item-flex para ocupar o espaço em branco do container, o flex-shrink diminui/encolhe o tamanho do elemento, uma utilidade boa para ele são os designs responsivos.
+
+As propriedades de flex-itens:
+order
+flex-grow
+flex-shrink
+flex-basis
+flex
+align-self
+
+Para exercitar o conteúdo de flex-box:
+http://www.flexboxdefense.com/
+http://flexboxfroggy.com/

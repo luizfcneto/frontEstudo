@@ -1,0 +1,79 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Main */
+.produtos {
+    width: 90%;
+    margin: 0 auto;
+    padding: 50px 0;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.produtos li{
+    text-align: center;
+    width: 30%;
+    /* background-color: #CCCCCC; */
+    margin: 1% 1.5%;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    /* border-color: #000000;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 1%; */
+    border: 2px solid #000000;
+    border-radius: 5%;
+}
+
+.produtos li:hover {
+    border-color: #C78C19;
+}
+
+/* active => mantendo o mouse clicado no elemento */
+.produtos li:active {
+    border-color: #088C09;
+}
+
+.produtos h2 {
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+/* Quando passamos o mouse em cima de um elemento, alteramos o estilo de H2 */
+.produtos li:hover h2 {
+    font-size: 34px;
+}
+
+.descricao-produtos{
+    font-size: 20px;
+    margin-top: 10px;
+
+}
+
+.preco-produto{
+    font-weight: bold;
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+.img-produtos{
+    width: 60%;
+}
+
+
+@media screen and ( max-width: 429px ){
+    .produtos li {
+        width: 98%;
+        margin: 1em;
+    }
+}
+
+@media screen and ( min-width:430px ) and ( max-width: 510px ){
+    .produtos li {
+        width: 90%;
+        margin: 1em;
+    }
+
+}

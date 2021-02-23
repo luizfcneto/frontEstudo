@@ -1,0 +1,73 @@
+Pegar todos os paragrafos internos da tag main
+main p {
+    ...
+}
+
+Pegar todos os filhos diretos e apenas eles da main
+main > p {
+    ...
+} 
+
+Pegar o paragrafo seguinte de uma imagem, seu irmão
+img + p {
+    ...
+}
+
+Pegar todos os paragrafos seguintes e irmãos da imagem 
+img ~ p {
+    ...
+}
+
+Selecionando todos os elementos filhos de uma classe, menos um elemento com id especifico
+.principal p:not(#especifico){
+    background-color: darkmagenta;
+}
+
+
+Calculo da dimensão de um elemento pelo CSS mantendo as medidas proporcionais:
+Exemplo:
+.img-cortes {
+    /* width: calc( ( 60% * 4 ) / 4 ) ; */
+    /* width: calc( 50% - 30px ); */
+    width: calc( 25% + 200px );
+}
+
+
+Opacidade: aplicavel a todos os elementos e todas as cores
+em imagens:
+.img-cortes {
+    opacity: 1;
+}
+
+.img-cortes:hover {
+    opacity: 0.3;
+    transition: 400ms;
+}
+
+em elementos textuais
+main p {
+    /* opacity: 0.3; */
+    /* color: rgb( 0, 0, 0 ); */
+
+    /* ultimo parametro é da opacidade na cor */
+    color: rgba( 0, 0, 0, 0.5 );
+}
+
+Sombreamento de um elemento
+box-shadow: parametros: x, y, cor ou x, y, tamanho da sombra em px, cor
+.img-cortes:hover{
+    /* box-shadow: 10px 10px 30px 20px #000000, -10px -10px yellow, -20px 20px rgba( 255, 0, 0, 0.7 ); */
+    box-shadow: 5px 5px #000000;
+}
+
+internamente em uma div:
+body {
+    box-shadow: inset 0 0 30px darkorange;
+}
+
+em um elemento textual:
+main > p {
+    text-shadow: 1px 1px darkorange;
+}
+
+
