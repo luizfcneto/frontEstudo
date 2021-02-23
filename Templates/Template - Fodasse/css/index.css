@@ -1,0 +1,120 @@
+/* Background color - Body */
+body{
+    background-color: #206a5d;
+}
+/* Logo */
+#logo{
+    width: 50px;
+    height: 50px;
+}
+
+/* Header */
+.header {
+    background-color: #065446;
+}
+
+/* Slide/Carousel */
+
+.slide-img{
+    max-height: 700px;
+    max-width: auto;
+}
+
+.slide-border{
+    border-style: solid;
+    border-color: #ffde7d;
+    border-width: 10px;
+}
+
+
+/* Titulo */
+.title{
+    text-align: center;
+    /* background-color: red; */
+}
+
+.login{
+    border-color: #ffde7d;
+    border-style: solid double;
+    background-color: #519872;
+    border-radius: 10px;
+}
+
+.login h2 {
+    
+    text-align: center;
+    margin-top: 10px;
+}
+
+.input-control:focus{
+    border-color: #ffde7d;
+}
+
+.btn-color{
+    color: black;
+    background-color: #ffde7d;
+    border-color: #ffd460;
+}
+
+.btn-color:hover{
+    color: black;
+    background-color: #ffd460;
+    border-color: #ffd460;
+}
+
+
+/* Regras do jogo */
+.text-align{
+    text-align: center;
+}
+
+
+.regras-do-jogo{
+    background-color: black;
+    color: blanchedalmond;
+}
+
+.regras h2{
+    text-align: center;
+}
+
+/* Footer */
+.footer{
+    padding-top: 10px;
+    background-color: #41444b;
+    min-height: auto;
+    color: white;
+}
+
+.font-family{
+    font-family: 'Red Rose';
+}
+
+
+/*
+    Media Queries - Formats 
+*/
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) { 
+
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {  
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {  
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+
+}

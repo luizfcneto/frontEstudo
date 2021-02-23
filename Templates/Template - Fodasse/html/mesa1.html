@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+    <head>
+        <title> Mesa 1 - Fodasse </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/index.css">
+        <link rel="stylesheet" href="../css/mesa.css">
+        <!--  -->
+        <link rel="stylesheet" href="">
+        <link href="https://fonts.googleapis.com/css2?family=Red+Rose:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+         <!-- NavBar -->
+         <nav class="navbar navbar-expand-lg navbar-dark header">
+
+            <a class="navbar-brand" href="./index.html">
+                <img id="logo" src="../img/logo.png" alt="logo" loading="lazy">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#regras">Regras do Jogo</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Mesas</a>
+                    </li>
+                   
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html#login">Login</a>
+                    </li>
+
+                    <!-- <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li> -->
+
+                    <!-- <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li> -->
+                </ul>
+                
+            </div>
+        </nav>
+        <br>
+
+        <div class="container-fluid">
+            
+            <div class="row">
+                <div class="offset-1 col-10 offset-1 offset-xs-1 col-xs-10 offset-xs-1 offset-md-1 col-md-10 offset-md-1 offset-lg-1 col-lg-10 offset-lg-1 offset-xl-1 col-xl-10 offset-xl-1">
+                    <h2 class="text-align titulo"> <b> Mesa 1 - Online </b> </h2>    
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="offset-1 col-3 offset-xs-1 col-xs-3 offset-md-2 col-md-2 offset-lg-2 col-lg-2 offset-xl-3 col-xl-2">
+                    <span class="turno"> <b> Turno: </b> 7 </span>
+                </div>
+
+                <div class="offset-4 col-4 offset-xs-5 col-xs-3 offset-md-4 col-md-4 offset-lg-4 col-lg-4 offset-xl-3 col-xl-4">
+                    <span class="lider"> <b> Lider: </b> Joselito Da maceno </span>
+                </div>
+            </div>
+
+            <br>
+            <br>
+
+            <!-- Canvas - Mesa com Jogadores  -->
+            <div class="row">
+                <div class="col-12 col-xs-12 offset-md-1 col-md-10 offset-md-1 offset-lg-2 col-lg-8 offset-lg-2 offset-xl-3 col-xl-6 offset-xl-3">
+                    <div class="canvas card-table" >
+
+                        <div class="left_side">
+                            <div class="jogador" id="jogador_1" >
+                                <span class="aposta-jogador text-align">  0/1 </span>
+                                <br>
+                                <span class="nome-jogador text-align"> Nome 1 </span>
+                            </div>
+
+                            <div>
+                                <img class="carta-rodada" id="carta_jogador_1" src="../img/ace-ofspaces.png" alt="carta rodada">
+                            </div>
+                            
+                            <div>
+                                <img class="carta-rodada" id="carta_jogador_2" src="../img/ace-ofspaces.png" alt="carta rodada">
+                            </div>
+                            
+                            <div class="jogador" id="jogador_2" >
+                                <span class="nome-jogador">  Nome 2 </span>
+                                <br>
+                                <span class="aposta-jogador"> 0/1 </span>
+                            </div>
+                        </div>
+                        
+                        <div class="middle_side">
+                            <div class="manilha">
+                                <img class="carta-manilha" id="carta_jogador_3" src="../img/ace-ofspaces.png" alt="carta rodada">
+                            </div>
+
+                            <div class="table_name">
+                                <span class=""> Fodasse  </span>
+                            </div>               
+                            
+                            <div>
+                                <img class="carta-rodada" id="carta_jogador_3" src="../img/ace-ofspaces.png" alt="carta rodada">
+                            </div>
+                            <div class="jogador jogador-selected" id="jogador_3">
+                                <span class="nome-jogador"> Nome 3 </span>
+                                <br>
+                                <span class="aposta-jogador"> 0/2 </span>
+                            </div>
+                        </div>
+                        
+
+                        <div class="right_side">
+                            <div class="jogador" id="jogador_4">
+                                <span class="aposta-jogador"> 0/2 </span>
+                                <br>
+                                <span class="nome-jogador"> Nome 4 </span>
+                            </div>
+                            <div>
+                                <img class="carta-rodada" id="carta_jogador_4" src="../img/ace-ofspaces.png" alt="carta rodada">
+                            </div>
+                            
+                            <div>
+                                <img class="carta-rodada" id="carta_jogador_5" src="../img/ace-ofspaces.png" alt="carta rodada">
+                            </div>
+
+                            <div class="jogador" id="jogador_5">
+                                <span class="nome-jogador"> Nome 5 </span>
+                                <br>
+                                <span class="aposta-jogador"> 0/2 </span>
+                            </div>
+    
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+            <br> 
+            <br>
+            <div class="row">
+                <div class="offset-1 col-10 offset-1 offset-xs-1 col-xs-10 offset-xs-1 offset-md-2 col-md-8 offset-md-2 offset-lg-3 col-lg-6 offset-lg-3 offset-xl-4 col-xl-4 offset-xl-4">
+                    <div class="aposta">
+                        <!-- <div class="apostador">
+                            <span> <b> Nome do Apostador </b> </span>
+                        </div> -->
+                        
+                        <form class="input-group form-aposta form-top">
+                            <input type="number" placeholder="Faça sua aposta aqui" class="form-control input-control text-align">
+                            
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-color btn-aposta btn-sm">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cash-stack" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14 3H1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1h-1z"/>
+                                        <path fill-rule="evenodd" d="M15 5H1v8h14V5zM1 4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H1z"/>
+                                        <path d="M13 5a2 2 0 0 0 2 2V5h-2zM3 5a2 2 0 0 1-2 2V5h2zm10 8a2 2 0 0 1 2-2v2h-2zM3 13a2 2 0 0 0-2-2v2h2zm7-4a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div> 
+
+            </div>
+
+            <br>
+
+            <!-- Mão do Jogador -->
+            <div class="row">
+                <!-- Botão de mostrar as cartas -->
+                <div class="offset-1 col-1 offset-xs-1 col-xs-1 offset-md-1 col-md-1 offset-lg-2 col-lg-1 offset-xl-2 col-xl-1">
+                    <span class="info-btn"> Cartas </span>
+                    <button type="" class="btn btn-hand">
+                        <!-- Icone Abrir -->
+                        <svg class="btn-cards-action" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-bar-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M11.354 5.854a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L8 3.207l2.646 2.647a.5.5 0 0 0 .708 0z"/>
+                            <path fill-rule="evenodd" d="M8 10a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-1 0v6.5a.5.5 0 0 0 .5.5zm-4.8 1.6c0-.22.18-.4.4-.4h8.8a.4.4 0 0 1 0 .8H3.6a.4.4 0 0 1-.4-.4z"/>
+                        </svg>
+
+                          <!-- Icone Fechar -->
+                          <!-- <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-bar-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M11.354 10.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L8 12.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                            <path fill-rule="evenodd" d="M8 6a.5.5 0 0 1 .5.5V13a.5.5 0 0 1-1 0V6.5A.5.5 0 0 1 8 6zM2 3.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+                          </svg> -->
+                    </button>
+                </div>
+                
+                <!-- Botão de jogar a carta -->
+                <div class="offset-7 col-1 offset-xs-9 col-xs-1 offset-md-8 col-md-1 offset-lg-6 col-lg-1 offset-xl-6 col-lx-1">
+                    <span class="info-btn"> Jogar </span>
+                    <button type="" class="btn btn-play">
+                        <!-- Jogar -->
+                        <svg class="btn-cards-action" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path fill-rule="evenodd" d="M4.646 8.354a.5.5 0 0 0 .708 0L8 5.707l2.646 2.647a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 0 0 0 .708z"/>
+                            <path fill-rule="evenodd" d="M8 11.5a.5.5 0 0 0 .5-.5V6a.5.5 0 0 0-1 0v5a.5.5 0 0 0 .5.5z"/>
+                        </svg>
+                    </button>
+                </div> 
+            </div>
+            
+            <div class="row">
+                <div class="area-mao col-12 offset-sm-1 col-sm-10 offset-sm-1 offset-md-1 col-md-10 offset-md-1 offset-lg-2 col-lg-8 offset-lg-2 offset-xl-3 col-xl-6 offset-xl-3">
+                    
+                    <div class="row">
+                        <div class="flex-container col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <img class="hand-cards" src="../img/ace-ofspaces.png" alt="teste">
+                            <img class="hand-cards" src="../img/ace-ofspaces.png" alt="teste">
+                            <img class="hand-cards" src="../img/ace-ofspaces.png" alt="teste">
+                            <img class="hand-cards" src="../img/ace-ofspaces.png" alt="teste">
+                            <img class="hand-cards" src="../img/ace-ofspaces.png" alt="teste">
+                            <img class="hand-cards" src="../img/ace-ofspaces.png" alt="teste">
+                            <img class="hand-cards" src="../img/ace-ofspaces.png" alt="teste">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <br>
+
+            <!-- Tabela de Pontuação -->
+            <div class="row">
+                <div class="offset-1 col-10 offset-1 offset-xs-1 col-xs-10 offset-xs-1 offset-md-1 col-md-10 offset-md-1 offset-lg-1 col-lg-10 offset-lg-1 offset-xl-1 col-xl-10 offset-xl-1">
+                    
+                    <table class="table table-sm">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col"> Rodada </th>
+                                <th scope="col"> Jogador 1 </th>
+                                <th scope="col"> Jogador 2 </th>
+                                <th scope="col"> Jogador 3 </th>
+                                <th scope="col"> Jogador 4</th>
+                                <th scope="col"> Jogador 5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">5</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">6</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">7</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">8</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">9</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">10</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">11</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">12</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">13</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <br>
+            <!-- Footer -->
+            <div class="row footer text-align">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <p class="font-family-footer"> <b> &copy Copyright 2020 - Todos os direitos reservados </b> </p>
+                    
+                    <!-- Inserir Redes sociais -->
+                
+                </div>
+            </div>
+
+        </div>
+
+        <script src="../js/navigation.js"></script>
+        <script src="../js/mesa.js"></script>
+    </body>
+
+</html>

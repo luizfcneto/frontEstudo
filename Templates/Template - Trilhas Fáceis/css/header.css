@@ -1,0 +1,181 @@
+/* Paleta de cores https://color.adobe.com/pt/search?q=energy */
+/* 
+#595859
+#023771
+#247EB8
+#7194D1
+#FFCE6B 
+#FF9870 
+#ebebeb
+*/
+/* Modificado para FLEXBOX */
+header{
+    background-color: #FFCE6B;
+}
+
+header .container-header{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5em;
+}
+
+.container-logo {
+    width: 30%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+#logo {
+    width: 9em;
+    border-radius: 50%;
+    margin: 0.5em;
+    position: absolute;
+    top: 1%;
+}
+
+.container-navlist {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.nav-element{
+    margin: 0 0.6em;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.nav-element:first-child {
+    margin: 0 0.6em 0 0;
+}
+
+.nav-element:last-child{
+    margin: 0 0 0 0.6em;
+}
+
+.nav-element a{
+    color: #FFFFFF;
+    padding: 0.7em;
+    border-radius: 5px;
+    background-color: #595859;
+    border: 1px #595859 solid;
+
+}
+
+.nav-element a:hover {
+    background-color: #a2a2a2 ;
+    color: #000000;
+    transition: 500ms;
+}
+
+ul .nav-element .selected {
+    background-color: #a2a2a2 ;
+}
+
+
+ul a {
+    text-decoration: none;
+}
+
+@media screen and ( min-width: 521px ) and ( max-width: 830px ){
+
+    header .container-header{
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-flow: column;
+        height: auto;
+    }
+    
+    .container-logo {
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+    
+    #logo {
+        width: 8em;
+        border-radius: 50%;
+        margin: 0.5em;
+        position: unset;
+    }
+   
+    .container-navlist {
+        width: 100%;
+        justify-content: space-between;
+        margin: 1em 0;
+    }
+
+    .nav-element{
+        color: #FFFFFF;
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 0.7em;
+    }
+
+}
+
+@media screen and ( max-width: 549px ) {
+
+    header .container-header{
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-flow: column;
+        height: auto;
+    }
+    
+    .container-logo {
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+    
+    #logo {
+        width: 25%;
+        border-radius: 50%;
+        margin: 0.5em;
+        position: unset;
+    }
+    
+    .container-navlist {
+        width: 100%;
+        flex-flow: column;
+        align-items: center;
+        justify-content: space-around;
+        height: 300px;
+        margin-bottom: 0.5em;
+    }
+
+    .nav-element{
+        color: #FFFFFF;
+        border-radius: 5px;
+        border: 1px #595859 solid;
+        background-color: #595859;
+        width: 100%;
+        margin-left: 0;
+        padding: 0.8em;
+
+    }
+
+    .nav-element a{
+        color: #FFFFFF;
+        padding: 0.7em 10em;
+        border-radius: 5px;
+        background-color: #595859;
+    }
+
+
+
+}

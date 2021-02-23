@@ -1,0 +1,59 @@
+.mesas{
+    border-radius: 10px;
+    border-color: #ffde7d;
+    border-style: solid;
+    background-color: #519872;
+}
+
+.vi1{
+    background-color: black;
+}
+
+.vi2{
+    background-color: red;
+}
+
+.vi3 {
+    background-color: blueviolet;
+}
+
+.titulo{
+    font-family: 'Red Rose';
+    color: white;
+}
+
+.font-family{
+    font-family: 'Red Rose';
+}
+
+.list-group-item{
+    width: auto;
+}
+
+ul{
+    list-style: none;
+    list-style-type: none;
+}
+
+.element-list{
+    border-color: black;
+    border-style: solid;
+    border-width: thin;
+    margin-right: -0.9em;
+    margin-left: -0.9em;
+    background-color: #eeeeee;
+    padding-bottom: 0.3em;
+    padding-top: 0.3em;
+    padding-right: 0.3em;
+}
+
+.list-img{
+    max-width: 3em;
+    max-height: 3em;
+    padding-right: 0.3em;
+}
+
+.btn-align{
+    /* float: right; */
+    /* display: inline-flex; */
+}
