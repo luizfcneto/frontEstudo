@@ -1,0 +1,30 @@
+O que iremos desenvolver:
+    - Criar uma API    
+        - CRUD de usuário
+        - CRUD de perguntas
+
+
+    - Consumir a API
+
+    - Utilizar uma API de email ( já feita ) no projeto
+        - API: Etheral mail
+
+    - Projeto: Calculo NPS ( Net Promoter Score )
+        Uma pesquisa de satisfação de cliente, coletar via email resposta de avaliação do usuário, pegar dados respondido de todos os emails respondidos, perguntas do formulário e realizar calculos, utilizando apis para consumir e populaar esses dados
+
+
+API ( Application Programming Interface ): 
+    Não é uma linguagem;
+    Não é uma biblioteca que baixamos, instalamos e configuramos na nossa máquina;
+
+    É um conjunto de especificações e regras definidas dentro da nossa aplicação para fornecer funcionalidades para aplicações externas desde que seja respeitada essas regras e o formato de utilização das funcionalidades. 
+
+    A Api irá retornar uma resposta de acordo com a funcionalidade solicitada juntamente com seus parametros. ( regras definidas e especificadas no desenvolvimento da API ). Visualizar imagem aula01-img00.png
+
+    É reutilizavel para outras aplicações, tanto para mobile quando para aplicações web
+
+TypeScript: 
+    - Um "complemento" de Javascript, trás um novo recurso para o Javascript, a tipagem de variáveis; Veja exemplo typeScript00.ts
+
+Configurando ambiente de desenvolvimento:
+https://www.notion.so/Configura-es-do-ambiente-Node-js-ae9fea3f78894139af4268d198294e2a

@@ -1,0 +1,45 @@
+Começando o projeto:
+
+passo 1: Criar pasta do projeto:
+mkdir projeto
+
+passo 2: Dentro da pasta do projeto, iniciar projeto através do comando:
+npm init -y
+
+passo 3: Instalar as dependências abaixo:
+    - npm install --save-dev typescript
+    - npm install --save-dev express
+    - npm install --save-dev ts-node-dev
+    - npm install --save-dev @types/express
+
+passo 4: Criar arquivo TypeScript dentro de uma nova pasta "src" para incializar o servidor do backend: server.ts
+
+Arquivo server.ts:
+
+    import express from "express";
+    const app = express();
+
+    // Cria servidor: parametros, porta e função ser executada no terminal
+    app.listen( 3333, () => console.log( "Server is running!" ) );
+
+OBS: para o node executar um arquivo javascript é necessário utilizar o comando:
+node "arquivo".js
+
+para executar o typescript é necessário ter uma conversão de typescript - para javascript, por isso utilizamos o módulo, "ts-node-dev"
+
+passo 5: Criar script para executar o arquivo server.ts:
+dentro do arquivo package.json, na propriedade script, adicionar:
+    "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
+
+
+passo 6: Criar arquivo de configuração typescript, tsconfig.json através do comando:
+npx tsc --init
+
+fonte: https://stackoverflow.com/questions/36916989/how-can-i-generate-a-tsconfig-json-file
+
+passo 7: alterar propriedade "strict" para false, no arquivo tsconfig.
+
+passo 8: 
+executar o script que criamos para executar o servidor no terminal:
+npm run dev
+

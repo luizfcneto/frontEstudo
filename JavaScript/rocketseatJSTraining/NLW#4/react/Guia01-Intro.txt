@@ -1,0 +1,6 @@
+Criar um projeto react:
+npx create-react-app moveit --template=typescript
+
+Link do prototipo do projeto:
+https://www.figma.com/file/F1ZJaFudWwUT2KSrb1U1yK/Move.it-1.0-(Copy)?node-id=160%3A2761
+

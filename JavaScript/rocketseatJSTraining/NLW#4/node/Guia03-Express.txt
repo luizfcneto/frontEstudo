@@ -1,0 +1,107 @@
+Express:
+É um mini-framework ( módulo ) para aplicações web em nodejs.
+Pequeno e flexível que fornece um conjunto robusto de recursos tanto para aplicações web quanto para aplicativos mobile.
+
+Express fornece uma camada fina de recursos fundamentais, permitindo criação de APIs com facilidade e rápido utilizando métodos HTTP e middleware.
+
+instalando a dependencia do express em um projeto node:
+npm install --save-dev express
+
+__________________________________________________________________________________
+Antes de começar a criar o arquivo, algumas definições e explicações sobre Roteamento:
+Refere-se à determinação de como um aplicativo responde a uma solicitação do cliente por um end-point/rota específico, que é uma URI ( ou caminho ) e um método de solicitação HTTP específico ( GET, POST, PUT, DELETE, PATCH, ... );
+
+Cada rota pode ter uma ou mais funções de manipulação, que são executadas quando a rota é correspondida.
+Definição da estrutura das rotas:
+server.METHOD( PATH, HANDLER );
+
+server => instância do express;
+METHOD => Método de solicitação HTTP ( GET, POST, PUT, DELETE, PATCH );
+PATH => é um caminho no servidor
+HANDLER => é a função executada quando a rota é correspondida 
+Nessa função handler, existem dois parametros que correspondem a comunicação entre dois pontos na rede, Cliente e Servidor, Cliente faz requisição, servidor responde, respectivamente a função Handler possui os parametros ( request, response )  
+
+
+
+___________________________________________________________________________________
+Crie um arquivo javascript ou typescript dentro da pasta src: "app.js", ou "app.ts"
+
+Arquivo app.ts ou app.js:
+// Importando módulo express
+import express from "express";
+
+// atribuindo a variavel server o módulo executavel do express
+const server = express();
+
+// atribuindo o valor de uma porta aleatoria, >= 3000;
+const port = 3000;
+
+/*
+    HTTP: Método GET
+    rota/end-point: caminho do serviço GET ( "/" ) 
+    get: método http de busca, com parametros via url
+    url: http://localhost:3000/
+*/
+
+// Cria um requisição HTTP do Método GET, método get( rota, função utilizando parametros http ( request, response ) ) 
+server.get( "/", ( request, response ) => {
+
+    // método send( "mensagem" ) => Servidor envia mensagem, que estará acessível na url: localhost:porta/
+    response.send( "Olá Mundo!" );
+
+    // método json( objeto ) => Servidor irá enviar objeto json que estará acessível na url localhost:porta/
+    response.json( {
+        mensagem: "Olá Mundo!"
+    } )
+} )
+
+/*
+    HTTP: Método POST
+    rota/end-point: caminho do serviço POST ( "/" )
+    post: método HTTP para salvar um conteúdo 
+    url: http://localhost:3000/
+*/
+server.post( "/", ( request, response ) => {
+    
+    // Para verificar se mensagem foi enviada com sucesso pelo servidor, precisaremos utilizar uma ferramente auxiliar, como Insomnia, ou Postman, e executar a url e verificar se o corpo da mensagem contem o objeto json definido abaixo. 
+    server.json( {
+        mensagem: "Olá Mundo!"
+    } )
+} )
+
+
+/*
+    HTTP: Método PUT
+    rota/end-point: caminho o serviço PUT ( "/user" )
+    put: Método HTTP para alterar o conteúdo 
+    url: http://localhost:3000/user
+*/
+server.put( "/user", ( request, response ) => {
+    
+    // Para verificar se a mensagem foi enviada pelo servidor, usar url no postman/Insomnia
+    server.json( {
+        mensagem: "Requisição Put para a rota /user"
+    })
+
+} )
+
+
+/*
+    HTTP: Método DELETE
+    rota/end-point: caminho do serviço DELETE ( "/user" )
+    delete: Método HTTP para deletar um conteúdo
+    url: http://localhost:3000/user
+/*
+server.delete( "/user", ( request, response ) => {
+    //Para verificar se a mensagem foi enviada pelo servidor, usar url no postman/Insomnia
+    server.json( {
+        mensagem: "Requisição de Delete na rota /user"
+    })
+} )
+
+// Método listen( porta, funcao ), define em qual porta o servidor estará sendo executado
+server.listen( port, () => {
+    console.log( `Aplicação sendo executada na porta ${ port } ` );
+} )
+
+documentação: https://expressjs.com/pt-br/starter/basic-routing.html
