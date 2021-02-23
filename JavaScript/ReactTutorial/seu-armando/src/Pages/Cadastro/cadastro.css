@@ -1,0 +1,21 @@
+.cadastro {
+    /* background-color: #e4e3e3; */
+    padding: 10px;
+    border-radius: 5px;
+    width: 800px;
+}
+.all{
+    background-color:#222831;
+}
+
+.tabela{
+    background-color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    width: 800px;
+}
+
+.toggled{
+    display: none;
+}

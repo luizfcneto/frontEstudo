@@ -1,0 +1,90 @@
+INICIANDO PROJETO:
+Criando um aplicativo com react:
+npx create-react-app nome-app
+
+obs: npx é uma ferramenta de execução de pacotes que vem junto com o npm
+
+//movendo localização para o diretório nome-app
+cd nome-app
+
+//instalando todas as dependencias necessárias do npm para rodar react
+npm install 
+
+//inicializando o npm para executar o react.
+npm start
+
+____________________________________________________________________
+CURIOSIDADE:
+react utiliza por baixo dos panos Babel e webpack.
+
+____________________________________________________________________
+O QUE É REACT?
+É uma biblioteca de javascript declarativa, eficiente e flexivel que
+serve para construir interfaces.
+
+Permite criar UIs complexas através de pequenos e isolados trechos de
+código chamados components.
+
+Possui diferentes tipos de components, mas começaremos com 
+React.Component
+
+Exemplo de uma subclasse React.Component:
+class ProductsList extends React.Component{
+
+    //render() é o método que renderezia esse componente na tela.
+    //basicamente o código que estiver abaixo será exibido.
+    render(){
+
+        return(
+            <div className="products-list">
+                <h1> Products List of { this.props.name } </h1>
+                <ul> 
+                    <li> Produto 1 </li>
+                    <li> Produto 2 </li>
+                    <li> Produto 3 </li>
+
+                </ul>
+            </div>
+        );
+    }
+}
+
+//Exemplo de uso:
+<ProductsList name="Luiz Fernando" /> -> chamando o componente acima 
+para outro código, reaproveitando o código do componente sem ter que
+repeti-lo.
+
+A ideia é dizer através dos componentes o que o react deve fazer 
+e o que queremos exibir na tela. Sempre que houver alguma alteração
+o React vai atualizar e re-renderizar os componentes.
+
+Parametros de Components:
+São chamados de props ( abreviação de propreties );
+
+Método render():
+O método render() retorna a descrição do que você quer ver na tela.
+O React pega essa descrição e exibe o resultado na tela. 
+Naverdade, o render() retorna um elemento React, que possui uma descri-
+ção mais leve do que deve ser renderizado.
+
+A maioria dos desenvolvedores utiliza sintaxe JSX para descrever
+esses elementos react. Pode ser feito apenas com html
+
+Sintaxe JSX:
+a sintaxe que descreveria como html uma div seria: <div />
+no JSX fica: React.createElement('div')
+
+Com JSX podemos utillizar a força do JavaScript.
+Colocando qualquer expressão JavaScript para criar os elementos.
+
+Cada Elemento é um objeto javascript e consegue armazenar em vari-
+áveis e passar como parametro, ou incorporando outros diretórios
+da aplicação.
+
+O exemplo do Componente acima ProductsList pode ser referenciado 
+em qualquer outro diretório da aplicação, escrevendo:
+< ProductsList />.
+
+Cada Componente React é encapsulado e consegue operar independentemente.
+Isso permite a construção de Interfaces ( UIs ) complexas através de 
+componentes simples.

@@ -1,0 +1,10 @@
+.aside{
+    background-color: #00adb5;
+    /* width: 200px; */
+    height: auto;
+    border-radius: 5px;
+}
+
+.aside h3{
+    text-align: center;
+}

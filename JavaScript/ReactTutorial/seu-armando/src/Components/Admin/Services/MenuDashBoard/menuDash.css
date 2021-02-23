@@ -1,0 +1,21 @@
+#element {
+    background-color: #70adb5;
+    text-align: center;
+    font-size: large;
+    /* border: double; */
+    border: solid 1px white;
+
+}
+
+#element:hover {
+    background-color: #393e46;
+}
+
+.menu-element {
+    color: white;
+}
+
+.menu-element:hover { 
+    color: white;
+    text-decoration: none;
+}

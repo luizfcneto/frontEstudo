@@ -1,0 +1,14 @@
+.iframe-localizacao{
+    width: 1050px;
+    height: 400px;
+    border: 0;
+    max-width: auto;
+}
+
+.padding-left-10{
+    padding-left: 10px;
+}
+
+.align-center{
+    text-align: center;
+}

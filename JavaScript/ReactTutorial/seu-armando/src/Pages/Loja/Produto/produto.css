@@ -1,0 +1,23 @@
+
+img.img-produto-lista{
+    width: 50px;
+    height: 50px;
+    padding: 2px;
+    border-radius: 10px;
+}
+
+#img-principal{
+    max-width: 200px;
+    width: 200px;
+    height: auto;
+    
+    border-radius: 10px;
+
+}
+
+
+.teste{
+    margin-left: 10px;
+    max-width: 200px;
+    padding-right: 10px;
+}

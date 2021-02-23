@@ -1,0 +1,30 @@
+/* #black{
+    background-color: black;
+}
+
+#blue{
+    background-color: blue;
+}
+*/
+.gray{
+    background-color: #333333;
+    color: white;
+}
+
+.gray:hover{
+    background-color: #706c61;
+    color: white;
+}
+
+
+.thumbnail-button{
+    text-align: center;
+}
+
+.btn-center{
+    text-align: center;
+}
+
+.btn-no-border{
+    border: none;
+}
