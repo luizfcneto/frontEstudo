@@ -1,0 +1,56 @@
+Prototype ( prototipo ):
+    É uma propriedade que todo objeto possui.
+    Sem ele não é possível utilizar os 
+    conceitos de orientação objeto ( OO ) em Javascript, 
+    como:
+        - Herança;
+        - Polimorfismo;
+        - Interfaces;
+
+    Exemplo de Herança:
+        Construtor/Prototype Pessoa
+                    |
+                    v
+    ||          Prototype       || -> atributo Prototype do Construtor Pessoa.
+    ||                          ||  Com método/funcao calcularIdade() adicionado
+    ||function calcularIdade()  ||
+    ||__________________________||
+    
+    Instancia: 
+        var Luiz:
+    |\  atributo Nome = Luiz;         /|
+    |\  atributo anoNascimento = 1996;/|
+    |\  atributo profissao = dev      /|
+    |\________________________________/|
+                    |
+                Prototype
+
+    Se quisermos que o Objeto Luiz herde a função calcularIdade()
+    que está presente no Constructor Pessoa. 
+    a função calcularIdade() deve estar adicionado 
+    à propriedade Prototype do Constructor Pessoa. 
+    Tanto para atributos, quanto para funções/métodos.
+
+    Prototype Chain ( corrente Prototype ):
+    Partindo da linha de que todo Objeto possui Prototype;
+    Quando um objeto herda de outro, ele herda na verdade o Prototype, e assim por diante.
+    Até chegar no último objeto existente na linguagem js, que é o Constructor Object que também possui o seu Prototype.
+    Prototype de Object é null. Portanto a corrente de Prototype simplesmente termina ali.
+
+    objeto1 -> Prototype ( Objeto2 ) -> Prototype ( Object ) -> null
+
+
+    Resumo Prototype:
+        - Todo objeto de javascript possui uma propriedade chamada prototype,
+        que torna Herança possível em javascript
+
+        - O atributo prototye de um objeto é o local onde colocamos métodos e( ou )
+        propriedades que nós queremos herdar para outro objeto.
+
+        - O atributo prototype do Constructor não é o prototye do Constructor somente
+        e sim o prototype de todas as instâncias (.__proto__) que foram criadas através dele.
+
+        - Quando um método ( ou atributo ) específico é chamado, a busca começa pelo 
+        próprio objeto, e caso não seja encontrado, a busca move para o prototye do objeto,
+        assim continua até o prototye do Constructor de Object que retornará nulo, 
+        caso não seja encontrado anteriormente.

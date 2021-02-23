@@ -1,0 +1,41 @@
+/**************************** Objeto - Metodos: Bind / Call / Apply ****************************
+ * 
+ */
+
+Métodos da Classe Object:
+    - Bind( referencia, parametrosN );
+        Criamos uma cópia de uma função já existente. Cria uma função vinculada.
+        Essa função encapsula o objeto da função original. Ao executá-la resulta na execução de 
+        sua função encapsulada.
+
+        Uma função vinculada tem diversas propriedades, e também pode ser construída usando o operador: "new".
+        Ao fazê-lo, o resultado é o mesmo que seria se a função alvo tivesse sido construída.
+
+        Sintaxe: 
+            var variavel.metodoObjeto.bind( objetoY, parametrosObjetoDiferente );
+
+        para mais informações:
+            https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
+            https://stackoverflow.com/questions/2236747/use-of-the-javascript-bind-method
+        
+
+    - Call( referencia, parametro1, parametro2, parametroN );
+        Podemos chamar um método que pertence a outro objeto
+        Sintaxe:
+            var variavel.metodoObjetoDiferente.call( objetoX, parametro1MetodoObjetoDiferente );
+
+
+        Para mais informações:
+            https://www.w3schools.com/js/js_function_call.asp
+    
+    - Apply( referencia, vetor[] );  
+        É exatamente igual ao método Call, porém ao invés do Apply aceitar n parametros, como no Call, 
+         ele aceita apenas um array contendo elementos que são os parametros
+
+        Sintaxe:
+            var array = [ x, y, b, z ]
+            var variavel.metodoObjetoDiferente.apply( objetoZ, array );
+
+        Para mais informações:
+            https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function/apply 
+            https://www.w3schools.com/js/js_function_apply.asp

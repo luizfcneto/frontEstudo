@@ -1,0 +1,29 @@
+Tipos Primitivos:
+    - Number;
+    - String;
+    - Boolean;
+    - Null;
+
+    Espaço de memória alocado e contém um valor agregado a esses espaços de acordo com o tipo da variavel:
+        - Boolean: valores { true/false };
+        - Number: valores { -infinito, ..., -2, -1, 0, 1, 2 ... infinito}
+        etc...
+
+    parametro por valor:
+    quando passamos um parâmetro para uma função de uma variável do tipo primitivo, 
+     é criado uma nova variável para aquele escopo que está localizado a função em outro lugar na memória,
+     qualquer manipulação feita dentro do escopo da função não irá alterar a variável fora do escopo da função,
+     pois é outra variável que está sendo manipulada.
+
+Tipos Objetos:
+    - Tudo o que não for primitivo...
+    - Funções inclusive.
+    
+    Espaços de memória alocado e objetos fazem referências a essas células da memória.
+
+    parametro por referencia:
+    quando passamos um parâmetro para uma função de uma variável do tipo Object,
+     a variável no escopo da função perpetua a referencia apontada para a mesmo espaço de memória alocado,
+     portanto ao manipularmos essa variavel dentro do escopo, estaremos alterando também a variável fora do
+     escopo da função.  
+     

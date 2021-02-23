@@ -1,0 +1,56 @@
+Uma outra forma de instanciar um objeto ( diferente de new() );
+    Object.create( parametro1, parametro2 )
+   
+    parametro1: variável(objeto) função que será o prototype desse objeto, ou seja, função que 
+     será herdada diretamente para esse objeto
+  
+    parametro2: declaração de uma forma diferente os atributos/metodos do objeto novo instanciado.
+   
+    Exemplo: 
+
+    //definindo variavel/objeto função que será adicionado ao atributo prototype de algum objeto. 
+    var pessoaProto = function(){
+        calculaIdade: function(){
+            return ( 2019 - this.idade );
+        }
+
+        //pode ter outros métodos ou atributos
+
+    };
+
+    /*
+        declarando e instanciando um objeto novo utilizando o método Object.create( parametro1 )
+        logo esse objeto novo terá adicionado ao atributo prototype os métodos que estão contidos
+        na variavel/objeto parametro1
+    */
+    var objetoPessoaInstanciado = Object.create( pessoaProto );
+
+
+    //porém objetoPessoaInstanciado não possui outros atributos e métodos declarados, podemos fazer de duas formas:
+    forma1: 
+    objetoPessoaInstanciado.nome = "nomeObjeto";
+    objetoPessoaInstanciado.idade = "idadeObjeto";
+    objetoPessoaInstanciado.profissao = "profissaoObjeto";
+
+    //ou utilizamos o parametro2 para definir atributos e métodos pré-definidos para aquele objeto de forma distinta da padrão:
+    forma2:
+    var outroObjetoInstanciado = Object.create( pessoaProto, {
+        nome: { value: "outroNome" },
+        idade: { value: "outraIdade" },
+        profissao: { value: "outraProfissao" }
+
+
+    });
+
+    OBS: parametro2 parece ser uma forma diferente de declarar objeto
+
+
+
+
+
+
+
+
+
+
+     

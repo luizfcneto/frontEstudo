@@ -33,13 +33,15 @@ var idades = percorreArray( anos, calculaIdade );
 //funcao callback de verificar se idade é maior que 18 anos: verificaMaiorIdade
 var maiorIdade = percorreArray( idades, verificaMaiorIdade );
 
-console.log( idades );
-console.log( maiorIdade );
+console.log( "Vetor de anos: " + anos );
+console.log( "Vetor de idades: " + idades );
+console.log( "Vetor de idades maior que 18: " + maiorIdade );
 
 // Funcoes Anonimas em retorno de outras funções
 console.log("__________________________Função Anonima:__________________________ " );
 
-//declarando uma função anonima na variavel perguntaEntrevista que tem como parametro da função a variavel "profissao"
+//declarando uma função anonima na variavel perguntaEntrevista que tem como
+// parametro da função a variavel "profissao"
 var perguntaEntrevista = function( profissao ) {
     
     //Se a profissao for professor
@@ -76,11 +78,13 @@ var perguntaEntrevista = function( profissao ) {
     }
 }
 
-var perguntaProfessor = perguntaEntrevista("professor")("Valeria");
+// var perguntaProfessor = perguntaEntrevista( "professor" )( "Valeria" );
+var perguntaProfessor = perguntaEntrevista( "professor" );
+perguntaProfessor( "Valeria" );
 
-var pergunta = perguntaEntrevista()("Ze tuberculo");
+var pergunta = perguntaEntrevista()( "Ze tuberculo" );
 
-var perguntaBibliotecaria = perguntaEntrevista("bibliotecaria")("Renata");
+var perguntaBibliotecaria = perguntaEntrevista( "bibliotecaria" )( "Renata" );
 
 
 // Immediately Invoked Function Expressions ( IIFE )
@@ -91,37 +95,51 @@ console.log("__________________________IIFE:__________________________ " );
     console.log( numeroAleatorio );
 })();
 
-// comando abaixo gera erro, pois numeroAleatorio não é acessivel. Está fora do escopo de sua declaração. 
+// comando abaixo gera erro, pois numeroAleatorio não é acessivel. 
+// Está fora do escopo de sua declaração. 
 // console.log( numeroAleatorio ); 
 
 var multiplica = ( function( num1, num2 ) {
     return num1 * num2;
-})( 2, 5 );
+});
 
-console.log( multiplica );
+console.log( multiplica( 2, 5 ) );
 
 
-// Closure functions
+// Closure functions, quando temos um retorno de uma função da 
+// função aposentadoria, temos um closure, tudo que está dentro dele 
+// 
 console.log("__________________________Closure:__________________________ " );
 
 function aposentadoria( idadeMinima ){
     var texto = " anos para se aposentar. ";
 
-    //Closure
+    //função anonima
     return function( anoNascimento ){
         var idade = 2019 - anoNascimento;
         console.log( "Faltam " + ( idadeMinima - idade ) + texto );
+        return idadeMinima - idade;
     }
 
 }
 
+// O comando abaixo da erro, pois idade está dentro de uma 
+// closure que pertence a outro escopo
+// console.log( idade );
+
 var aposentadoriaBr = aposentadoria( 62 )( 1996 );
+console.log( aposentadoriaBr + " no Brasil" );
+
 var aposentadoriaUSA = aposentadoria( 65 )( 1996 );
+console.log( aposentadoriaUSA + " nos EUA" );
+
 var aposentadoriaIceLand = aposentadoria( 67 )( 1996 );
+console.log( aposentadoriaIceLand + " em IceLand" );
 
 
 function entrevista( profissao ){
 
+    // Closure
     return function( nome ){
         if( profissao ===  "designer" ){
             var msg = ", voce pode me explicar oque é UX?";
@@ -143,6 +161,7 @@ function entrevista( profissao ){
 var entrevistaProf = entrevista( "professor" )( "Gilberto" );
 var entrevista = entrevista()( "Luiz" );
 
+
 var add = ( function( ){
     var contador = 0;
 
@@ -158,4 +177,40 @@ add();
 add();
 add();
 
+// Outro Exemplo de Closure
+function Pessoa( salario ){
+    
+    //Variaveis e métodos privados:
+    this.salario = salario;
 
+    function setSalario( salarioNovo ) {
+        this.salario = salarioNovo;
+    };
+
+    // Só posso usar internamente
+    // setSalario( salario );
+
+    // Variaveis e métodos públicos:
+    return {
+
+        //Função getSalario() é publica e pode ser executada fora do objeto pessoa
+        getSalario() {
+            return salario;
+        }        
+
+    }
+
+}
+let luiz = new Pessoa( 2200 );
+
+console.log( luiz );
+
+// Por mais que eu consiga alterar o salario publicamente abaixo
+luiz.salario = 500;
+console.log( luiz.salario );
+
+// Da erro, é uma função privada
+// luiz.setSalario( 1200 );
+
+//A variavel privada permanece intacta
+console.log( luiz.getSalario() );

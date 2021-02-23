@@ -1,0 +1,47 @@
+Heranca:
+    É quando um objeto tem acesso a funções e 
+    propriedades de outro objeto.
+
+    Exemplo:
+    Constructor Person:
+        atributo nome;          |
+        atributo anoNascimento; |
+        atributo profissao;     |
+                                |
+        funcao calcularIdade(); |
+    ____________________________|   
+
+    Constructor Atleta: 
+        atributo olimpiadasParticipadas;|
+        atributo medalhasOlimpicas;     |
+                                        |
+        funcao autorizadoOlimpiada()    |
+    ____________________________________|
+
+    Atleta na realidade também é uma pessoa, 
+    então ele deveria possuir as mesmas 
+    propriedades e funções/métodos. 
+
+    Ao invés de repetirmos os mesmos atributos 
+    e funções/métodos do Constructor Pessoa no 
+    Constructor Atleta utilizamos o conceito de Herança
+    para que o Constructor Atleta herde estes atributos 
+    e funções.
+
+    Pessoa ---- Heranca -----> Atleta
+
+    Constructor Atleta:                 
+        atributo nome;                  |
+        atributo anoNascimento;         |
+        atributo profissao;             |
+        atributo olimpiadasParticipadas;|
+        atributo medalhasOlimpicas;     |
+                                        |
+        funcao calcularIdade();         |
+        funcao autorizadoOlimpiada();   |
+    ____________________________________| 
+
+    OBS: Os métodos/atributos herdados de outros objetos se encontram dentro do método "__proto__"
+
+    Os métodos que o Constructor/Prototype quiserem deixar disponíveis para herança devem ser adicionados
+     no atributo "prototype".

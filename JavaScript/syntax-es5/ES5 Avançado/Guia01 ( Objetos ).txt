@@ -1,0 +1,88 @@
+Objetos:
+    Em javascript nós temos duas vertendes de variáveis:
+        Primitivos:
+            - Numbers;
+            - Strings;
+            - Booleans;
+            - Undefined;
+            - Null
+
+        Objetos:
+            - Arrays;
+            - Functions;
+            - Objects;
+            - Dates;
+            - Empacotadores de Numeros, Strings, Booleans...
+
+    Objetos são importantes para realizarmos ações complexas que
+     demandam vários tipos de variáveis distintas para um determinado 
+     fim. 
+
+Programação Orientada a Objeto ( POO )
+    - Objetos interagem com outros através de métodos ou 
+    ( e ) propriedades;
+
+    - São usados para armazenar dados, estrutura de aplicações 
+    em módulos e manter o código limpo.
+
+    Como funciona?
+    Ná prática, para evitarmos repetição de código para objetos
+     que são distintos, mas que possuem mesmos métodos e propriedades
+    é criado uma Classe ( que é uma planta/modelo da estrutura 
+    daqueles objetos ).  
+    
+    OBS: Em javascript Classe é chamado de Construtor, ou Prototype.
+
+    Cada objeto distinto será uma instância dessa classe e podemos 
+    criar quantas instâncias quisermos. 
+    
+    Exemplo:
+    Constructor/Prototype Pessoa:                      
+        atributo nome;                  |
+        atributo dataNascimento;        |
+        atributo profissão;             |
+                                        |
+        funcao/metodo calcularIdade();  |
+    ____________________________________|
+
+    Instancias:
+    var Luiz:
+        Luiz;
+        1996;
+        Desenvolvedor;
+        calcularIdade();
+
+    var Rodrigo:
+        Rodrigo;
+        2000;
+        Estudante;
+        calcularIdade();
+
+    Cada variável acima é uma instância do Constructor/Prototype/Classe de Pessoa.
+
+Instanciando um objeto a partir de uma funçao Constructor:
+
+dado o constructor:
+var Pessoa = function( parametro1, parametro2, parametro3 ){
+    this.parametro1 = parametro1;
+    this.parametro2 = parametro2;
+    this.parametro3 = parametro3;
+
+}
+
+instanciamos:
+var joao = new Pessoa( nome, altura, idade );
+
+
+Adicionando método em um Constructor
+var Pessoa = function( parametro1, parametro2, parametro3 ){
+    this.parametro1 = parametro1;
+    this.parametro2 = parametro2;
+    this.parametro3 = parametro3;
+
+    this.nomeFuncao = function( parametrosN ){
+        //codigo da funcao
+
+    }
+
+}
