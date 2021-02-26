@@ -1,0 +1,153 @@
+Conectando banco de dados no backend:
+Primeira forma:
+    Instalando dependencia/driver nativo do banco de sua preferencia através do node/npm
+    Exemplo: postgres
+        npm install pg
+    
+    fonte: https://node-postgres.com/
+
+    Para cada driver/dependencia de banco de dados podemos ter maneiras diferentes de configurar, fazer consultas e outras funcionalidades do banco, portanto é necessário ler documentação do driver para fazer o gerenciamento.
+
+    Se tivermos que mudar o banco de dados que irá alimentar a nossa aplicação, teremos que alterar toda a configuração de conexão com o novo banco de dados.
+
+Segunda forma:
+    Utilizar um query builder. Superficialmente é um intermediário da aplicação com o banco de dados, é um construtor de consultas.
+    É um módulo de nodejs que estabelece comunicação com vários drivers de banco de dados distintos que devem de estar previamente instalados ( módulo/driver ) no projeto.
+
+    Um exemplo de query builder é o knex.js
+    documentação: http://knexjs.org/
+
+    Devemos instalar as dependencias do knexjs no projeto utilizando o npm:
+    npm install --save-dev knex
+
+    E instalar os módulos dos bancos de dados que poderemos utilizar para conecta-lo:
+    - postgres:
+        npm install pg 
+    - sqlite 3:
+        npm install sqlite3
+    - mysql:
+        npm install mysql
+    - oracle db:
+        npm install oracledb
+
+
+    Após isso deve criar um arquivo js para inicializar a biblioteca do knex e fazer a configuração com o banco de dados desejado:
+    Exemplo: mysql
+        const knex = require('knex')({
+            client: 'mysql',
+            connection: {
+                host : '127.0.0.1',
+                user : 'your_database_user',
+                password : 'your_database_password',
+                database : 'myapp_test'
+            }
+        });
+
+        ou
+
+        const knex = require('knex')({
+            client: 'mysql',
+            version: '5.7',
+            connection: {
+            host : '127.0.0.1',
+            user : 'your_database_user',
+            password : 'your_database_password',
+            database : 'myapp_test'
+            }
+        });
+
+
+    Exemplo: postgres:
+        const pg = require('knex')({
+            client: 'pg',
+            connection: process.env.PG_CONNECTION_STRING,
+            searchPath: ['knex', 'public'],
+        });
+
+        ou
+
+        const knex = require('knex')({
+            client: 'pg',
+            version: '7.2',
+            connection: {
+                host : '127.0.0.1',
+                user : 'your_database_user',
+                password : 'your_database_password',
+                database : 'myapp_test'
+            }
+        });
+
+Sintaxe de consulta:
+knex({ a: 'table', b: 'table' })
+  .select({
+    aTitle: 'a.title',
+    bTitle: 'b.title'
+  })
+  .whereRaw('?? = ??', ['a.column_1', 'b.column_2'])
+Outputs:
+select `a`.`title` as `aTitle`, `b`.`title` as `bTitle` from `table` as `a`, `table` as `b` where `a`.`column_1` = `b`.`column_2`
+
+
+Sintaxe para fazer consultas utilizando TypeScript:
+interface User {
+  id: number;
+  name: string;
+  age: number;
+}
+
+knex('users')
+  .where('id')
+  .first(); // Resolves to any
+
+knex<User>('users') // User is the type of row in database
+  .where('id', 1) // Your IDE will be able to help with the completion of id
+  .first(); // Resolves to User | undefined
+
+
+para mais informações de configuração dos banco de dados olhar a documentação.
+
+Terceira forma:
+    Utilizando TypeORM. ( mesma coisa do hibernate do JAVA )
+    Superficialmente ORM é responsavel por pegar nosso objeto e fazer um mapeamento para uma tabela de um banco de dados. Oferece também possibilidades de fazer consultas via javascript, sem utilizar o SQL. 
+
+    documentação: https://typeorm.io/#/
+
+    Instalação:
+    npm install --save typeorm 
+
+    npm install --save reflect-metadata
+
+    Instalar drivers de banco de dados:
+        - mysql:
+            npm install --save mysql
+        - postgres:
+            npm install --save pg
+        - sqlite
+            npm install --save sqlite3
+        - Oracle:
+            npm install --save oracledb
+        - Mongo:
+            npm install --save mongodb
+
+    Após instalação criar arquivo de configuração: 
+        ormconfig.js  ou ormconfig.json
+{
+   "type": "mysql",
+   "host": "localhost",
+   "port": 3306,
+   "username": "test",
+   "password": "test",
+   "database": "test",
+   "synchronize": true,
+   "logging": false,
+   "entities": [
+      "src/entity/**/*.ts"
+   ],
+   "migrations": [
+      "src/migration/**/*.ts"
+   ],
+   "subscribers": [
+      "src/subscriber/**/*.ts"
+   ]
+}
+

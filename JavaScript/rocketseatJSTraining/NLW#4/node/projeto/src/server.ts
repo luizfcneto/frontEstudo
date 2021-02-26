@@ -1,4 +1,9 @@
+import "reflect-metadata";
+import "./database/index";
+
+
 import express from "express";
+import { router } from "./routes";
 
 const app = express();
 const port = 3333;
@@ -11,26 +16,11 @@ const port = 3333;
     PATCH => Alteração específica
 */
 
+app.use( express.json() )
+app.use( router )
 
-app.get( "/olamundo01", ( request, response ) => {
-    return response.send( "Olá Mundo - NLW #04" );
-} )
-
-app.get( "/olamundo02", ( request, response ) => {
-    return response.json( {
-        mensagem: "Olá Mundo - NLW #04"
-    } )
-})
-
-// parametro 1: rota ( do recurso API ),
-// parametro 2: função com parametros request, response da comunicação http
-app.post( "/", ( request, response ) => {
-
-    // Recebeu dados para salvar
-    return response.json( {
-        mensagem: "Os dados foram salvos com sucesso!"
-    })
-} )
+console.log( "app = express() :" + app );
+console.log( "router: " + router );
 
 // Cria servidor: parametros, porta e função ser executada
 app.listen( port, () => console.log( `Server is running on port: ${ port }` ) );

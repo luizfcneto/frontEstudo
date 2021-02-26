@@ -1,0 +1,78 @@
+Na estrutura MVC, o M significa Model, representa o modelo, o objeto principal que contém os dados da nossa aplicação
+
+No nosso projeto o Model será um mapeamento de uma entidade presente no banco de dados para a nossa aplicação.
+
+Quem irá fazer essa intermediação será o ORM e seus objetos específicos para fazer esse mapeamento. No nosso exemplo o TypeORM.
+
+
+O nosso projeto de Banco de dados irá conter 3 Entidades:
+Usuario
+    id: uuid ( uuid é um módulo que irá abstrair da nossa aplicação um identificador único para cada usuário );
+
+    nome: string
+
+    email: string
+
+    dataCriacao: Date
+
+Para representarmos a Entidade Usuario definido acima utilizamos a notação de classe normal primeiramente:
+
+class User {
+    const id: uuid;
+    const nome: string;
+    const email: string;
+    const dataCriacao: Date;
+
+    // OBS: O construtor será diferente, pois não iremos construir o objeto aqui, iremos apenas declarar suas propriedades que serão atribuidas em outra classe e será enviada para o banco de dados.
+    //constructor( id: uuid, nome: string, email: string, dataCriacao: Date )//{
+        //this.id = id;
+        //this.nome = nome;
+        //this.email = email;
+        //this.dataCriacao = dataCriacao;
+    //}
+}
+
+Fluxo: 
+Router definido para o serviço "/user" utilizando o método "post" irá executar uma função callback implementado na classe UserController.ts
+
+UserController irá implementar um método assincrono de criação de um usuário. "create", que irá salvar esse usuário no banco. Mais explicado no txt Controller.
+
+Utilizando os módulos de ORM para que ele entenda como serão mapeados os atributos:
+para isso utilizaremos as seguintes dependências:
+
+Arquivo User.ts:
+import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+
+@Entity( "user" ): typeORM entende que a classe User será uma entidade do nome "user"
+// PrimaryColumn(): typeORM entende que esse atributo é chave primária
+// Column(): typeORM entende que esse atributo é uma coluna da tabela user
+
+
+@Entity( "user" )
+class User {
+
+    @PrimaryColumn()
+    id: uuid;
+
+    @Column()
+    nome: string;
+
+    @Column()
+    email: string;
+
+    @Column()
+    dataCriacao: Date;
+
+
+}
+
+
+
+
+Perguntas
+
+
+Formulário
+
+
+

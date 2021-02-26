@@ -1,0 +1,85 @@
+Como iremos escrever muitos serviços, iremos utilizar um objeto do Express chamado Router
+
+O que é o Router:
+    O objeto Router é uma instancia isolada de middlewares e rotas. Como se fosse uma mini aplicação, capaz apenas de executar funções middleware e funções de roteamento. Toda aplicação Express tem um roteamento enbutido.
+
+    O Router tem um comportamento próprio de middleware, então nós podemos utiliza-lo diretamente através do app.use() ou como um argumento para outro método use().
+
+    O Express possui um construtor Router(), então podemos criar quantos Routers quisermos.
+
+    Uma vez que criamos um objeto router, nós podemos adicionar middlewares e métodos HTTP roteaveis, como "get", "put", "post", e outros para ele como em uma aplicação.
+
+    Exemplo:
+    // 
+    router.use( function ( req, res, next ) {
+        // lógica de programação, como qualquer outro middleware
+        next();
+    } )
+
+    // irá manipuçar qualquer requisição HTTP do tipo get diretamente. que termine com "/events"
+    router.get( "/events", function( req, res, next ) {
+        // lógica de programação
+    } )
+
+    //Ou podemos utilizar o router para uma url particular na forma abaixo, separando as rotas em arquivos ou até mini aplicações:
+    const app = new Express();
+
+    // somente requisições para "/calendar" irá ser enviada para o router
+    app.use( "/calendar", router );
+
+
+    OBS: app.use() tem papel de middleware
+    fonte: https://expressjs.com/pt-br/4x/api.html#app.use
+
+
+Como vimos o Express é um módulo/objeto que auxilia a criação de uma api e comunicação aplicações web através de comunicações com servidores.
+
+para inicializarmos um objeto express:
+arquivo: servidorPrincipal.ts:
+_______________________________________________________
+import express from "express";
+
+// criamos uma aplicação express.
+const app = express();
+
+forma 1: definir as rotas dos serviços utilizados pelo app. no arquivo servidorPrincipal.ts
+const roteador1 = express.Router();
+
+roteador1.get( "/", ( req, res ) => {
+    res.send( "Olá Mundo" );
+} )
+_______________________________________________________
+
+forma2: Separando em arquivos distintos:
+Arquivo: ServidorPrincipal.ts:
+
+import express from "express";
+import { meuModuloRoteador } from "./caminho/routes";
+
+const app = express();
+
+// Executa o módulo com o roteador em outro arquivo
+app.use( meuModuloRoteador );
+...
+_______________________________________________________
+Arquivo: routes.ts:
+import { Router } from "express";
+
+const meuModuloRoteador = Router();
+
+meuModuloRoteador.get( "/", ( req, res ) => {
+    res.send( "Olá Mundo" );
+} )
+
+export { meuModuloRoteador };
+_______________________________________________________
+
+
+fonte: https://expressjs.com/pt-br/4x/api.html#router
+
+
+
+
+
+
+
