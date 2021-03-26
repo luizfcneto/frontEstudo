@@ -1,0 +1,6 @@
+Biblioteca para fazer validações: yup
+https://www.npmjs.com/package/yup?activeTab=readme
+
+instalando dependencia:
+    npm install --save-dev yup
+

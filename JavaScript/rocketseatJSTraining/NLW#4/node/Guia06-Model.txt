@@ -15,8 +15,10 @@ Usuario
 
     dataCriacao: Date
 
-Para representarmos a Entidade Usuario definido acima utilizamos a notação de classe normal primeiramente:
+No nosso caso, já recebemos um modelo relacional com a modelagem das entidades já especificadas, cada entidade será mapeada pra um modelo no nosso projeto de desenvolvimento.
 
+Para representarmos a Entidade Usuario definido acima utilizamos a notação de classe normal no javascript, primeiramente:
+_____________________________________________________________________________
 class User {
     const id: uuid;
     const nome: string;
@@ -36,23 +38,31 @@ Fluxo:
 Router definido para o serviço "/user" utilizando o método "post" irá executar uma função callback implementado na classe UserController.ts
 
 UserController irá implementar um método assincrono de criação de um usuário. "create", que irá salvar esse usuário no banco. Mais explicado no txt Controller.
-
+_____________________________________________________________________________
 Utilizando os módulos de ORM para que ele entenda como serão mapeados os atributos:
 para isso utilizaremos as seguintes dependências:
-
-Arquivo User.ts:
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 
 @Entity( "user" ): typeORM entende que a classe User será uma entidade do nome "user"
-// PrimaryColumn(): typeORM entende que esse atributo é chave primária
-// Column(): typeORM entende que esse atributo é uma coluna da tabela user
+    - PrimaryColumn(): typeORM entende que esse atributo é chave primária
 
+    - Column(): typeORM entende que esse atributo é uma coluna da tabela user
+    
+    - readonly: propriedade de Column do TypeORM que indica que ela não poderá ser modificada através da operação de update 
+    
+    - CreateDateColumn(): typeORM entende que este atributo será uma coluna que irá conter datas geradas no momento que o usuário for salvo no banco
+
+construtor: Cria um valor de string aleatório através do método uuid(), caso ele não tenha sido inicializado;
+_____________________________________________________________________________
+Arquivo: User.ts:
+import { Entity, PrimaryColumn, Column, CreateDateColumn } from "typeorm"
+import { v4 as uuid } from "uuid";
 
 @Entity( "user" )
 class User {
 
     @PrimaryColumn()
-    id: uuid;
+    readonly id: uuid;
 
     @Column()
     nome: string;
@@ -60,12 +70,16 @@ class User {
     @Column()
     email: string;
 
-    @Column()
+    @CreateDateColumn()
     dataCriacao: Date;
 
+    constructor() {
+        if( !this.id ){
+            this.id = uuid();
+        }
+    }
 
 }
-
 
 
 

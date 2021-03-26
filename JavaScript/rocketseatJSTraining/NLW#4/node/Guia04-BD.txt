@@ -107,7 +107,7 @@ knex<User>('users') // User is the type of row in database
 para mais informações de configuração dos banco de dados olhar a documentação.
 
 Terceira forma:
-    Utilizando TypeORM. ( mesma coisa do hibernate do JAVA )
+    Utilizando TypeORM. ( similar ao ORM do JAVA, hibernate )
     Superficialmente ORM é responsavel por pegar nosso objeto e fazer um mapeamento para uma tabela de um banco de dados. Oferece também possibilidades de fazer consultas via javascript, sem utilizar o SQL. 
 
     documentação: https://typeorm.io/#/

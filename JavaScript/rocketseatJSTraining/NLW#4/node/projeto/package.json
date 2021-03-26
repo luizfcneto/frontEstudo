@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test jest",
+    "test": "NODE_ENV=test jest -i",
     "posttest": "rm ./src/database/database.test.sqlite",
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
     "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express-async-errors": "^3.1.1",
     "handlebars": "^4.7.7",
     "nodemailer": "^6.5.0",
     "npx": "^10.2.2"
@@ -32,6 +33,7 @@
     "ts-node-dev": "^1.1.1",
     "typeorm": "^0.2.31",
     "typescript": "^4.1.5",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "yup": "^0.32.9"
   }
 }

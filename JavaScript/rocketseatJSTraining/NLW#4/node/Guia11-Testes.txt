@@ -1,0 +1,69 @@
+Testes:
+
+    1. Testes unitários
+        Testa funcionalidades ou classes específicas com valores aleatórios, dados não são retirados do banco de dados
+
+    2. Testes de Integração
+        Testa integração entre componentes ( funcionalidades ) diferentes de todo um serviço
+
+
+    Ferramentas que utilizaremos para fazer os testes:
+    jest
+
+    npm install --save-dev jest 
+
+    npm install --save-dev @types/jest 
+
+    Inicializando o jest:
+    npm jest --init
+
+    após inicialização do jest, será gerado um arquivo de configuração:
+    jest.config.js:
+    Alterar propriedade:
+    bail: true,
+
+    // Limpar mocks a cada execução de teste.
+    clearMocks: true,
+
+    npm install --save-dev ts-jest
+
+    alterar a propriedade do aruqivo config.jest.ts, adicionar o preset:
+    preset: "ts-jest",
+
+
+    Criaremos uma pasta dentro da src especifica para guardar os testes da nossa aplicação:
+    Diretório: __tests__
+
+    configurar diretório que irá conter os testes da nossa aplicação, e será utilizado e executado pelo jest:    
+    testMatch: [
+        "**/__tests__/*.test.ts"
+    ],
+
+
+    Utilizaremos o módulo supertest para utilizar requisição de uma simulação de servidor ( um servidor que utiliza requisições HTTP de forma "mockada" )
+    https://www.npmjs.com/package/supertest
+
+    npm install --save-dev supertest @types/supertest
+
+    Devido a isso, precisamos utilizar servidores que acessam a um banco de dados diferenciado para testes.
+
+    Iremos reconfigurar a nossa estrutura de arquivos server.ts para apenas a utilizaçao do listening na porta do servidor de desenvolvimento.
+
+    Criaremos um outro arquivo app.ts que irá instanciar um módulo da conexão com o banco de dados, para poder ser utilizado tanto no server.ts, quanto no /database/index.ts
+
+    No arquivo acima, iremos especificar qual é o direcionamento para o banco de dados específico para testes. Olhar arquivo: /database/index.ts
+
+    Definimos no script do package.json o ambiente que iremos utilizar os testes. Exemplo:
+    "test": "NODE_ENV=test jest"
+
+    Olhar arquivos de testes no diretório __testes__
+
+    Ler documentação do jest para compreender sua utilização:
+    https://jestjs.io/docs/en/api
+
+    Por fim, precisamos definir um script no package.json, para ser executado sempre que todos os testes tenham sucesso. Após sua execução, o banco de testes será apagado:
+    "posttest": "rm ./src/database/database.test.sqlite",
+
+
+
+

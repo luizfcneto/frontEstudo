@@ -1,0 +1,24 @@
+Na estrutura MVC, o C representa o Controller, que superficialmente fará o controle dos dados representados pelo Model, modelo das entidades populadas no banco de dados. 
+
+Respeitando o princípio SOLID, cada classe Controller terá sua função específica para controlar um Model/modelo.
+
+Comumente as quatro operações básicas que um controller gerencia sobre o Model são: CRUD
+
+create:
+    Cria uma instancia de um modelo nova e salva no banco de dados
+    método de requisição http: POST
+
+read:
+    Busca no banco de dados por algum parametro recebido na requisição e dispoẽ para a aplicação;
+    importante: verificar se usuário está contido no na tabela de consulta.
+
+
+update:
+    Atualiza campos especificos recebidos como parametro de um elemento específico 
+
+delete:
+    Deleta um elemento específico.
+
+Obs: Elementos específicos podem ser passados como parametro tanto pela url, quanto por corpo da requisição. 
+
+As funções de CRUD e outros métodos são serviços disparados/executados através de métodos Http, definidos no arquivo de roteamento de requisições "routes.ts"

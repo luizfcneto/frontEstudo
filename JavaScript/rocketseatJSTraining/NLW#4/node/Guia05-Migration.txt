@@ -9,8 +9,6 @@ https://cloud.google.com/solutions/database-migration-concepts-principles-part-1
     CLI é um acronimo para Command Line Input. No nosso caso, utilizaremos linhas de comando para criar as migrations no nosso projeto.
 
 
-    
-
 1 Passo: Criar um comando de uma migration:
     no package.json, no atributo "scripts" que faça o comando:
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js"
@@ -43,3 +41,103 @@ https://cloud.google.com/solutions/database-migration-concepts-principles-part-1
 
     Comando para desfazer a ultima execução de migration executada:
     npm run typeorm migration:revert
+
+Após execução do comando para criar uma nova migration, será criado um arquivo "identificador-NomeMigration.ts";
+contendo a seguinte estrutura:
+_____________________________________________________________________________
+import {MigrationInterface, QueryRunner, Table} from "typeorm";
+
+export class NomeMigrationIdentificador implements MigrationInterface {
+
+    public async up(queryRunner: QueryRunner): Promise<void> {
+    }
+
+    public async down(queryRunner: QueryRunner): Promise<void> {
+    }
+
+}
+_____________________________________________________________________________
+Como podemos notar, a classe NomeMigrationIdentificador implementa uma interface de um objeto MigrationInterface implementado no módulo typeorm.
+ 
+Essa interface possui dois métodos que devem ser implementados:
+up():   
+    utilizamos um comando do migration para ser executado
+    npm typeorm migration:run
+
+    Aqui implementaremos a criação da Tabela ( CREATE )
+
+down():     
+    utilizamos um comando do migration para ser executada
+    npm typeorm migration:revert
+
+    Aqui implementaremos para a tabela seja excluida ( DROP )
+
+
+OBS: os métodos acima são executados de forma assíncrona, portanto devolvem uma Promisse
+
+Além de implementar a interface MigrationInterface, o arquivo importa outras duas dependências na classe NomeMigrationIdentificador:
+
+QueryRunner:
+    é um objeto que implenta interface que utilizamos para executar queries, implementada no typeOrm. Utilizaremos o método createTable( table Table )
+
+Table:
+    É um objeto que implementa a interface Table que utilizamos para definir os campos da tabela,
+    nome; --> nome da tabela
+    colunas[];  --> array de objetos colunas;
+        { 
+            name: "nome_da_coluna",
+            type: "tipo_dominio_coluna",
+            isPrimarykey: true, // padrão é false, não há necessidade de escrever caso não seja.            
+        },{
+            name: "outra_coluna",
+            type: "varchar(100)"
+            required: true
+        }
+    chavesEstrangeiras[];
+
+
+
+Ler artigo: https://dev.to/wandealves/migrations-com-typeorm-no-nodejs-4i80
+Ler documentação: https://typeorm.io/#/migrations/using-migration-api-to-write-migrations
+
+por fim temos: 
+Arquivo Migration User:
+____________________________________________________________________________
+import {MigrationInterface, QueryRunner, Table} from "typeorm";
+
+export class CreateUsers1614125509286 implements MigrationInterface {
+
+    public async up(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.createTable(
+            new Table({
+                name: "users",
+                columns: [
+                    {
+                        name: "id",
+                        type: "uiid",
+                        isPrimary: true
+                    },
+                    {
+                        name: "name",
+                        type: "varchar",
+                    },
+                    {
+                        name: "email",
+                        type: "varchar"
+                    },
+                    {
+                        name: "created_at",
+                        type: "timestamp",
+                        default: "now()"
+                    }
+                ]
+            } )
+        )
+    }
+
+    public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropTable( "users" );
+    }
+
+}
+____________________________________________________________________________

@@ -1,7 +1,7 @@
 O que é um middleware:
     é um sistema intermediário que implementa uma comunicação de entrada/saída, abstraindo esta implementação do desenvolvedor, para que ele possa focar no propósito específico de sua aplicação.
 
-    Superficialmente é uma camada intermediária entre duas aplicações, auxiliam duas aplicações, partes, sistemas a se comunicarem.
+    Superficialmente é uma camada intermediária entre duas aplicações, auxiliam duas aplicações/ partes/sistemas a se comunicarem.
 
     Serve então para prover ou facilitar a comunicação entre duas aplicações que podem ser plataformas diferentes e tecnologias diferentes.
 

@@ -1,0 +1,18 @@
+Para fazer envio de emails utilizaremos o módulo:
+Nodemailer
+https://nodemailer.com/about/
+
+para baixar o módulo:
+    npm install nodemailer
+
+    npm install --save-dev @types/nodemailer
+
+precisaremos ter o protocolo smtp: para teste, utilizaremos o serviço gratuito do ethereal:
+https://ethereal.email/
+
+
+
+
+https://handlebarsjs.com/guide/
+template de formatação de mensagem do corpo do email;
+    npm install handlebars

@@ -1,0 +1,43 @@
+Repository: 
+    É um objeto como EntityManager, que tem como função o gerenciamento de entidades, mas suas operações são limitadas para entidades concretas;
+
+    Operações que podemos fazer com o Repository:
+        create( { objeto }: Entidade ): Cria uma entidade nova no banco de dados com parametros fornecidos
+
+        save( { objeto }: Entidade ): Salva um ou mais objetos na sua respectiva tabela no banco de dados
+
+        find( { objeto } : Entidade ): Consulta no banco de dados por um objeto, caso esteja presente, será retornado, caso contrário retornará booleano 
+
+        update( { objeto } : Entidade ): Atualiza a entidade ou entidades parcialmente.Não checa se a(s) entidade(s) existe(m) ou não na tabela do banco de dados
+
+
+        remove( { objeto } : Entidade | Entidade[] ): Remove uma ou mais entidade(s) fornecida(s) como parametro do banco de dados
+
+        delete( criterios: string | string[] | number | number[] | Date | Date[] | ObjectID | ObjectID | | findConditions<Entity>, options ): Deleta entidades de acordo com alguns critérios. Diferentemente do método de salvar, executa a operação de uma forma primitiva, sem efeitos em cascata com relações e outras operações incluidas. É uma operação mais rápida e eficiente. Não checa se a entidade existe antes de realiza-la;
+
+
+        muitos outros, checar documentação:
+        https://typeorm.delightful.studio/classes/_repository_repository_.repository.html
+    
+    Existem 3 tipos de repositories
+        Repository: Repositório de qualquer entidade regular;
+
+        TreeRepository: Objeto Repositório com extensões de repositórios usados para entidades em estrutura de arvores. Possuem métodos especiais para trabalhar com estruturas de arvores.
+
+        MongoRepository: Repositorio com funções especiais utilizadas somente no MongoDB
+
+        fonte: https://typeorm.io/#/working-with-repository
+
+
+Utilizando o Repository:
+devemos importar o módulo getRepository do typeORM:
+import { getRepository } from "typeorm";
+
+Podemos utiliza-lo de duas formas:
+1. Menos organizada, não recomendada:
+No arquivo de um Controller, quando precisarmos utilizar funções que façam manipulação com objetos de Model( Entidade ).
+
+E tivermos que utilizar queries/consultas no banco de dados importaremos o getRepository e atribuiremos a uma variavel, e utilizaremos os métodos no bloco de instrução de cada função, de acordo com as regras de negócio da aplicação. 
+
+2. Mais organizada, RECOMENDADA:
+Separar a responsabilidade de realizar consultas numa classe específica ClasseRepository que extenda Repository e importar essa ClasseRepository dentro da classe Controller para ser utilizada de acordo com as consultas em cada funcionalidade atendendo as regras de negócio da aplicação.
