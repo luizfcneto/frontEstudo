@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <title>Conversor Moedas</title>
+    <link rel="stylesheet" type="text/css" href="../src/css/index.css" />
+  </head>
+
+  <body>
+    <div class="container-main">
+      <img
+        class="img-exchange"
+        src="../src/imgs/exchange.png"
+        alt="convertendo dinheiro"
+      />
+      <h1 class="title">Conversor de Moedas</h1>
+
+      <div class="container-coins">
+        <form>
+          <label for="actual"> De: </label>
+          <select id="actual" name="actual">
+            <option value="BRL">Real</option>
+            <!-- <option value="USD-BRL">Dólar Comercial</option>
+            <option value="CAD-BRL">Dólar Canadense</option>
+            <option value="AUD-BRL">Dólar Australiano</option>
+            <option value="EUR-BRL">Euro</option>
+            <option value="GBP-BRL">Libra Esterlina</option>
+            <option value="ARS-BRL">Peso Argentino</option>
+            <option value="CHF-BRL">Franco Suíço</option>
+            <option value="CNY-BRL">Yuan Chinês</option>
+            <option value="BTC-BRL">Bitcoin</option>
+            <option value="LTC-BRL">Litecoin</option>
+            <option value="ETH-BRL">Ethereum</option>
+            <option value="JPY-BRL">Iene Japonês</option> -->
+          </select>
+
+          <label for="to"> Para: </label>
+          <select id="to" name="to">
+            <option value="BRL">Real</option>
+          </select>
+        </form>
+      </div>
+
+      <form class="container-form">
+        <input class="input-value" type="text" placeholder="Digite o valor" />
+        <input class="btn-converter" type="button" value="Converter" />
+      </form>
+      <span class="result"> 10 </span>
+      <span class="coin-info"> 50 </span>
+    </div>
+
+    <script type="module" src="../src/js/index.js"></script>
+    <script type="module" src="../src/js/Models/Exchange.js"></script>
+    <script type="module" src="../src/js/Views/optionsView.js"></script>
+  </body>
+</html>

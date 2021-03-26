@@ -1,0 +1,69 @@
+.container-main {
+  width: 80%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 5em 0;
+}
+
+.img-exchange {
+  width: 20%;
+}
+
+.container-coins {
+  display: flex;
+  flex-flow: row;
+}
+
+.container-forms form {
+  padding: 0 1em;
+}
+
+form select {
+  margin: 0.5em;
+  width: 8em;
+  height: 2em;
+}
+
+form .input-value {
+  /* width: 10em; */
+  height: 2em;
+  font-size: 20px;
+  margin-right: 0.2em;
+}
+
+.container-form {
+  width: 50%;
+  display: flex;
+  flex-flow: row;
+  margin: 0.5em;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-converter {
+  margin-left: 0.2em;
+  font-size: 19px;
+  padding: 0.5em;
+}
+
+.btn-converter:hover {
+  cursor: pointer;
+  background-color: #8aae92;
+  border-radius: 2px;
+  border-style: solid;
+  color: #ededed;
+}
+
+.result {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.coin-info {
+  margin: 1em 0 0 0;
+  font-size: 18px;
+  font-weight: lighter;
+  font-style: italic;
+}
