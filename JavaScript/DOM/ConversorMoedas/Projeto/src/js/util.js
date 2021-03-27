@@ -49,3 +49,7 @@ export const adaptJsonResponse = (json) => {
 
   return jsonResponse;
 };
+
+export const validateInputValue = (value) => {
+  return isNaN(value);
+};

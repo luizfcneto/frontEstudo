@@ -67,3 +67,9 @@ form .input-value {
   font-weight: lighter;
   font-style: italic;
 }
+
+.error-message {
+  color: red;
+  font-size: 15px;
+  margin-bottom: 1em;
+}

@@ -1,14 +1,11 @@
-import { Exchange } from "./Models/Exchange.js";
-import { setUpOptions } from "./Views/optionsView.js";
+import { MainController } from "./Controllers/MainController.js";
 
 let state = {};
 export { state };
 
 const init = async () => {
-  const test = new Exchange(10);
-  await test.getAllData();
+  await MainController();
   console.log(state);
-  setUpOptions();
 };
 
 init();
