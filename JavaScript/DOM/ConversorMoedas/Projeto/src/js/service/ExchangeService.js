@@ -27,35 +27,38 @@ class ExchangeService {
   }
 }
 
-// Refatorar
-const calculateBidConversion = (coin0, coin1) => {
-  if (coin0 === "BRL") {
-    let arrayCoins = state.data;
-    let coinArrayObj = arrayCoins.filter((coin) => {
-      if (coin.name === coin1) {
-        console.log(coin.bid);
-        return coin.bid;
-      }
-    });
+const getCoin = (coinName) => {
+  let arrayCoins = state.data;
+  let [coin] = arrayCoins.filter((coin) => {
+    if (coin.name === coinName) {
+      return { bid: coin.bid };
+    }
+  });
 
-    let bid = coinArrayObj[0].bid;
-    bid = parseFloat(bid);
-    bid = 1 / bid;
-    return bid;
-  }
-
-  if (coin1 === "BRL") {
-    const arrayCoins = state.data;
-    let coinArrayObj = arrayCoins.filter((coin) => {
-      if (coin.name === coin0) {
-        return { bid: coin.bid };
-      }
-    });
-
-    let bid = coinArrayObj[0].bid;
-    bid = parseFloat(bid);
-    return bid;
-  }
+  return parseFloat(coin.bid);
 };
 
-export { ExchangeService, calculateBidConversion };
+const getBidConversion = (coin0, coin1) => {
+  if (coin0 === coin1) return 1;
+
+  // BRL => Euro
+  if (coin0 === "BRL") {
+    let bid = 1 / getCoin(coin1);
+    return bid;
+  }
+
+  // Euro => BRL
+  if (coin1 === "BRL") {
+    let bid = getCoin(coin0);
+    return bid;
+  }
+
+  // Dolar -> Euro
+  let taxCoin0ToBRL = 1 / getCoin(coin0);
+  let taxCoin1ToBrl = 1 / getCoin(coin1);
+
+  let bid = taxCoin1ToBrl / taxCoin0ToBRL;
+  return bid;
+};
+
+export { ExchangeService, getBidConversion };

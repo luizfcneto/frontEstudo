@@ -64,9 +64,7 @@ export const validateInputValue = (value) => {
 
   // Doing with Regex numbers + "."
   const regexOnlyNumbers = /^(0|[1-9]\d*)(\.\d+)*$/g;
-  const valueLength = value.length;
-  console.log(valueLength);
-
+  // const valueLength = value.length;
   let result = value.match(regexOnlyNumbers);
   return result === null ? false : true;
 };

@@ -3,7 +3,7 @@ import { Input } from "../Models/Input.js";
 import { renderOptions, templateOption } from "../Views/optionsView.js";
 import {
   ExchangeService,
-  calculateBidConversion,
+  getBidConversion,
 } from "../service/ExchangeService.js";
 import { validateInputValue } from "../util.js";
 import { showError, clearError } from "../Views/ResultView.js";
@@ -31,18 +31,19 @@ const doTheMagic = (event) => {
   console.log("Começa o processo de conversão");
   let value = getInputValue();
 
-  if (!validateInputValue(value))
+  if (!validateInputValue(value)) {
     showError("Valor Informado não é um número válido");
+    console.log("Wrong, Input Error");
+  } else {
+    let coinFrom = getCoinFrom();
+    let coinTo = getCoinTo();
+    let bid = getBidConversion(coinFrom, coinTo);
 
-  // 0. catch coin from
-  let coinFrom = getCoinFrom();
+    let result = (bid * parseFloat(getInputValue())).toFixed(4);
 
-  // 1. catch coin to
-  let coinTo = getCoinTo();
-
-  //
-  let bid = calculateBidConversion(coinFrom, coinTo);
-  console.log(bid);
+    // TODO
+    showResult(result);
+  }
 };
 
 const setEventClickButton = (button) => {
