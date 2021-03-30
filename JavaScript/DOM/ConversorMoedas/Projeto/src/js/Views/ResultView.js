@@ -1,12 +1,12 @@
 import { state } from "../index.js";
-const local = document.querySelector(".container-form");
+const localError = document.querySelector(".container-form");
 
 export const showError = (message) => {
   let spanError = `<span class="error-message"> 
         ${message}
     </span>`;
 
-  local.insertAdjacentHTML("afterend", spanError);
+  localError.insertAdjacentHTML("afterend", spanError);
 };
 
 export const clearError = () => {

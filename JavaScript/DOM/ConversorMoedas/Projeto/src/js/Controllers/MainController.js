@@ -1,7 +1,10 @@
 import { state } from "../index.js";
 import { Input } from "../Models/Input.js";
 import { renderOptions, templateOption } from "../Views/optionsView.js";
-import { ExchangeService } from "../service/ExchangeService.js";
+import {
+  ExchangeService,
+  calculateBidConversion,
+} from "../service/ExchangeService.js";
 import { validateInputValue } from "../util.js";
 import { showError, clearError } from "../Views/ResultView.js";
 
@@ -14,14 +17,32 @@ const getInputValue = () => {
   return state.inputEl.value;
 };
 
-const doTheMagic = () => {
+const getCoinFrom = () => {
+  return state.selects.selectActualEl.value;
+};
+
+const getCoinTo = () => {
+  return state.selects.selectToEl.value;
+};
+
+const doTheMagic = (event) => {
+  event.preventDefault();
   clearError();
   console.log("Começa o processo de conversão");
   let value = getInputValue();
-  value = parseFloat(value);
 
-  if (validateInputValue(value))
+  if (!validateInputValue(value))
     showError("Valor Informado não é um número válido");
+
+  // 0. catch coin from
+  let coinFrom = getCoinFrom();
+
+  // 1. catch coin to
+  let coinTo = getCoinTo();
+
+  //
+  let bid = calculateBidConversion(coinFrom, coinTo);
+  console.log(bid);
 };
 
 const setEventClickButton = (button) => {

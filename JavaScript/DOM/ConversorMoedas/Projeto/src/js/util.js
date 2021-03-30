@@ -50,6 +50,23 @@ export const adaptJsonResponse = (json) => {
   return jsonResponse;
 };
 
+// Check if the value is a number, can't contain chars except "," or "."
 export const validateInputValue = (value) => {
-  return isNaN(value);
+  // ""
+  if (value === "" || value === null || value === undefined) return false;
+
+  // .2344
+  if (value[0] === ".") return false;
+
+  let arrayValue = value.split(".");
+  // 123.123.123
+  if (arrayValue.length > 2) return false;
+
+  // Doing with Regex numbers + "."
+  const regexOnlyNumbers = /^(0|[1-9]\d*)(\.\d+)*$/g;
+  const valueLength = value.length;
+  console.log(valueLength);
+
+  let result = value.match(regexOnlyNumbers);
+  return result === null ? false : true;
 };

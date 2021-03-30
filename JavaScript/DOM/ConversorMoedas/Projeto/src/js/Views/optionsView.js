@@ -1,7 +1,7 @@
 import { state } from "../index.js";
 
-export const templateOption = ({ code, name }) => {
-  return `<option value="${code}"> ${name} </option>`;
+export const templateOption = (element) => {
+  return `<option value="${element.name}"> ${element.name} </option>`;
 };
 
 export const renderOptions = (arrayOptionTemplate) => {

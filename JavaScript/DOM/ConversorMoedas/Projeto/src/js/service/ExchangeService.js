@@ -27,4 +27,35 @@ class ExchangeService {
   }
 }
 
-export { ExchangeService };
+// Refatorar
+const calculateBidConversion = (coin0, coin1) => {
+  if (coin0 === "BRL") {
+    let arrayCoins = state.data;
+    let coinArrayObj = arrayCoins.filter((coin) => {
+      if (coin.name === coin1) {
+        console.log(coin.bid);
+        return coin.bid;
+      }
+    });
+
+    let bid = coinArrayObj[0].bid;
+    bid = parseFloat(bid);
+    bid = 1 / bid;
+    return bid;
+  }
+
+  if (coin1 === "BRL") {
+    const arrayCoins = state.data;
+    let coinArrayObj = arrayCoins.filter((coin) => {
+      if (coin.name === coin0) {
+        return { bid: coin.bid };
+      }
+    });
+
+    let bid = coinArrayObj[0].bid;
+    bid = parseFloat(bid);
+    return bid;
+  }
+};
+
+export { ExchangeService, calculateBidConversion };
