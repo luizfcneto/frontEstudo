@@ -6,7 +6,13 @@ import {
   getBidConversion,
 } from "../service/ExchangeService.js";
 import { validateInputValue } from "../util.js";
-import { showError, clearError } from "../Views/ResultView.js";
+import {
+  showError,
+  clearError,
+  showResult,
+  showInfoResult,
+  clearAllViews,
+} from "../Views/ResultView.js";
 
 const setUpOptions = async () => {
   const templateOptions = state.data.map(templateOption);
@@ -28,35 +34,44 @@ const getCoinTo = () => {
 const doTheMagic = (event) => {
   event.preventDefault();
   clearError();
-  console.log("Começa o processo de conversão");
   let value = getInputValue();
 
   if (!validateInputValue(value)) {
     showError("Valor Informado não é um número válido");
-    console.log("Wrong, Input Error");
   } else {
     let coinFrom = getCoinFrom();
     let coinTo = getCoinTo();
     let bid = getBidConversion(coinFrom, coinTo);
 
     let result = (bid * parseFloat(getInputValue())).toFixed(4);
-
-    // TODO
     showResult(result);
+    showInfoResult(coinFrom, bid.toFixed(4), coinTo);
   }
 };
 
-const setEventClickButton = (button) => {
+const setEventClickButton = (button, input) => {
   button.addEventListener("click", doTheMagic);
+  button.addEventListener("keypress", (event) => {
+    if (event.keyCode === 13 || event.which === 13) {
+      doTheMagic(event);
+    }
+  });
+
+  input.addEventListener("keypress", (event) => {
+    if (event.keyCode === 13 || event.which === 13) {
+      event.preventDefault();
+      doTheMagic(event);
+    }
+  });
 };
 
 export const MainController = async () => {
-  console.log("Iniciou o programa");
+  clearAllViews();
   const exchangeService = new ExchangeService();
   await exchangeService.getAllData();
 
   new Input();
   setUpOptions();
 
-  setEventClickButton(state.buttonEl);
+  setEventClickButton(state.buttonEl, state.inputEl);
 };

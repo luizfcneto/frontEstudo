@@ -6,12 +6,14 @@ class Input {
   inputEl;
   buttonEl;
   value;
+  form;
 
   constructor() {
     this.selectActualEl = document.querySelector("#actual");
     this.selectToEl = document.querySelector("#to");
     this.inputEl = document.querySelector(".input-value");
-    this.buttonEl = document.querySelector(".btn-converter");
+    this.buttonEl = document.querySelector("#btn-converter");
+    this.formEl = document.querySelector("#form-action");
 
     state.selects = {
       selectActualEl: this.selectActualEl,
@@ -20,6 +22,7 @@ class Input {
 
     state.buttonEl = this.buttonEl;
     state.inputEl = this.inputEl;
+    state.formEl = this.formEl;
   }
 }
 

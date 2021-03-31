@@ -42,13 +42,13 @@ const getBidConversion = (coin0, coin1) => {
   if (coin0 === coin1) return 1;
 
   // BRL => Euro
-  if (coin0 === "BRL") {
+  if (coin0 === "Real") {
     let bid = 1 / getCoin(coin1);
     return bid;
   }
 
   // Euro => BRL
-  if (coin1 === "BRL") {
+  if (coin1 === "Real") {
     let bid = getCoin(coin0);
     return bid;
   }

@@ -4,8 +4,8 @@ let state = {};
 export { state };
 
 const init = async () => {
+  console.log("Iniciou o programa");
   await MainController();
-  console.log(state);
 };
 
 init();
